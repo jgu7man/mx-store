@@ -1,0 +1,78 @@
+    <div class="row">
+        <div class="col s12">
+            <p>Decide el lugar donde te gustaría recoger tu pedido.</p>
+        </div>
+        <div class="col s12">
+            <mat-form-field>
+                <mat-label>Sucursal para recoger</mat-label>
+                <mat-select 
+                placeholder="Nombre de sucursal"
+                (selectionChange)="setBranchHours($event)" 
+                [(ngModel)]="pickupForm.branch" >
+                    <mat-option 
+                    *ngFor="let branch of branches"
+                    [value]="branch.displayName" 
+                    >{{branch.displayName}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12" *ngIf="ubicacion">
+            <p> <b>Ubicación:</b> {{ubicacion.address}} col: {{ubicacion.depto}}, {{ubicacion.city}}, {{ubicacion.state}} </p>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="horarioLaboral">
+        <div class="col s12" >
+            <p>Elige la fecha y la hora para recoger tu pedido. El horario en {{pickupForm.branch}} es de {{horarioLaboral.startTime}} horas a {{horarioLaboral.endTime}} horas</p>
+        </div>
+        <div class="col s6">
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha</mat-label>
+                <input matInput [matDatepicker]="pickupDate" disabled [(ngModel)]="pickup_date">
+                <mat-datepicker-toggle matSuffix [for]="pickupDate"></mat-datepicker-toggle>
+                <mat-datepicker #pickupDate disabled="false"></mat-datepicker>
+            </mat-form-field>
+
+            <!-- <calendar-select-date [horarioLaboral]="horarioLaboral" [duracionEventoDefault]="eventDuration" [minTime]="'08:00'" [maxTime]="'17:00'" [diasDeshabilitados]="[0]" (getFechaClick)="clickDate($event)" [listaEventos]="citas"></calendar-select-date>     -->
+        </div>
+        <div class="col s6">
+            <mat-form-field>
+                <mat-label>Hora</mat-label>
+                    <input matInput [ngxTimepicker]="start" [format]="24"  
+                    [value]="horarioLaboral.startTime">
+                    <ngx-material-timepicker #start
+                    (timeSet)="setPickupDate($event)"
+                    [minutesGap]="15"
+                    ></ngx-material-timepicker>
+            </mat-form-field>
+        </div>
+    </div>
+    
+    
+    <div class="row">
+        <div class="col s12">
+            <mat-slide-toggle
+            (change)="pickupByOther = $event.checked"
+            >¿Permitir que alguien más recoga tu pedido?
+            </mat-slide-toggle>
+        </div>
+        <div class="col s12" *ngIf="pickupByOther">
+            <mat-form-field>
+                <mat-label>Nombre de quien recoge</mat-label>
+                <input matInput 
+                type="text" 
+                name="otherName" 
+                id="otherName" 
+                [(ngModel)]="pickupForm.otherName"
+                (blur)="this.pickupChanges.emit({pickup: this.pickupForm, valid: this.validatePickup})"
+                >
+            </mat-form-field>
+            <!-- <mat-form-field>
+                <mat-label>Cedula de quien recoge</mat-label>
+                <input matInput type="text" name="otherCedula" id="otherCedula" [(ngModel)]="pickupForm.otherId">
+            </mat-form-field> -->
+        </div>
+    </div>

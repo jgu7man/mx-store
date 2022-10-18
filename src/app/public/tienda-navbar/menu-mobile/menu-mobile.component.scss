@@ -1,0 +1,94 @@
+#sidenav-menu {
+    margin: 0;
+    border: none;
+    /* height: 90vh; */
+    overflow-y: auto;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: hsla(207, 100%, 18%, 1);
+    /* top: 11vh; */
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    a.collection-item {
+        padding: 1em 4em;
+        color: #fff;
+        background: hsla(207, 100%, 18%, 1);
+        border-bottom: 1px solid hsla(207, 100%, 15%, 1);
+    }
+
+    .collection .collection-item.active {
+        background-color: #155a90 !important;
+    }
+
+    .collection a.collection-item:not(.active):hover {
+        background: hsla(207, 100%, 26%, 1);
+    }
+
+
+
+    .collection {
+        border-radius: 0;
+    }
+
+    ::ng-deep .mat-accordion .mat-expansion-panel:first-of-type,
+    ::ng-deep .mat-accordion .mat-expansion-panel:last-of-type,
+    ::ng-deep .mat-expansion-panel {
+        background-color: hsla(207, 100%, 23%, 1);
+        border-radius: none !important;
+        margin: 0 !important;
+        color: #fff;
+    }
+
+    ::ng-deep .mat-expansion-panel-body {
+        padding: 0 !important;
+    }
+
+    ::ng-deep .mat-expansion-indicator::after {
+        color: #fff;
+    }
+
+    ::ng-deep .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']):hover {
+        background: rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .mat-expansion-panel-header[aria-disabled=true] {
+        color: #fff !important;
+    }
+
+    @media (hover: none) {
+        .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+            background: #00325c;
+        }
+    }
+
+
+    @media screen and (max-width: 500px){
+        #sidenav-menu {
+            width: 60vw;
+            height: 92vh;
+        }
+    }
+}
+
+#sidenav-menu::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+#admin-logo {
+    background: #005daa;
+    width: 20vw;
+    height: 10vh;
+    padding: .5em 3em;
+    position: fixed;
+}
+
+#admin-logo img {
+    position: relative;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+}
+

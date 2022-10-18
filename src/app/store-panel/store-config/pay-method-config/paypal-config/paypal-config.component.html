@@ -1,0 +1,52 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        Configuración
+    </mat-expansion-panel-header>
+    <form action="#"  [formGroup]="paypalForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Sandbox Client ID</mat-label>
+            <input
+            matInput
+            type="text"
+            name="sandboxClientID"
+            formControlName="sandboxClientID"
+            >
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Live Client ID</mat-label>
+            <input
+            matInput
+            type="text"
+            name="liveClientID"
+            formControlName="liveClientID"
+            >
+        </mat-form-field>
+        <div class="row" style="justify-content: space-around; display: flex;">
+            
+            <div class="col s12">
+                <button mat-raised-button
+                gdev-color
+                background="primary"
+                color="bg1"
+                [disabled]="disableForm()"
+                (click)="saveData()"
+                >Guardar</button>
+
+                                            
+                <button mat-raised-button
+                gdev-color
+                background="accent"
+                color="bg1"
+                [disabled]="!paypalForm.valid"
+                (click)="createButton()"
+                >Testear</button>
+            </div>
+        
+        </div>
+        <div class="row" style="display: flex; justify-content: space-around">
+                <div #paypal width="50%" id="paypal"></div>
+        </div>
+    </form>
+
+    
+</mat-expansion-panel>

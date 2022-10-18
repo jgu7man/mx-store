@@ -1,0 +1,43 @@
+::ng-deep {
+    mat-dialog-content {
+        position: relative;
+        height: 80vh;
+        max-height: 90vh !important;
+        
+        .carousel {
+            height: 100%;
+            .carousel-list {
+                height: 100%;
+                li.carousel-slide {
+                    padding: 0;
+                    height: 100%;
+                    div.carousel-slide {
+                        background-size: contain;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.close {
+    position: absolute;
+    top: -1em;
+    right: 1em;
+    z-index: 2;
+}
+
+.imgArea {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1em;
+    .imgContent {
+        flex-grow: 1;
+        width: 33%;
+        position: relative;
+        img {
+            position: relative;
+            transform: translate(-50%, -50%);
+        }
+    }
+}

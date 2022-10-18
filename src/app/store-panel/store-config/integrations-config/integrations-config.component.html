@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="row">
+        <div class="col s10">
+            <mat-form-field appearance="outline">
+                <mat-label>Pixel de facebook</mat-label>
+                <input
+                matInput
+                type="text"
+                name="pixel"
+                [(ngModel)]="integrations_.pixelKey"
+                #pixelKey="ngModel"
+                required
+                >
+            </mat-form-field>
+        </div>
+        <div class="col s2 center">
+            <button 
+            mat-raised-button 
+            gdev-color 
+            background="primary" 
+            (click)="setKey('pixel')"
+            [disabled]="pixelKey.pristine"
+            >Guardar</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s10">
+            <mat-form-field appearance="outline">
+                <mat-label>Google Anlytics</mat-label>
+                <input
+                matInput
+                type="text"
+                name="anlytics"
+                [(ngModel)]="integrations_.analyticsKey"
+                #analytics="ngModel"
+                required
+                >
+            </mat-form-field>
+        </div>
+        <div class="col s2 center">
+            <button 
+            mat-raised-button  
+            gdev-color 
+            background="primary" 
+            (click)="setKey('analytics')"
+            [disabled]="analytics.pristine"
+            >Guardar</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s10">
+            <mat-form-field appearance="outline">
+                <mat-label>Google Tag Manager</mat-label>
+                <input
+                matInput
+                type="text"
+                name="anlytics"
+                [(ngModel)]="integrations_.tagManagerKey"
+                #tagManagerKey="ngModel"
+                >
+            </mat-form-field>
+        </div>
+        <div class="col s2 center">
+            <button 
+            mat-raised-button  
+            gdev-color 
+            background="primary" 
+            (click)="setKey('tagmanager')"
+            [disabled]="tagManagerKey.pristine"
+            >Guardar</button>
+        </div>
+    </div>
+</div>

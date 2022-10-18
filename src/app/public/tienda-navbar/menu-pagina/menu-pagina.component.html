@@ -1,0 +1,12 @@
+<button mat-button
+[matMenuTriggerFor]="menu"
+>Sitio
+</button>
+<mat-menu #menu="matMenu" >
+    <a mat-menu-item
+    [routerLink]="['/tienda/'+ruta.route]"
+    *ngFor="let ruta of rutas"
+    >{{ruta.name | capitalize}}
+    </a>
+</mat-menu>
+

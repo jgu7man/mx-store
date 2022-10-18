@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row hide-on-med-and-down">
+        <div class="col s12 center">
+            <h2>Tu carrito</h2>
+        </div>
+    </div>
+    <ng-container *ngIf="cart.totalCartItems() == 0; else productsInCart">
+        <div class="row">
+            <div class="col s12 center">
+                No hay nada en el carrito, ve a la <a [routerLink]="['/tienda']">tienda</a> y elige productos para agregar
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #productsInCart>
+        <div class="row">
+            
+            <!-- Products In cart -->
+            <div class="col s12 m9">
+                <mat-card class="mat-elevation-z2 cart-prod" *ngFor="let product of products">
+                    <mat-card-content>
+                        <app-product-on-cart [product]="product"></app-product-on-cart>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            
+            <div class="col s12 m3">
+                <mat-card>
+                    <mat-card-content>
+                        <div id="confirm" class="row">
+                            <div class="col s12" style="text-align: right;">
+                                <p>Total de compra</p>
+                                <p class="precio_compra"> <b>${{precio_total}}</b> </p>
+                            </div>
+                            <div class="col s12 right">
+                                <button class="right"
+                                mat-raised-button
+                                (click)="confirmOrder()"
+                                [color]="'primary'">
+                                    Confirmar compra
+                                </button>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+        </div>
+
+
+            
+    </ng-template>
+
+    
+</div>

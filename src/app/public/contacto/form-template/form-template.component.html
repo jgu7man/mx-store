@@ -1,0 +1,44 @@
+<mat-dialog-content>
+    <mat-form-field *ngIf="!disableNombre">
+        <mat-label>Nombre</mat-label>
+        <input
+        matInput
+        type="text"
+        [(ngModel)]="contacto.nombre"
+        name="nombre"
+        >
+    </mat-form-field>
+    <mat-form-field *ngIf="!disableEmail">
+        <mat-label>Email</mat-label>
+        <input
+        matInput
+        type="text"
+        [(ngModel)]="contacto.email"
+        name="email"
+        >
+    </mat-form-field>
+    <mat-form-field *ngIf="!disableCelular">
+        <mat-label>Teléfono</mat-label>
+        <input
+        matInput
+        type="text"
+        [(ngModel)]="contacto.telefono"
+        name="telefono"
+        >
+    </mat-form-field>
+    <mat-form-field *ngIf="!disableMensaje">
+        <textarea name="mensaje" id="mensaje" cols="30" rows="3"
+        matInput [(ngModel)]="contacto.mensaje"></textarea>
+    </mat-form-field>
+    <mat-checkbox [checked]="contacto.privacity"
+    (change)="onPrivacityChange($event)"
+    >Acepto que he leído la <a href="{{linkPDP}}" target="blank">política de privacidad</a></mat-checkbox>
+</mat-dialog-content>
+<mat-dialog-actions
+style="display: flex; justify-content: center;">
+    <button mat-raised-button
+    [disabled]="!contacto.privacity"
+    (click)="submit.emit(contacto)"
+    >Enviar</button>
+</mat-dialog-actions>
+

@@ -1,0 +1,48 @@
+<div class="container">
+   <div class="row align-cols">
+       <div class="col s2 m1">
+           <button mat-icon-button
+           (click)="location.back()">
+               <i class="fas fa-arrow-left    "></i>
+           </button>
+       </div>
+       <div class="col s10 m11">
+           <h2>Categoría: {{categoria}}</h2>
+       </div>
+   </div>
+    <div class="row">
+        <div class="col s12 m4 l3" *ngFor="let product of products">
+            <mat-card class="mat-elevation-z8">
+                <img [src]="product.imagenUrl['url']"
+                [alt]="product.referencia"
+                mat-card-image
+                [routerLink]="['/tienda/producto', product.id]"
+                class="card-image">
+                <mat-card-title [routerLink]="['/tienda/producto', product.id]">
+                    <strong>{{product.referencia}}</strong> 
+                </mat-card-title>
+                <mat-card-subtitle>
+                    <p> ${{product.precio | mask: 'separator': ','}} </p>
+                </mat-card-subtitle>
+                <mat-card-content>
+                    <p>
+                        {{product.descripcion.substring(0, 100)}}
+                        <span *ngIf="product.descripcion.length > 100">...</span>
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <app-product-actions [product]="product"></app-product-actions>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row" *ngIf="products">
+        <div class="col s12 center">
+            <button 
+            mat-raised-button 
+            (click)="loadMore()" 
+            [disabled]="lastItem"
+            >Cargar más...</button>
+        </div>
+    </div>
+</div>

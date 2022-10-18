@@ -1,0 +1,41 @@
+<div id="categories">
+    <div class="row" id="categoryTab">
+        <div class="col s12" id="categoriesTable">
+            <div class="row">
+                <!-- * TITLE * -->
+
+                <div class="col s8">
+                    <h5>CATEGORÍAS</h5>
+                </div>
+
+                <!-- * OPCIONES DEL PANEL * -->
+
+                <div class="col s2">
+                    <button 
+                    mat-raised-button
+                    [color]="'primary'"
+                    class="btn addBtn" (click)="onAdd()">
+                        Agregar
+                    </button>
+                </div>
+
+                <!-- TERMINA CABECERA -->
+
+                <!-- * TABLA * -->
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <gdev-category-table
+                        [categories]="categories"
+                    >
+                    </gdev-category-table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TERMINA TABLA -->
+
+    </div>
+
+    <!-- TERMINA MARCO -->
+</div>

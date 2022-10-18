@@ -1,0 +1,161 @@
+<div class="container" *ngIf="storeDatos">
+    <div class="row">
+        <div class="col s12">
+            <h1><strong>{{storeDatos.store_name}}</strong></h1>
+        </div>
+    </div>
+
+    <div class="row">
+
+
+        <!-- * Métodos de contacto -->
+        <div class="col s12 m6 ">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Contáctanos fácilmente</mat-card-title>
+                    <mat-card-subtitle>Te dejamos nuestras opciones de contacto</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-accordion class="headers-align">
+                        
+                        <!-- WHATASAPP -->
+
+                        <mat-expansion-panel #whatsapp [ngClass]="{'whatsapp': !whatsapp.expanded}" class="mat-elevation-z0"
+                        *ngIf="storeDatos.whatsapp">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Envíanos un whatsapp
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <i class="fab fa-whatsapp"></i>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            
+                            <gdev-form-template (submit)="sendMessage($event, 'whatsapp')"  ></gdev-form-template>
+
+
+                        </mat-expansion-panel>
+
+
+                        <!-- EMAIL -->
+
+
+                        <mat-expansion-panel #email [ngClass]="{'email': !email.expanded}" class="mat-elevation-z0"
+                        *ngIf="storeDatos.email">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Envíanos un email
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <i class="fas fa-envelope"></i>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            
+                            <gdev-form-template  (submit)="sendMessage($event, 'email')" ></gdev-form-template>
+
+
+                        </mat-expansion-panel>
+
+
+
+                        <!-- MESSENGER -->
+
+
+                        <mat-expansion-panel #messenger [ngClass]="{'messenger': !messenger.expanded}" class="mat-elevation-z0"
+                        *ngIf="storeDatos.facebook">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Envíanos un inbox
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <i class="fab fa-facebook-messenger"></i>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            
+                            <gdev-form-template  [disableMensaje]="true" (submit)="sendMessage($event, 'messenger')" ></gdev-form-template>
+
+
+                        </mat-expansion-panel>
+
+
+                        <!-- SKYPE -->
+
+
+
+                        <mat-expansion-panel #skype [ngClass]="{'skype': !skype.expanded}" class="mat-elevation-z0"
+                        *ngIf="storeDatos.skype">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Envíanos un mensaje de Skype
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <i class="fab fa-skype"></i>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            
+                            <gdev-form-template  [disableMensaje]="true" (submit)="sendMessage($event, 'skype')" ></gdev-form-template>
+
+
+                        </mat-expansion-panel>
+
+
+
+                    </mat-accordion>
+
+                </mat-card-content>
+                
+            </mat-card>
+
+            
+        </div>
+
+
+        <!-- * TERMINA MÉTODOS DE ENVÍO -->
+
+
+
+        <!-- * INICIA DATOS DE CONTACTO -->
+
+        <div class="col s12 m6">
+
+            <div class="row">
+                <div class="col s12">
+                    <div class="collection with-header">
+                        <div class="collection-header"><h2>Redes sociales</h2></div>
+                        <a *ngIf="storeDatos.facebook" href="https://facebook.com/{{storeDatos.facebook}}" class="collection-item facebook" gdev-color [color]="'complement1'">
+                            <i class="fab fa-facebook fa-2x  "></i> 
+                            <p>Facebook</p>
+                        </a>
+                        <a *ngIf="storeDatos.instagram" href="https://instagram.com/{{storeDatos.instagram}}" class="collection-item instagram" gdev-color [color]="'complement1'" >
+                            <i class="fab fa-instagram fa-2x  "></i> 
+                            <p>Instagram</p>
+                        </a>
+                        <a *ngIf="storeDatos.youtube" href="https://youtube.com/{{storeDatos.youtube}}" class="collection-item youtube" gdev-color [color]="'complement1'" >
+                            <i class="fab fa-youtube fa-2x  "></i> 
+                            <p>Youtube</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col s12">
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>Ubícanos</mat-card-title>
+                            <mat-card-subtitle>
+                                <p *ngIf="storeDatos.ubication">{{storeDatos.ubication.address}}, {{storeDatos.ubication.dist}}, {{storeDatos.ubication.city}}, {{storeDatos.ubication.state}}, {{storeDatos.ubication.country}}</p>
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <gdev-basic-map *ngIf="storeDatos.maps" [lat]="storeDatos.maps.lat" [lng]="storeDatos.maps.lng"></gdev-basic-map>
+                        </mat-card-content>
+                    </mat-card>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    
+</div>

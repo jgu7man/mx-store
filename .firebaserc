@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "mx-store-7f0b6": {
+      "hosting": {
+        "mx-store": [
+          "mx-store-7f0b6"
+        ]
+      }
+    }
+  }
+}

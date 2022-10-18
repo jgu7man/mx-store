@@ -1,0 +1,120 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Contenido de marca</mat-card-title>
+          <mat-card-subtitle>Aquí podrás personalizar la marca de tu sitio</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+
+          <div class="row">
+            <div class="col s12 m4">
+              <p>
+                <b>Logotipo cabecera</b> <br>
+                Agrega el logotipo de aparecerá en el encabezado de tu sitio. Debe tener un formato horizontal y con las medidas recomendadas es de 200px por 40px (5:1). Se recomienda un formato de archivo <b>webp</b>
+              </p>
+            </div>
+            <div class="col s12 m4">
+              <mx-files-picker
+              [maxFileSize]="2097152"
+              path="brand"
+              toggleButtonLabel="Cargar archivos"
+              [multiple]="false"
+              dropzoneLabel="Toca o arrastra un archivo hasta aquí"
+              uploadButtonLabel="Subir"
+              color="primary"
+              (uploadComplete)="onHeadLogoUploaded($event)"
+              ></mx-files-picker>
+            </div>
+            <div class="col s12 m4">
+              <div class="logo-preview" *ngIf="brandInfo">
+                <img [src]="brandInfo.headLogo.url">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12 m4">
+              <p>
+                <b>Logotipo cuadrado</b> <br>
+                Agrega el logotipo de aparecerá en el pie de tu sitio. Debe tener un formato cuadrado y con las medidas recomendadas es de 256px por 256px (1:1). Se recomienda un formato de archivo <b>webp</b>
+              </p>
+            </div>
+            <div class="col s12 m4">
+              <mx-files-picker
+              [maxFileSize]="2097152"
+              path="brand"
+              toggleButtonLabel="Cargar archivos"
+              [multiple]="false"
+              dropzoneLabel="Toca o arrastra un archivo hasta aquí"
+              uploadButtonLabel="Subir"
+              color="primary"
+              (uploadComplete)="onSquareLogoUploaded($event)"
+              ></mx-files-picker>
+            </div>
+            <div class="col s12 m4">
+              <div class="logo-preview" *ngIf="brandInfo">
+                <img [src]="brandInfo.squareLogo.url">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12 m4">
+              <p>
+                <b>Icono cuadrado</b> <br>
+                Agrega el logotipo de en las pestañas o metadata de tu sitio. Debe tener un formato cuadrado y con las medidas recomendadas es de 128px por 128px (1:1). Se recomienda un formato de archivo <b>webp</b>
+              </p>
+            </div>
+            <div class="col s12 m4">
+              <mx-files-picker
+              [maxFileSize]="2097152"
+              path="brand"
+              toggleButtonLabel="Cargar archivos"
+              [multiple]="false"
+              dropzoneLabel="Toca o arrastra un archivo hasta aquí"
+              uploadButtonLabel="Subir"
+              color="primary"
+              (uploadComplete)="onIconLogoUploaded($event)"
+              ></mx-files-picker>
+            </div>
+            <div class="col s12 m4">
+              <div class="logo-preview" *ngIf="brandInfo">
+                <img [src]="brandInfo.iconLogo.url">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12 m4">
+              <p>
+                <b>Icono negativo</b> <br>
+                Agrega el logotipo negativo que aparecerá en el pie del sitio o la cabecera de la tienda. Debe tener un formato cuadrado y con las medidas recomendadas es de 128px por 128px (1:1). Se recomienda un formato de archivo <b>webp</b>
+              </p>
+            </div>
+            <div class="col s12 m4">
+              <mx-files-picker
+              [maxFileSize]="2097152"
+              path="brand"
+              toggleButtonLabel="Cargar archivos"
+              [multiple]="false"
+              dropzoneLabel="Toca o arrastra un archivo hasta aquí"
+              uploadButtonLabel="Subir"
+              color="primary"
+              (uploadComplete)="onNegativeLogoUploaded($event)"
+              ></mx-files-picker>
+            </div>
+            <div class="col s12 m4">
+              <div class="logo-preview" *ngIf="brandInfo">
+                <img [src]="brandInfo.negLogo.url">
+              </div>
+            </div>
+          </div>
+
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+  </div>
+</div>

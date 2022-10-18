@@ -1,0 +1,10 @@
+<li id="main-menu">
+    <div class="collection">
+
+        <a *ngIf="auth.cliente$ | async as user" class="collection-item" [routerLink]="[ '' ]">
+          {{user.email}}
+        </a>
+        <a class="collection-item" (click)="_navbar.toggleMenu.next(false)" [routerLink]="[ '/tienda' ]">Ir a tienda</a>
+        <a class="collection-item" (click)="_navbar.toggleMenu.next(false)"  (click)="auth.logOut()">Cerrar sesión</a>
+    </div>
+</li>

@@ -1,0 +1,47 @@
+
+<mat-list role="list">
+    <mat-list-item *ngFor="let item of addons; index as i">
+        <div class="col s7">
+            {{item.ref}}
+        </div>
+        <div class="col s3">
+            ${{item.precio}}
+        </div>
+        <div class="col s2">
+            <button mat-icon-button
+            (click)="deleteAddon(i)">
+                <i class="fas fa-trash red-text"></i>
+            </button>
+        </div>
+    </mat-list-item>
+    <mat-list-item>
+        <div class="col s7">
+            <mat-form-field>
+                <input
+                matInput
+                type="text"
+                name="ref"
+                [(ngModel)]="nuAddon.ref"
+                >
+            </mat-form-field>
+        </div>
+
+        <div class="col s3">
+            <mat-form-field>
+                <input
+                matInput
+                type="number"
+                name="precio"
+                [(ngModel)]="nuAddon.precio"
+                >
+            </mat-form-field>
+        </div>
+
+        <div class="col s2">
+            <button mat-icon-button
+            (click)="onAddAddon()">
+                <i class="fas fa-check blue-text"></i>
+            </button>
+        </div>
+    </mat-list-item>
+</mat-list>

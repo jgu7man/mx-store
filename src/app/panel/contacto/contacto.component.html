@@ -1,0 +1,149 @@
+<div class="container">
+	<div class="row">
+		<div class="col s12">
+			<h2>Identidad del sitio</h2>
+		</div>
+	</div>
+	<div class="row" id="identidad-row">
+		<div class="col s12">
+			<mat-card id="contacto-card">
+				<form action="#" #identidadForm="ngForm">
+					<mat-card-header>
+						<mat-card-title>Datos de contacto</mat-card-title>
+						<mat-card-subtitle>
+							Llena con tus datos para que tus clientes puedan ponerse en contacto contigo
+						</mat-card-subtitle>
+					</mat-card-header>
+					<mat-card-content>
+						<div class="row">
+							<div class="col s12 m6">
+								<mat-form-field>
+									<mat-label>Nombre de la tienda</mat-label>
+									<input matInput type="text" name="store_name" [(ngModel)]="datosContacto.store_name" />
+								</mat-form-field>
+								<mat-form-field>
+									<mat-label>Teléfono</mat-label>
+									<input matInput type="text" name="phone" [(ngModel)]="datosContacto.phone" />
+								</mat-form-field>
+							</div>
+							<div class="col s12 m6">
+								<mat-form-field>
+									<mat-label>Whatsapp</mat-label>
+									<input
+										matInput
+										type="text"
+										name="whatsapp"
+										[(ngModel)]="datosContacto.whatsapp"
+										placeholder="52 312 180 5955"
+									/>
+									<mat-hint
+										>Incluye al principio los número de área de tu país al principio. Ejemplo: Para México es 52
+									</mat-hint>
+								</mat-form-field>
+								<mat-form-field>
+									<mat-label>Email</mat-label>
+									<input matInput type="text" name="email" [(ngModel)]="datosContacto.email" />
+								</mat-form-field>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col s12 m6">
+								<h4>Domicilio</h4>
+
+								<gdev-ubication-form
+									[Ubication]="datosContacto.ubication ? datosContacto.ubication : ubication"
+									(formChanges)="onUbicationChanges($event)"
+								></gdev-ubication-form>
+
+								<div class="row">
+									<h4>Coordenadas de Google Maps</h4>
+									<div class="col s6">
+										<mat-form-field>
+											<mat-label>Latitude</mat-label>
+											<input
+												matInput
+												type="number"
+												[(ngModel)]="cords.lat"
+												name="lat"
+												(blur)="datosContacto.maps = cords"
+											/>
+											<mat-hint>Incluye números negativos con un signo de (-)</mat-hint>
+										</mat-form-field>
+									</div>
+
+									<div class="col s6">
+										<mat-form-field>
+											<mat-label>Longitud</mat-label>
+											<input
+												matInput
+												type="number"
+												[(ngModel)]="cords.lng"
+												name="lng"
+												(blur)="datosContacto.maps = cords"
+											/>
+											<mat-hint>Incluye números negativos con un signo de (-)</mat-hint>
+										</mat-form-field>
+									</div>
+								</div>
+							</div>
+							<div class="col s12 m6">
+								<h4>Redes Sociales</h4>
+								<div class="row">
+									<mat-form-field>
+										<mat-label>Facebook Page</mat-label>
+										<input matInput type="text" name="facebook" [(ngModel)]="datosContacto.facebook" />
+										<mat-hint
+											>Agrega sólo el nombre de tu página de facebook, el que va seguido de la URL. Ejemplo:
+											'marxadigital'. Ejemplo erroneo: facebook.com/marxadigital</mat-hint
+										>
+									</mat-form-field>
+								</div>
+								<div class="row">
+									<mat-form-field>
+										<mat-label>Instagram</mat-label>
+										<input matInput type="text" name="instagram" [(ngModel)]="datosContacto.instagram" />
+										<mat-hint
+											>Agrega sólo el usuario de tu perfil de instagram y sin arroba (@), el que va seguido de la URL.
+											Ejemplo: 'marxadigital'. Ejemplo erroneo: instagram.com/marxadigital</mat-hint
+										>
+									</mat-form-field>
+								</div>
+								<div class="row">
+									<mat-form-field>
+										<mat-label>Youtube</mat-label>
+										<input matInput type="text" name="youtube" [(ngModel)]="datosContacto.youtube" />
+										<mat-hint
+											>Agrega sólo el nombre de tu canal de youtube, el que va seguido de la URL. Ejemplo:
+											'marxadigital'. Ejemplo erroneo: youtube.com/marxadigital</mat-hint
+										>
+									</mat-form-field>
+								</div>
+								<div class="row">
+									<mat-form-field>
+										<mat-label>Skype</mat-label>
+										<input matInput type="text" name="skype" [(ngModel)]="datosContacto.skype" />
+										<mat-hint
+											>Agrega sólo ti ID de usuario de Skype Ejemplo: 'live:usuario'. Ejemplo erroneo:
+											https://join.skype.com/invite/code</mat-hint
+										>
+									</mat-form-field>
+								</div>
+							</div>
+						</div>
+					</mat-card-content>
+					<mat-card-actions style="display: flex; justify-content: center">
+						<button
+              mat-raised-button
+              color="primary"
+              (click)="store_.addContactDatos(datosContacto)"
+              [disabled]="identidadForm.invalid || identidadForm.pristine"
+            >
+              Guardar
+            </button>
+					</mat-card-actions>
+				</form>
+			</mat-card>
+		</div>
+	</div>
+</div>

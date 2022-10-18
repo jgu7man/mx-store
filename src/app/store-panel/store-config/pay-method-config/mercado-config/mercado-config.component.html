@@ -1,0 +1,54 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        Configuración
+    </mat-expansion-panel-header>
+    <form action="#"  [formGroup]="mercadopagoForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Test Access Token</mat-label>
+            <input
+            matInput
+            type="text"
+            name="testAccessToken"
+            formControlName="testAccessToken"
+            >
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Production Access Token</mat-label>
+            <input
+            matInput
+            type="text"
+            name="prodAccessToken"
+            formControlName="prodAccessToken"
+            >
+        </mat-form-field>
+        <div class="row" >
+            
+            <div class="col s12" style="justify-content: space-around; display: flex;">
+                <button mat-raised-button
+                gdev-color
+                background="primary"
+                color="bg1"
+                [disabled]="disableForm()"
+                (click)="saveData()"
+                >Guardar</button>
+
+                                        
+                <button mat-raised-button
+                gdev-color
+                background="accent"
+                color="bg1"
+                [disabled]="!mercadopagoForm.valid"
+                (click)="testPago()"
+                >Testear</button>
+            </div>
+        
+        </div>
+        <div class="row" style="display: flex; justify-content: space-around">
+            <div class="col s12">
+                <div #mercadopago width="50%" id="mercadopago"></div>
+            </div>
+        </div>
+    </form>
+
+    
+</mat-expansion-panel>

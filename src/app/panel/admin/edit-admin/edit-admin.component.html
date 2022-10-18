@@ -1,0 +1,36 @@
+<form action="#" onsubmit="return false" #adminForm="ngForm">
+    <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input
+        required
+        matInput
+        type="text"
+        name="displayName"
+        [(ngModel)]="admin.displayName"
+        #displayName="ngModel"
+        >
+        <mat-error *ngIf="displayName.invalid || (displayName.dirty && displayName.touched)">Este campo es necesario</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-select placeholder="Rol" [(ngModel)]="admin.rol" name="rol" required #rol="ngModel">
+            <mat-option *ngFor="let rol of adminS.roles" [value]="rol.value">
+                {{rol.viewValue}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="rol.invalid || (rol.dirty && rol.touched)">
+            Debes elegir un rol
+        </mat-error>
+    </mat-form-field>
+</form>
+
+<mat-dialog-actions
+style="display: flex; justify-content: space-around;">
+    <button mat-raised-button
+    (click)="dialog.close()">Cancelar</button>
+    <button mat-raised-button
+    [disabled]="!adminForm.valid"
+    (click)="onSubmit()"
+    >Guardar</button>
+</mat-dialog-actions>
+

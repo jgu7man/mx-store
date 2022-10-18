@@ -1,0 +1,16 @@
+#menu-categorias {
+    position: absolute;
+    right: -1px;
+    z-index: 3;
+    top: 20px;
+    display: none;
+}
+
+#menu-categorias-container {
+    text-align: left;
+    width: 200px;
+}
+
+.menu-categorias-item {
+    color: #005daa !important;
+}

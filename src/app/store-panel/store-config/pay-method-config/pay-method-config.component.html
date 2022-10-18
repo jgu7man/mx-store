@@ -1,0 +1,88 @@
+<div class="col s12 m6">
+    <div class="row">
+        <h2>Métodos de pago</h2>
+        
+        <div class="row" >
+            <div class="col s12">
+                <mat-slide-toggle class="method-switcher" 
+                [checked]="payConfig.avalibleMethods.includes('efectivo')"
+                (change)="toggleMethod('efectivo', $event)"
+                color="primary"
+                >Activar</mat-slide-toggle>
+            </div>
+            <div class="col s12">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        Configuración
+                    </mat-expansion-panel-header>
+                    Al activar este método de pago, no es necesario hacer nada. Sólo asegúrate de cobrar correctamente al entregar.
+                </mat-expansion-panel>
+            </div>
+        </div>
+        
+        
+        <div class="row" >
+            <div class="col s12">
+                <mat-slide-toggle class="method-switcher"
+                [checked]="payConfig.avalibleMethods.includes('transferencia')"
+                (change)="toggleMethod('transferencia', $event)"
+                color="primary"
+                >Activar</mat-slide-toggle>
+            </div>
+            <div class="col s12">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        Configuración
+                    </mat-expansion-panel-header>
+                    content
+                </mat-expansion-panel>
+            </div>
+        </div>
+        
+        <div class="row" >
+            <div class="col s12">
+                <mat-slide-toggle class="method-switcher"
+                [checked]="payConfig.avalibleMethods.includes('tarjeta')"
+                (change)="toggleMethod('tarjeta', $event)"
+                color="primary"
+                >Activar</mat-slide-toggle>
+            </div>
+            <div class="col s12">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        Configuración
+                    </mat-expansion-panel-header>
+                    content
+                </mat-expansion-panel>
+            </div>
+        </div>
+        
+        <div class="row" >
+            <div class="col s12">
+                <mat-slide-toggle class="method-switcher"
+                [checked]="payConfig.avalibleMethods.includes('paypal')"
+                (change)="toggleMethod('paypal', $event)"
+                color="primary"
+                >Activar</mat-slide-toggle>
+            </div>
+            <div class="col s12">
+                <gdev-paypal-config [data]="payConfig.paypalData ? payConfig.paypalData : null" ></gdev-paypal-config>
+            </div>
+        </div>
+        
+        <div class="row" >
+            <div class="col s12">
+                <mat-slide-toggle class="method-switcher"
+                [checked]="payConfig.avalibleMethods.includes('mercadopago')"
+                (change)="toggleMethod('mercadopago', $event)"
+                color="primary"
+                >Activar</mat-slide-toggle>
+            </div>
+            <div class="col s12">
+                <gdev-mercado-config
+                [data]="payConfig.mercadopagoData ? payConfig.mercadopagoData : null"></gdev-mercado-config>
+            </div>
+        </div>
+
+    </div>
+</div>

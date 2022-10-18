@@ -1,0 +1,41 @@
+<mat-drawer-container [hasBackdrop]="false">
+    
+    
+    <mat-drawer id="current_item" #currentItem [mode]="'over'" position="end" >
+        <gdev-cliente (close)="onClosePanel()" [cliente]="itemSelected"></gdev-cliente>
+    </mat-drawer>
+
+    <mat-drawer-content>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <h4>Clientes</h4>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <table matSort (matSortChange)="sortData($event)">
+                        <tr class="header_list">
+                            <th mat-sort-header="name">Nombre</th>
+                            <th mat-sort-header="emai">Email</th>
+                            <th mat-sort-header="celular">Celular</th>
+                            <th mat-sort-header="reg">Registrado</th>
+                        </tr>
+                        <tr *ngFor="let client of clientes"
+                        (click)="onItemSelected(client)"
+                        class="item_list"
+                        >
+                        <td>{{client.nombre}}</td>
+                        <td>{{client.email}}</td>
+                        <td>{{client.celular}}</td>
+                        <td>{{text.stringifyShortDate(client.registrado)}}</td>
+                        </tr>
+                    </table>
+
+                    
+                </div>
+            </div>   
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

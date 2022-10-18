@@ -1,0 +1,11 @@
+mat-drawer {
+    min-width: 60%;
+    height: 100vh;
+}
+
+::ng-deep .mat-list-text {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+}

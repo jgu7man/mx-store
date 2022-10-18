@@ -1,0 +1,16 @@
+
+#scroll-gallery {
+    display: flex;
+}
+#miniaturas {
+    display: contents;
+    .miniatura {
+        max-width: 15%;
+        margin: 5px;
+        cursor: pointer;
+        border: #ccc solid;
+        img {
+            width: 100%;
+        }
+    }
+}

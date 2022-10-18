@@ -1,0 +1,136 @@
+<mat-drawer-container [hasBackdrop]="false">
+	<mat-drawer #currentProduct [mode]="'over'" [position]="'end'">
+		<gdev-edit-product *ngIf="prodSelected" [product]="prodSelected" (closeForm)="onClosePanel()" ></gdev-edit-product>
+	</mat-drawer>
+	<mat-drawer-content>
+
+		<div id="products">
+			<div class="row" id="productTab">
+
+				<div class="col s12" id="productsTable">
+					<div class="row">
+
+						<!-- * TÍTULO * -->
+
+						<div class="col s8 m10">
+							<h2>PRODUCTOS</h2>
+						</div>
+
+						<!-- * OPCIONES DEL PANEL * -->
+
+						<div class="col s2">
+							<button
+							mat-raised-button
+							[color]="'primary'"
+							class=""
+							[routerLink]="['./add']"
+							>Agregar</button>
+						</div>
+
+					</div>
+					<div class="row" id="sort_menu">
+						<gdev-sort-options *ngIf="categories.length > 0"
+						[sortOptions]="false"
+						[compareOptions]="false"
+						[filterByField]="'categorias'"
+						[fieldTypeValue]="'array'"
+						[fieldValues]="categories">
+						</gdev-sort-options>
+
+					</div>
+					<!-- TERMINA CABECERA -->
+
+
+
+
+						<!-- * TABLA * -->
+						<ng-container *ngIf="products && products.length > 0; else empty">
+							<mat-card class="row" >
+
+
+								<mat-card-content>
+                  <div class="row table-headers" style="width: 110%;">
+                    <div class="col s2">Imagen</div>
+                    <div class="col s4">Referencia</div>
+                    <div class="col s3">Categorías</div>
+                    <div class="col s1">Disp.</div>
+                  </div>
+                  <gdev-index-caller
+                  style="padding: 1em;"
+                  ></gdev-index-caller>
+                  <div class="col s12">
+                    <mat-selection-list #listPanel [multiple]="false"
+                    (selectionChange)="onProdSelected($event)">
+                      <!-- <mat-list-option style="width: 100%;" [disabled]="true">
+                      </mat-list-option> -->
+                      <mat-list-option *ngFor="let product of products" [value]="product">
+                        <div class="row align-cols table-body" style="width: 100%;">
+                          <div class="col s2 prodImg">
+                            <img *ngIf="product.imagenUrl"
+                                            [src]="product.imagenUrl['url'] ? product.imagenUrl['url'] : product.imagenUrl" [alt]="product.referencia">
+                          </div>
+                          <div class="col s4">
+                            {{product.referencia}}
+                          </div>
+                          <div class="col s3">
+                            <span *ngFor="let catego of product.categorias; index as i">
+                              {{catego}}<span *ngIf="i != product.categorias.length -1">, </span>
+                            </span>
+                          </div>
+                          <div class="col s1 ">
+                            <ng-container *ngIf="product.onStock || product.stockCant; else outStock">
+                              <ng-container *ngIf="product.stockCant; else disp">
+                                {{product.stockCant}}
+                              </ng-container>
+                              <ng-template #disp>
+                                <i class="fas fa-circle blue-text"></i>
+                              </ng-template>
+                            </ng-container>
+                            <ng-template #outStock>
+                              <i class="fas fa-circle grey-text"></i>
+                            </ng-template>
+                          </div>
+                        </div>
+                      </mat-list-option>
+                    </mat-selection-list>
+                  <!-- <gdev-loading-data *ngIf="!products || products.length <= 0"></gdev-loading-data> -->
+                  </div>
+                </mat-card-content>
+
+                <mat-card-actions
+                style="display: flex; justify-content: space-between;">
+                    <button mat-raised-button
+                    color="primary"
+                    (click)="index.getPrevPage()"
+                    >Anterior</button>
+                    <button mat-raised-button
+                    color="primary"
+                    (click)="index.getNextPage()"
+                    >Siguiente</button>
+                </mat-card-actions>
+							</mat-card>
+
+
+
+						</ng-container>
+						<ng-template #empty>
+							<div class="empty-container" strechHeight>
+								<p class="center">Aún no has agregado ningún producto</p>
+								<i class="fas fa-box-open fa-10x"></i>
+							</div>
+						</ng-template>
+
+
+				</div>
+
+				<!-- TERMINA TABLA -->
+
+
+			</div>
+
+
+		<!-- TERMINA MARCO -->
+		</div>
+
+	</mat-drawer-content>
+</mat-drawer-container>

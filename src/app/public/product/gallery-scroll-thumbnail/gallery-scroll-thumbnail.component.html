@@ -1,0 +1,36 @@
+<div id="scroll-gallery" class="align-cols">
+    <button
+        *ngIf="images.length > 6"
+        class="leftScroll-btn slider-scroll-bar"
+        (click)="scrollMinLeft()"
+        mat-icon-button
+    >
+        <i class="fas fa-chevron-circle-left"></i>
+    </button>
+    
+    <div id="miniaturas" class="center">
+        <div
+            [ngClass]="{ selected: i == imageIndex }"
+            class="miniatura imgContainer"
+            *ngFor="let image of images; let i = index"
+            (click)="openGallery(i)"
+        >
+            <ng-container *ngIf="!image['url']; else alt">
+                <img [src]="image" />
+            </ng-container>
+            <ng-template #alt>
+                <img [src]="image['url']" [alt]="image['alt']" />
+            </ng-template>
+            
+        </div>
+    </div>
+    
+    <button
+        *ngIf="images.length > 6"
+        class="rightScroll-btn slider-scroll-bar"
+        (click)="scrollMinRight()"
+        mat-icon-button
+    >
+        <i class="fas fa-chevron-circle-right"></i>
+    </button>
+</div>

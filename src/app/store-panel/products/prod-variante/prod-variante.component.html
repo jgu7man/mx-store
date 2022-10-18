@@ -1,0 +1,83 @@
+<mat-accordion [displayMode]="'flat'">
+    <mat-expansion-panel class="mat-elevation-z0" *ngFor="let variant of variantes; index as iV">
+        <mat-expansion-panel-header>
+            <mat-panel-title style="align-items: center;">
+                {{variant.name}}
+            </mat-panel-title>
+            <mat-panel-description style="justify-content: flex-end;">
+                <button mat-icon-button
+                (click)="deleteVariant(iV)">
+                    <i class="fas fa-trash red-text"></i>
+                </button>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+       
+        
+        <mat-list role="list">
+            <mat-list-item *ngFor="let item of variant.variantes; index as i">
+                <div class="col s7">
+                    {{item.ref}}
+                </div>
+                <div class="col s3">
+                    ${{item.precio}}
+                </div>
+                <div class="col s2">
+                    <button mat-icon-button
+                    (click)="deleteAddon(i, iV)">
+                        <i class="fas fa-trash red-text"></i>
+                    </button>
+                </div>
+            </mat-list-item>
+            <mat-list-item>
+                <div class="col s7">
+                    <mat-form-field>
+                        <input
+                        matInput
+                        type="text"
+                        name="ref"
+                        [(ngModel)]="nuAddon.ref"
+                        >
+                    </mat-form-field>
+                </div>
+
+                <div class="col s3">
+                    <mat-form-field>
+                        <input
+                        matInput
+                        type="number"
+                        name="precio"
+                        [(ngModel)]="nuAddon.precio"
+                        >
+                    </mat-form-field>
+                </div>
+
+                <div class="col s2">
+                    <button mat-icon-button
+                    (click)="onAddAddon(iV)">
+                        <i class="fas fa-check blue-text"></i>
+                    </button>
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </mat-expansion-panel>
+    
+</mat-accordion>
+<div class="row">
+    <div class="col s10">
+        <mat-form-field>
+            <mat-label>Variante</mat-label>
+            <input
+            matInput
+            type="text"
+            name="variante"
+            [(ngModel)]="nuVariante.name"
+            >
+        </mat-form-field>
+    </div>
+    <div class="col s2">
+        <button mat-icon-button
+        (click)="onAddVariante()">
+            <i class="fas fa-check blue-text"></i>
+        </button>
+    </div>
+</div>

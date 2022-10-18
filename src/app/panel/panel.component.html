@@ -1,0 +1,29 @@
+<!-- TOPBARNAV -->
+<gdev-topbar></gdev-topbar>
+
+
+<mat-drawer-container
+strechHeight
+id="panel_container"
+class="dash-container"
+hasBackdrop="false">
+
+
+    <mat-drawer
+    #sideNav
+    class="side-nav"
+    mode="side"
+    [opened]="!responsive.small"
+    position="start"
+    gdev-color
+    [background]="'bg2'"
+    >
+        <!-- SIDENAV -->
+        <gdev-sidenav [structure]="sidenavStructure"></gdev-sidenav>
+    </mat-drawer>
+
+
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

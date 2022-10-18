@@ -1,0 +1,17 @@
+#main-menu {
+    box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.4);
+    background: #004175;
+}
+
+#main-menu .collection-item {
+    background: none;
+    border: none;
+    color: #fff !important;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#admin-logo img {
+    width: auto;
+    max-height: 30px;
+}

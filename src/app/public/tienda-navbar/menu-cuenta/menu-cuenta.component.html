@@ -1,0 +1,23 @@
+<div id="menu-cuenta">
+    <ng-container *ngIf="logged; else unlogged">
+        <div id="menu-cuenta-container" class="collection">
+            <a class="menu-cuenta-item collection-item"
+            *ngFor="let ruta of rutasLogged"
+            [routerLink]="['/tienda',ruta.route]"
+            >{{ruta.name | capitalize}}</a>
+            <a class="menu-cuenta-item collection-item"
+            (click)="authClientes.logOut()"
+            >Cerrar Sessión
+            </a>
+        </div>
+    </ng-container>
+    <ng-template #unlogged>
+        <div id="menu-cuenta-container" class="collection">
+            <a class="menu-cuenta-item collection-item"
+            *ngFor="let ruta of rutasUnlogged"
+            [routerLink]="['/tienda',ruta.route]"
+            >{{ruta.name | capitalize}}</a>
+        </div>
+    </ng-template>
+    
+</div>

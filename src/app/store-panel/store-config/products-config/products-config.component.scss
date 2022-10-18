@@ -1,0 +1,16 @@
+li {
+  line-height: 1.5;
+  display: list-item;
+}
+ul li {
+  list-style: disc;
+}
+ul:not(.browser-default) {
+  padding-left: 2em;
+}
+.instructions-list {
+  text-align:justify;
+}
+.instruction {
+  margin-bottom: .5em;
+}

@@ -1,0 +1,44 @@
+.precios {
+    text-align: right;
+}
+
+.referencia {
+    cursor: pointer;
+    .name {
+        font-size: 28px;
+    }
+}
+.precio{
+    font-size: 20px;
+    text-align: right;
+    margin-right: 8%;
+}
+
+::ng-deep {
+    .addCartBtn{
+        text-align: right;
+        margin-right: 8%;
+    }
+}
+
+#product_on_cart {
+    margin: 0;
+}
+
+.delProduct{
+    float: right;
+}
+
+.precios {
+    .precio_total {
+        font-size: 20px;
+    }
+}
+
+#imageCont {
+
+}
+
+img {
+    width: 100%;
+}

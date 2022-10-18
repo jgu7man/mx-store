@@ -1,0 +1,52 @@
+#login {
+    top: 6em;
+    height: calc(100vh - 6em);
+    min-width: 95vw;
+}
+
+.loginContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+gdev-login-card {
+    display: flex; justify-content: center;
+}
+
+
+.social_login_content{
+    display: flex;
+    justify-content: center;
+}
+
+.loginbtn {
+    position: relative;
+    left: 25%;
+    transform: translateX(-100%);
+    padding: 1em 2em;
+    border-radius: 5px;
+    border: none;
+    margin: 1em .5em;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    width: 150px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, .4);
+}
+
+
+
+.fbLogin {
+    background: #3b5999;
+}
+
+.goLogin {
+    background: #dd4b39;
+}
+
+#footer {
+    top: 0 !important;
+}

@@ -1,0 +1,12 @@
+<div class="contenido" id="tienda">
+    <app-tienda-navbar></app-tienda-navbar>
+    <mat-drawer-container id="tienda-container" [hasBackdrop]="true">
+        <mat-drawer #menu_mobile [mode]="'over'" (closed)="_navbar.open=false">
+            <app-menu-mobile></app-menu-mobile>
+        </mat-drawer>
+        <mat-drawer-content>
+            <router-outlet></router-outlet>
+            <gdev-footer></gdev-footer>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

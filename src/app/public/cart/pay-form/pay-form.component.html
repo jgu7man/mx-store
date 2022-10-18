@@ -1,0 +1,100 @@
+<mat-card id="checkout-container">
+    <mat-card-header>
+        <mat-card-title>Finalizar Compra</mat-card-title>
+        <mat-card-subtitle>Llena tus datos para finalizar la compra</mat-card-subtitle>
+    </mat-card-header>
+    <form (ngSubmit)="onSubmit()" #form="ngForm">
+        <mat-card-content>
+            
+            <ng-container *ngIf="cliente; else unAuth">
+                <div class="row" *ngIf="buyer">
+                    <div class="col s12 m6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nombre completo</mat-label>
+                            <input matInput type="text" name="nombre" id="nombre" [(ngModel)]="buyer.name">
+                            <mat-error *ngIf="payForm.invalid">{{getErrorMessage()}}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Celular</mat-label>
+                            <input matInput type="text" name="celular" id="celular" [(ngModel)]="buyer.celular">
+                            <mat-error *ngIf="payForm.invalid">{{getErrorMessage()}}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput type="text" name="email" id="email" [(ngModel)]="buyer.email">
+                            <mat-error *ngIf="payForm.invalid">{{getErrorMessage()}}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Instrucción o nota adicional</mat-label>
+                            <textarea matInput [(ngModel)]="order.aviso"
+                            name="aviso" id="aviso" cols="10" rows="5"
+                            ></textarea>
+                        </mat-form-field>
+                        
+                    </div>
+
+
+                    <!-- * SHIP METHOD -->
+                    <div class="col s12 m6">
+                        <mat-tab-group *ngIf="deliveryConfig && deliveryConfig.shipPosibilities">
+                            <mat-tab label="Entrega a domicilio"
+                            *ngIf="deliveryConfig.shipPosibilities.includes('delivery')">
+                                <app-delivery-form (formChanges)="setDelivery($event)" ></app-delivery-form>
+                            </mat-tab>
+                            <mat-tab label="Recoger en sucursal"
+                            *ngIf="deliveryConfig.shipPosibilities.includes('pickup')">
+                                <app-pickup-form (setUbication)="setDelivery($event)" (pickupChanges)="setPickup($event)"></app-pickup-form>
+                            </mat-tab>
+                        </mat-tab-group>
+                        
+                    </div>
+                </div>
+            </ng-container>
+
+
+
+            <ng-template #unAuth class="center">
+                <div class="row">
+                    <div class="col s12 center">
+                        <p>Necesitas crear una cuenta o iniciar sesión</p>
+                        <a mat-button [routerLink]="['/tienda/cuenta']"> REGISTRARSE</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <app-login-form></app-login-form>
+                    </div>
+                </div>
+            </ng-template>
+            
+        </mat-card-content>
+        <mat-card-actions >
+            <div class="row">
+
+                <!-- * PAY METHOD -->
+                <div class="col s12 m6">
+                    <gdev-pay-methods
+                    (methodSelected)="catchMethodPay($event)"
+                    ></gdev-pay-methods>
+                </div>
+                
+                
+                <!-- * PAY ACTIONS -->
+                <div class="col s12 m6">
+                    <p class="subtotal">Subtotal: {{order.totales.subtotal}}</p>
+                    <p class="taxes">Envío: {{order.totales.tax}}</p>
+                    <mat-card-title>Total: ${{order.totales.grand_total}}</mat-card-title>
+                    
+                    <mat-checkbox [(ngModel)]="order.factura"
+                    [name]="'factura'" #factura="ngModel"
+                    >Requiere Factura</mat-checkbox>
+                    
+                    <button mat-raised-button 
+                    [color]="'primary'"
+                    [disabled]="!validatePay()"
+                    >Pagar</button>
+                </div>
+            </div>
+        </mat-card-actions>
+    </form>
+</mat-card>

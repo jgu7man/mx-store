@@ -1,0 +1,33 @@
+<mat-drawer-container [hasBackdrop]="false">
+    
+    
+    <mat-drawer id="current_item" #currentItem [mode]="'over'" position="end" >
+        <gdev-pedido (close)="onClosePanel()" [pedido]="itemSelected"></gdev-pedido>
+    </mat-drawer>
+
+    <mat-drawer-content>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <h4>Pedidios {{state}}</h4>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <mat-selection-list #listPanel
+                    (selectionChange)="onItemSelected($event)"
+                    [disableRipple]="true"
+                    [multiple]="false">
+                        <mat-list-option 
+                        *ngFor="let item of orders"
+                        [value]="item"
+                        >
+                        Pedido: {{fecha(item.pay_date)}} - {{hora(item.pay_date)}}
+                        </mat-list-option>
+                    </mat-selection-list>
+                </div>
+            </div>   
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

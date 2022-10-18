@@ -1,0 +1,127 @@
+.row, .col {
+    height: 100%;
+}
+
+.titleArea {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+    height: 100%;
+    #menuTrigger {
+        margin: 0 1em 0 .7em;
+    }
+    h1 {
+        text-transform: capitalize;
+        color: #fff;
+        font-size: 1em;
+        margin: 0;
+    }
+}
+
+#logoContent {
+    padding: 10px 0;
+    max-height: 4.5em;
+    cursor: pointer;
+}
+
+#logoContent img {
+    width: 60%;
+}
+
+#menu-navbar {
+    position: fixed;
+    height: 12vh;
+    z-index: 100;
+    width: 100%;
+}
+
+#buscar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    form {
+        display: flex;
+        align-items: center;
+        input {
+            max-width: 70%;
+            background: #fff;
+            height: 30px;
+            border: none;
+            box-shadow: inset 2px 0px 3px rgba(0, 0, 0, 0.5);
+            border-radius: 3px;
+            margin: auto 15px !important;
+            padding: 0 15px !important;
+
+        }
+    }
+}
+
+
+
+#buscar button {
+    background: 0;
+    border: none;
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 500px) {
+    #buscar {
+        left: -80%;
+        form {
+            input {
+                width: 0;
+                padding: 0;
+                transition: all ease-in-out .4s;
+                padding: 0;
+                transform: translateX(-85%);
+                padding: 0 !important;
+            }
+        }
+    }
+    .expand-input {
+        padding: 0 15px !important;
+        width: 70% !important;
+        position: absolute;
+        z-index: 2;
+        height: 35px !important;
+        top: 15px;
+    }
+    #buscar-btn {
+        left: 1em;
+        position: relative;
+        font-size: 20px;
+        z-index: 1;
+    }
+    #unexpand {
+        z-index: 3;
+        float: right;
+        position: absolute;
+        right: 75px;
+        top: 23px;
+        font-size: 20px;
+        color: #01579b;
+    }
+
+
+    #logoContent {
+        img {
+            width: 225%;
+            left: 120%;
+
+        }
+    }
+
+}

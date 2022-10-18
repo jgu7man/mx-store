@@ -1,0 +1,13 @@
+<mat-card-content>
+    <span [ngSwitch]="state">
+    <p *ngSwitchCase="'success'">
+        El pago se realizó con éxito.
+    </p>
+    <p *ngSwitchCase="'failure'">
+        No se pudo procesar el pago.
+    </p>
+    <p *ngSwitchCase="'pending'">
+        Tu pago quedará pendiente, inténtalo después.
+    </p>
+    </span>
+</mat-card-content>

@@ -1,0 +1,21 @@
+.mat-card {
+    margin: 1em 0;
+}
+
+.mat-card-content {
+    max-height: 270px;
+}
+
+.mat-card-title {
+    cursor: pointer;
+}
+
+
+
+.card-image { 
+    cursor: pointer;
+    img {
+        position: relative;
+        z-index: 2;
+    }
+}

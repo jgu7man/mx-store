@@ -1,0 +1,80 @@
+<div class="container">
+    <mat-card >
+        <div class="col s12 center">
+            <h5 class="center"> REGISTRO </h5>
+        </div>
+        <form (ngSubmit)="onSubmit()" #clienteRegistro="ngForm" [formGroup]="registerForm">
+        <mat-card-content>
+                <mat-form-field>
+                    <mat-label>Nombre</mat-label>
+                    <input 
+                    matInput 
+                    id="nombre" 
+                    name="nombre" 
+                    type="text" 
+                    required
+                    formControlName="nombre" >
+                    <mat-error *ngIf="registerForm.hasError('required')">
+                        {{getErrorMessage()}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input 
+                    matInput 
+                    id="email" 
+                    name="email" 
+                    type="text" 
+                    formControlName="email">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Celular</mat-label>
+                    <input 
+                    matInput 
+                    id="celular" 
+                    name="celular" 
+                    type="text" 
+                    required
+                    formControlName="celular" >
+                    <mat-error *ngIf="registerForm.hasError('required')">
+                        {{getErrorMessage()}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Contraseña</mat-label>
+                    <input 
+                    matInput 
+                    id="contra" 
+                    name="contra" 
+                    type="text" 
+                    required
+                    formControlName="contra" >
+                    <mat-error *ngIf="registerForm.hasError('required')">
+                        {{getErrorMessage()}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Confirma contraseña</mat-label>
+                    <input 
+                    matInput 
+                    id="confirma" 
+                    name="confirma" 
+                    type="text" 
+                    required
+                    formControlName="confirmaContra"
+                    [errorStateMatcher]="matcher"
+                    >
+                    <mat-error *ngIf="registerForm.hasError('notSame')">
+                        {{getErrorMessage()}}
+                    </mat-error>
+                    
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions style="justify-content:center; display: flex;">
+                <button mat-raised-button [color]="'primary'">
+                    Registrar
+                </button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>

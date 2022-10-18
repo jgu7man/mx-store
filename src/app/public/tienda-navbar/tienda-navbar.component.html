@@ -1,0 +1,42 @@
+<div id="menu-navbar" gdev-color [background]="'dark'">
+    <div class="row">
+        <div class="col s8 m3">
+            <ng-container *ngIf="responsive.small; else logo">
+                <div class="titleArea">
+                    <div id="menuTrigger" (click)="menuTrigger()">
+                    <i class="fas fa-bars" *ngIf="!_navbar.open"></i>
+                    <i class="fas fa-times" *ngIf="_navbar.open"></i>
+                </div>
+                <h1> {{_navbar.title}} </h1>
+                </div>
+            </ng-container>
+            <ng-template #logo>
+                <div id="logoContent" [routerLink]="['/tienda']">
+                    <img [src]="brandLogo" alt="logo oficial">
+                </div>
+            </ng-template>
+        </div>
+        <div class="col s2 m4">
+            <div id="buscar">
+                <form #searchForm="ngForm" (ngSubmit)="onSearch()">
+                    <i class="fas fa-search white-text" id="buscar-btn" (click)="expandSearch()"></i>
+                    <input type="text" name="buscar" class="buscar-input" placeholder="Buscar artículos" [(ngModel)]="queryTofind">
+                    <i class="fas fa-times" id="unexpand" style="display: none;" (click)="unExpand()"></i>
+                    <button class="hide"></button>
+                </form>
+            </div>
+        </div>
+        <div class="col s2 m5">
+            <ng-container *ngIf="login.cliente$ | async; else unlogged">
+                <gdev-user-area></gdev-user-area>
+            </ng-container>
+            <ng-template #unlogged>
+                <button style="float: right; top: .65em;"
+                (click)="openLoginDialog()"
+                mat-raised-button>Entrar</button>
+            </ng-template>
+    </div>
+
+
+    </div>
+</div>

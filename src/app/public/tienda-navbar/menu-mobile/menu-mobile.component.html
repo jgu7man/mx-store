@@ -1,0 +1,74 @@
+<ul class="collapsible" data-collapsible="accordion" id="sidenav-menu">
+
+    <app-main-menu-mobile></app-main-menu-mobile>
+
+    <mat-accordion>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                Volver al sitio
+            </mat-expansion-panel-header>
+            <div class="collection">
+                <a class="collection-item" [routerLink]="[ '/' ]" (click)="_navbar.toggleMenu.next(false)">Inicio</a>
+                <a class="collection-item" [routerLink]="[ '/creditos' ]" (click)="_navbar.toggleMenu.next(false)">Créditos</a>
+                <a class="collection-item" [routerLink]="[ '/blog' ]" (click)="_navbar.toggleMenu.next(false)">Blog</a>
+                <a class="collection-item" [routerLink]="[ '/citas' ]" (click)="_navbar.toggleMenu.next(false)">Citas</a>
+                <a class="collection-item" [routerLink]="[ '/contact' ]" (click)="_navbar.toggleMenu.next(false)">Contáctanos</a>
+            </div>
+        </mat-expansion-panel>
+
+
+        <mat-expansion-panel disabled (click)="_navbar.toggleMenu.next(false)">
+            <mat-expansion-panel-header [routerLink]="[ '/tienda/cuenta/datos' ]">
+                Datos de cuenta
+            </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel *ngIf="categorias">
+            <mat-expansion-panel-header>
+                Categorias
+            </mat-expansion-panel-header>
+            <div class="collection">
+                <a *ngFor="let catego of categorias" class="collection-item" [routerLink]="[ '/tienda/categoria', catego.name ]" routerLinkActive="active" disabled (click)="_navbar.toggleMenu.next(false)"> {{catego.name | capitalize}} </a>
+            </div>
+        </mat-expansion-panel>
+
+
+        <mat-expansion-panel disabled (click)="_navbar.toggleMenu.next(false)">
+            <mat-expansion-panel-header  [routerLink]="[ '/tienda/cart' ]" routerLinkActive="active">
+                Carrito
+            </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel disabled (click)="_navbar.toggleMenu.next(false)">
+            <mat-expansion-panel-header  [routerLink]="[ '/tienda/wishlist' ]" routerLinkActive="active" disabled>
+                Lista de deseos
+            </mat-expansion-panel-header>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                Pedidos
+            </mat-expansion-panel-header>
+            <div class="collection">
+                <a class="collection-item" [routerLink]="[ '/tienda/pedidos/pendientes' ]" routerLinkActive="active" disabled (click)="_navbar.toggleMenu.next(false)">Pedidos pendientes</a>
+                <a class="collection-item" [routerLink]="[ '/tienda/pedidos/pasados' ]" routerLinkActive="active" disabled (click)="_navbar.toggleMenu.next(false)">Pedidos pasados</a>
+            </div>
+
+        </mat-expansion-panel>
+
+
+        <!-- <mat-expansion-panel>
+            <mat-expansion-panel-header >
+                Direcciones
+            </mat-expansion-panel-header>
+        </mat-expansion-panel> -->
+       
+
+
+    </mat-accordion>
+
+
+
+
+</ul>

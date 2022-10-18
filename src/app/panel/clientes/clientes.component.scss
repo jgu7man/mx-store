@@ -1,0 +1,17 @@
+mat-drawer {
+    width: 60%;
+    min-height: 90vh;
+}
+
+mat-drawer-container {
+    min-height: 90vh;
+}
+
+.item_list {
+    cursor: pointer;
+    border-bottom: solid 1px #ccc;
+}
+
+.header_list {
+    border-bottom: solid 1px #202020;
+}

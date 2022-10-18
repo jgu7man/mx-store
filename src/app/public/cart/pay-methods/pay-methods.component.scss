@@ -1,0 +1,26 @@
+.methods_list {
+    display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.method_item {
+    margin: 15px;
+}
+
+
+::ng-deep {
+    .mat-expansion-panel-body {
+        text-align: left;
+        border: solid 1px #ccc;
+        padding: 1em;
+    }
+}
+
+.aviso {
+    color: white;
+    background: rgb(0, 0, 0);
+    text-align: left;
+    padding: 1em 2em;
+    border-radius: 5px;
+}

@@ -1,0 +1,20 @@
+<button mat-button
+[matMenuTriggerFor]="menu"
+>Categorias
+</button>
+<mat-menu #menu="matMenu" >
+    <a mat-menu-item
+    [routerLink]="['/tienda/categoria',categoria.name]"
+    *ngFor="let categoria of categorias"
+    >{{categoria.name | capitalize}}
+    </a>
+</mat-menu>
+
+<!-- <div id="menu-categorias">
+    <div id="menu-categorias-container" class="collection">
+        <a class="menu-categorias-item collection-item"
+        [routerLink]="['/tienda/categoria',categoria.name]"
+        *ngFor="let categoria of categorias"
+        >{{categoria.name | capitalize}}</a>
+    </div>
+</div> -->

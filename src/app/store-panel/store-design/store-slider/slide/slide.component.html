@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row">
+        
+        <div class="col s1">
+            <button mat-icon-button
+            (click)="close.emit()">
+                <i class="fas fa-times fa-lg"></i>
+            </button>
+        </div>
+        
+        <div class="col s9">
+            <h5><b>{{slide.nombre}}</b></h5>
+        </div>
+        <div class="col s2">
+            <button mat-raised-button
+            color="warn"
+            (click)="onDelete()">
+                Eliminar
+            </button>
+        </div>
+        
+    </div>
+
+    <div class="row" id="data-table">
+        
+        <div class="col s12">
+            <mat-slide-toggle
+            (change)="onActivadoChange($event)"
+            [checked]="slide.activado"
+            >Activado</mat-slide-toggle>
+            
+            <div class="slide-area">
+                <img [src]="slide.image" alt="">
+            </div>
+
+            <div class="row">
+                <div class="col s8">
+                    <mat-form-field>
+                        <mat-label>Enlace</mat-label>
+                        <input
+                        matInput
+                        type="text"
+                        name="enlace"
+                        [(ngModel)]="enlace.url"
+                        >
+                    </mat-form-field>
+                </div>
+                <div class="col s4">
+                    <mat-checkbox
+                    [checked]="enlace.newTab"
+                    (change)="onNewtabChange($event)"
+                    >Abrir en nueva pestaña</mat-checkbox>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <button mat-raised-button
+            (click)="onUpdate()">
+                Guardar
+            </button>
+        </div>
+    </div>
+
+    
+
+
+</div>

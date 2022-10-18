@@ -1,0 +1,38 @@
+<mat-drawer-container [hasBackdrop]="false">
+    <mat-drawer #currentSlide [mode]="'over'" position="end">
+        <gdev-slide [slide]="slideSelected" (close)="onCloseSlide()"></gdev-slide>
+    </mat-drawer>
+
+    <mat-drawer-content>
+        <div class="container">
+            <div class="row">
+                <div class="col s10">
+                    <h4>Slider <span>
+                        <button mat-icon-button (click)="openAddDialog()">
+                            <i class="fas fa-plus fa-lg"></i>
+                        </button>
+                    </span></h4>
+                </div>
+                <div class="col s2">
+                    <button mat-icon-button [routerLink]="['../slider-config']">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <mat-selection-list #listPanel
+                    [multiple]="false"
+                    (selectionChange)="onSlideSelected($event)">
+                        <mat-list-option 
+                        *ngFor="let slide of slidesS.slides$ | async"
+                        [value]="slide"
+                        >
+                            <span>{{slide.nombre}}</span>
+                        </mat-list-option>
+                    </mat-selection-list>
+                </div>
+            </div>   
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

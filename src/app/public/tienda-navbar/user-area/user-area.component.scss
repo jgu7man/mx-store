@@ -1,0 +1,47 @@
+.menu-items {
+    display: flex;
+    flex-flow: wrap row-reverse;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    align-items: center;
+    margin: 0 !important;
+    height: 100%;
+}
+
+.menu-link {
+    cursor: pointer;
+    width: 15%;
+}
+
+#account, #categories, #page_menu {
+    width: 20%;
+}
+
+#account {
+    display: none;
+}
+
+#categories, #page_menu, #account {
+    position: relative;
+    transition: all .3s;
+}
+
+@media screen and (max-width: 500px) {
+    .menu-items {
+        flex-flow: wrap row;
+    }
+    .menu-link {
+        width: 20%;
+        font-size: 20px;
+    }
+    #account {
+        display: none;
+    }
+    #account-icon {
+        display: block;
+    }
+    #categories {
+        width: 40%;
+    }
+}

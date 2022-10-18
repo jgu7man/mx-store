@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h5>EDITAR CATEGORIA</h5>
+        </div>
+    </div>
+
+    <form action="#" method="post" onsubmit="return false" #categoryForm="ngForm">
+        <!-- NOMBRE DE LA CATEGORIA -->
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input
+            matInput
+            type="text"
+            name="nombre"
+            [(ngModel)]="category.name"
+            >
+        </mat-form-field>
+        
+
+        <!-- * BOTÓN DE GUARDADO -->
+
+        <div class="row">
+            <div class="col s12 center">
+                <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="onSubmit()"
+                    [disabled]="!categoryForm.form.valid"
+                >
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,230 @@
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            Mails Templante
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col s12 m6">
+            
+            <!-- START NEW ORDER ADMIN-->
+            <div class="row">
+                <div class="col s12">
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>Plantilla nuevos pedidos</mat-card-title>
+                            <mat-card-subtitle>Esta plantilla se enviará al administrador cuando una nueva orden de compra se haya generado</mat-card-subtitle>
+                        </mat-card-header>
+                        <form #newOrderForm="ngForm" onsubmit="return false">
+                            <mat-card-content>
+                                <mat-select placeholder="Quien recibirá el mail " [(ngModel)]="newOrder.to" name="admin">
+                                    <mat-option *ngFor="let admin of adminS.admins$ | async " [value]="admin.email">
+                                        {{admin.displayName}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-form-field>
+                                    <mat-label>Asunto</mat-label>
+                                    <input
+                                    matInput
+                                    type="text"
+                                    [(ngModel)]="newOrder.subject"
+                                    name="asunto"
+                                    #asunto="ngModel"
+                                    required
+                                    >
+                                    <mat-error *ngIf="asunto.invalid
+                                    || (asunto.dirty && asunto.touched)">
+                                        Este campo es necesario
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field>
+                                <mat-label>Mensaje</mat-label>
+                                <textarea matInput name="texto" id="texto" cols="30" rows="5"
+                                cdkTextareaAutosize [(ngModel)]="newOrder.text" #texto="ngModel"
+                                ></textarea>
+                                </mat-form-field>                        
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <button 
+                                (click)="mailS.saveTemplate('newOrder', newOrder)"
+                                mat-flat-button
+                                color="primary"
+                                >Guardar</button>
+                            </mat-card-actions>
+                        </form>
+                    </mat-card> 
+                </div>
+            </div>
+
+
+            <!-- END NEW ORDER ADMIN -->
+
+
+            <!-- START CANCEL REQUEST -->
+
+
+            <div class="row">
+                <div class="col s12">
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>Mensaje de petición de cancelación</mat-card-title>
+                            <mat-card-subtitle>Este mensaje se enviará al administrador cuando el cliente solicite la cancelación de su pedido</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-select placeholder="Quien recibirá el mail " [(ngModel)]="cancelRequest.to" name="admin">
+                                    <mat-option *ngFor="let admin of adminS.admins$ | async " [value]="admin.email">
+                                        {{admin.displayName}}
+                                    </mat-option>
+                                </mat-select>
+                            <mat-form-field>
+                                <mat-label>Asunto</mat-label>
+                                <input
+                                matInput
+                                type="text"
+                                [(ngModel)]="cancelRequest.subject"
+                                name="asunto"
+                                #asunto="ngModel"
+                                required
+                                >
+                                <mat-error *ngIf="asunto.invalid
+                                || (asunto.dirty && asunto.touched)">
+                                    Este campo es necesario
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Mensaje</mat-label>
+                                <textarea matInput name="texto" id="texto" cols="30" rows="5"
+                                cdkTextareaAutosize [(ngModel)]="cancelRequest.text" #texto="ngModel"
+                                ></textarea>
+                                </mat-form-field>  
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button 
+                            (click)="mailS.saveTemplate('cancelRequest', cancelRequest)"
+                            mat-flat-button
+                            color="primary"
+                            >Guardar</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </div>
+
+
+            <!-- END CANCEL REQUEST -->
+                   
+        </div>
+
+
+
+    <!-- END ADMINS TEMPLATES -->
+
+
+
+    <!-- START CLIENT TEMPLATES -->
+
+
+        <div class="col s12 m6">
+
+
+            <!-- START NEW ORDER CLIENT -->
+            <div class="row">
+                <div class="col s12">
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>Mensaje para el cliente en nueva compra</mat-card-title>
+                            <mat-card-subtitle>Este mensaje se enviará por correo a la dirección de correo que el cliente haya registrado después de haber comprado exitosamente</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-form-field>
+                                <mat-label>Asunto</mat-label>
+                                <input
+                                matInput
+                                type="text"
+                                [(ngModel)]="successOrder.subject"
+                                name="asunto"
+                                #asunto="ngModel"
+                                required
+                                >
+                                <mat-error *ngIf="asunto.invalid
+                                || (asunto.dirty && asunto.touched)">
+                                    Este campo es necesario
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Mensaje</mat-label>
+                                <textarea matInput name="texto" id="texto" cols="30" rows="5"
+                                cdkTextareaAutosize [(ngModel)]="successOrder.text" #texto="ngModel"
+                                ></textarea>
+                                </mat-form-field>  
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button 
+                            (click)="mailS.saveTemplate('successOrder', successOrder)"
+                            mat-flat-button
+                            color="primary"
+                            >Guardar</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </div>
+
+            <!-- END NEW ORDER CLIENT -->
+
+            <!-- START SENDING ORDER -->
+
+
+            <div class="row">
+                <div class="col s12">
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>Mensaje envío de pedido</mat-card-title>
+                            <mat-card-subtitle>Este mensaje se enviará por correo a la dirección de correo que el cliente haya registrado cuando su pedido sea activado como "enviado"</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-form-field>
+                                <mat-label>Asunto</mat-label>
+                                <input
+                                matInput
+                                type="text"
+                                [(ngModel)]="sendingOrder.subject"
+                                name="asunto"
+                                #asunto="ngModel"
+                                required
+                                >
+                                <mat-error *ngIf="asunto.invalid
+                                || (asunto.dirty && asunto.touched)">
+                                    Este campo es necesario
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Mensaje</mat-label>
+                                <textarea matInput name="texto" id="texto" cols="30" rows="5"
+                                cdkTextareaAutosize [(ngModel)]="sendingOrder.text" #texto="ngModel"
+                                ></textarea>
+                                </mat-form-field>  
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button 
+                            (click)="mailS.saveTemplate('sendingOrder', sendingOrder)"
+                            mat-flat-button
+                            color="primary"
+                            >Guardar</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            </div>
+
+
+            <!-- END SENDING ORDER -->
+        </div>
+    </div>
+
+
+    <!-- END CLIENTS TEMPLATES -->
+    
+
+    
+    
+</div>

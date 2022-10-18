@@ -1,0 +1,41 @@
+<ul class="menu-items">
+    <li class="menu-link" id="cart" [routerLink]="['/tienda/cuenta/cart']">
+        <ng-container *ngIf="cart.totalCartItems() > 0; else noItems">
+            <i class="fas fa-shopping-cart"
+            matBadgeColor="accent"
+            [matBadge]="cart.totalCartItems()"></i>
+        </ng-container>
+        <ng-template #noItems>
+            <i class="fas fa-shopping-cart"></i>
+        </ng-template>
+            
+    </li>
+    <li class="menu-link hide-on-med-and-down" id="wish"
+    [routerLink]="['/tienda/cuenta/wishlist']"
+    >
+        <ng-container *ngIf="wish.totalWishlistItems() > 0; else noWishitems">
+            <i class="fas fa-heart"
+            matBadgeColor="accent"
+            [matBadge]="wish.totalWishlistItems()"
+            ></i>
+        </ng-container>
+        <ng-template #noWishitems>
+            <i class="fas fa-heart"></i>
+        </ng-template>
+        
+    </li>
+    <li class="menu-link hide-on-med-and-down" id="account">
+        Cuenta
+    </li>
+    <li class="menu-link hide-on-med-and-down" id="account-icon"
+    [routerLink]="['/tienda/cuenta']" routerLinkActive="router-link-active" 
+    >
+        <i class="fas fa-user"></i>
+    </li>
+    <li class="hide-on-med-and-down" id="categories">
+        <app-menu-categorias></app-menu-categorias>
+    </li>
+    <li class="menu-link hide-on-med-and-down" id="page_menu">
+        <app-menu-pagina></app-menu-pagina>
+    </li>
+</ul>

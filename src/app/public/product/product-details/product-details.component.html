@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col s12" *ngIf="attrs">
+    <table class="bordered" >
+      <tbody id="details">
+        <tr class="attr"
+        *ngFor="let attr of attrs"
+        >
+          <ng-container *ngIf="validateAttr(product[attr.field])">
+            <th>{{attr.field}}</th>
+            <td>
+
+              <span [ngSwitch]="attrType(product[attr.field])">
+              <span *ngSwitchCase="'true'">
+                <i class="fas fa-check blue-text darken-4"></i>
+              </span>
+              <span *ngSwitchCase="'array'">
+                <span *ngFor="let item of product[attr.field]; index as i">
+                  {{item}}<span *ngIf="i < product[attr.field].length">, </span>
+                </span>
+              </span>
+              <span *ngSwitchDefault>
+                {{product[attr.field]}}
+              </span>
+              </span>
+              
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<mat-tab-group [selectedIndex]="tabIndex">
+    <mat-tab label="Regístrate">
+        <app-register-form (getRegistered)="onRegistered($event)" ></app-register-form>
+    </mat-tab>
+    <mat-tab label="Inicia Sesión">
+        <gdev-login-card 
+        (onSubmit)="onPasswordLoggin($event)"
+        (restorePwd)="restorePwd()"
+        ></gdev-login-card>
+    </mat-tab>
+</mat-tab-group>

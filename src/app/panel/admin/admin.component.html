@@ -1,0 +1,62 @@
+<mat-drawer-container [hasBackdrop]="false">
+    <mat-drawer #currentAdmin [mode]="'over'" position="end">
+
+    </mat-drawer>
+
+    <mat-drawer-content>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <h4>Administradores <span>
+                        <button mat-icon-button color="primary" (click)="openAddDialog()">
+                            <i class="fas fa-plus fa-lg"></i>
+                        </button>
+                    </span></h4>
+                    
+                </div>
+            </div>
+            <div class="row" *ngIf="adminS.admin$ | async as currentAdmin">
+                <div class="col s12">
+                    <mat-selection-list #listPanel
+                    [disableRipple]="true"
+                    [multiple]="false">
+                        <mat-list-option 
+                        *ngFor="let admin of adminS.admins$ | async"
+                        [value]="admin"
+                        [disabled]="admin.email == 'jguzman@marxadigital.com'"
+                        >
+                            <span>
+                                <div mat-line>{{admin.displayName}}</div>
+                                <div mat-line>{{admin.email}}</div>
+                            </span>
+                            <span>{{admin.rol}}</span>
+                            <span *ngIf="admin.email != 'jguzman@marxadigital.com'">
+                                <button mat-icon-button [mat-menu-trigger-for]="adminMenu">
+                                    <i class="fas fa-ellipsis-v"></i>   
+                                </button>
+                                <mat-menu #adminMenu="matMenu">
+                                    <button mat-menu-item 
+                                    (click)="openEditDialog(admin)">
+                                        Editar
+                                    </button>
+                                    <button mat-menu-item
+                                    *ngIf="currentAdmin.rol == 'admin'"
+                                    (click)="adminS.changePassword(admin.email)">
+                                        Cambiar contraseña
+                                    </button>
+                                    <button 
+                                    mat-menu-item
+                                    *ngIf="currentAdmin.rol == 'admin'"
+                                    (click)="adminS.revokePermission(admin.uid)"
+                                    >
+                                        Revocar permisos
+                                    </button>
+                                </mat-menu>
+                            </span>
+                        </mat-list-option>
+                    </mat-selection-list>
+                </div>
+            </div>   
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

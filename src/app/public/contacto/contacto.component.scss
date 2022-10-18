@@ -1,0 +1,81 @@
+
+::ng-deep {
+    .headers-align .mat-expansion-panel-header-title,
+    .headers-align .mat-expansion-panel-header-description {
+      flex-basis: 1;
+    }
+    
+    .headers-align .mat-expansion-panel-header-description {
+      justify-content: flex-end;
+      align-items: center;
+    }
+    
+    .headers-align .mat-form-field + .mat-form-field {
+      margin-left: 8px;
+    }
+
+    .mat-expansion-panel-header .mat-content {
+        height: 35px;
+        align-items: center;
+    }
+    
+}
+
+.collection {
+    margin-top: 0;
+    border-radius: 5px;
+}
+
+.fab, .fas, .mat-expansion-panel, .collection-item p {
+    transition: all ease-out .4s;
+}
+
+::ng-deep {
+    .mat-expansion-panel-header:hover, .collection-item:hover  {
+        .fab, .fas, .collection-item p {
+            transform: scale(2.5) rotate(25deg);
+            color: #ffffff;
+        }
+        
+    }
+    .collection-item {
+        display: flex !important;
+        align-items: center;
+        p {
+            margin: 0 0 0 .5em;
+        }
+    }
+    .collection-item:hover p{
+        position: relative;
+        left: 2em;
+        color: #ffffff;
+        transition: all ease-out .4s;
+    }
+}
+.whatsapp:hover {
+    background: #25D366 !important;
+} 
+.messenger:hover {
+    background: #0084ff !important;
+} 
+.skype:hover {
+    background: #00AFF0 !important;
+} 
+.maps:hover {
+    background: #FFFC00 !important;
+} 
+.email:hover {
+    background: #bd081c !important;
+} 
+
+
+
+.facebook:hover {
+    background: #3b5999 !important;
+}
+.instagram:hover {
+    background: #e4405f !important;
+}
+.youtube:hover {
+    background: #cd201f !important;
+}

@@ -1,0 +1,48 @@
+#logo {
+    img {
+        width: 50%;
+    }
+}
+
+#footer {
+    position: absolute;
+    width: 100vw;
+}
+
+.collection {
+    width: 80%;
+    border: none !important;
+    .collection-item {
+        background: transparent;
+        color: #fff !important;
+        border: none !important;
+    }
+}
+
+
+.collection-item:hover p{
+    position: relative;
+    left: 2em;
+    
+}
+
+p, .fas, .fab {
+    transition: ease-out all .4s;
+    color: #fff;
+}
+
+.collection {
+    overflow: visible;
+}
+
+.collection-item {
+    display: flex !important;
+    align-items: center;
+    transition: ease-out all .4s !important;
+    background: transparent !important;
+    overflow: visible;
+    p {
+        margin: 0;
+        margin-left: .5em;
+    }
+}

@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row" id="saludo">
+        <div class="col s12">
+            <h1>
+                <i class="far fa-grin-beam"></i>
+                BIENVENIDO 
+                <span *ngIf="admin">{{admin.displayName}}</span>
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <h3>Comienza a trabajar</h3>
+        <div class="col s12 m6">
+            <div class="collection">
+                <a class="collection-item"
+                [routerLink]="['/panel/tienda/pedidos']" >
+                    Revisar pedidos
+                </a>
+                <a class="collection-item"
+                [routerLink]="['/panel/tienda/productos']" >
+                    Administrar productos
+                </a>
+                <a class="collection-item"
+                [routerLink]="['/panel/tienda/slider']" >
+                    Cambiar promocionales de la tienda
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

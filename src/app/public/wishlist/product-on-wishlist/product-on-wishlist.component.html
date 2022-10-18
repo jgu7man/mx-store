@@ -1,0 +1,19 @@
+<div class="row" *ngIf="producto">
+    <div class="col s12 m3 prodImg" >
+        <img [src]="producto.imagenUrl['url']" [alt]="producto.imagenUrl['alt']">
+    </div>
+    <div class="col s6 referencia">
+        <h2 [routerLink]="['/tienda/producto',producto.id]" > {{producto.referencia}} </h2>
+        <h3> ${{producto.precio}} </h3>
+        <p>{{producto.descripcion.substring(0,120)}}<span *ngIf="producto.descripcion.length > 120">...</span>
+
+        </p>
+        <!-- <p> Agregado {{product.agregado}} </p> -->
+    </div>
+    <div class="col s5 m3 precios">
+        <app-addcart-btn [product]="producto"></app-addcart-btn>
+        <div class="row">
+            <button mat-raised-button (click)="deleteFromList()">Eliminar de lista</button>
+        </div>
+    </div>
+</div>
