@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { CartProductModel } from '../cart-product.model';
 import { CartService } from '../cart.service';
 import { Router } from '@angular/router';
+import { MxAlert } from '@marxa/devkit';
 
 @Component({
   selector: 'app-product-on-cart',
@@ -11,8 +12,8 @@ import { Router } from '@angular/router';
 })
 export class ProductOnCartComponent implements OnInit {
 
-  private _product = new BehaviorSubject<CartProductModel>( {id:'', cant:0, unit_precio:0} )
-  @Input() set product( product: CartProductModel ) { this._product.next( product) }
+  private _product = new BehaviorSubject<CartProductModel | undefined>( undefined )
+  @Input() set product( product: CartProductModel | undefined) { this._product.next( product) }
   get product() { return this._product.getValue() }
   producto?: CartProductModel
 
@@ -20,7 +21,8 @@ export class ProductOnCartComponent implements OnInit {
 
   constructor (
     private _cart: CartService,
-    private router: Router
+    private router: Router,
+    private _alert: MxAlert
   ) { }
 
   ngOnInit(): void {
@@ -30,18 +32,27 @@ export class ProductOnCartComponent implements OnInit {
 
 
   get productOnCart() {
+    if ( !this.producto ) return null
+
     var localCart: CartProductModel[] = JSON.parse( localStorage.getItem( 'mx-store-cart' )! )
-    if ( localCart ) {
-      var product = localCart.find( prod => prod.id == this.product.id )
-      if ( product ) return product
-    }
-    return
+    if (!localCart) return null
+
+    var product = localCart.find( prod => prod.id == this.product!.id )
+    if ( product ) return product
+    else return null
   }
 
   deleteProduct() {
-    this._cart.updateProduct( this.product, 0 )
-    this.router.navigateByUrl( 'tienda', { skipLocationChange: true } )
-    .then(() => this.router.navigate(['tienda/cuenta/cart']))
+    try {
+      if (!this.product ) throw new Error( 'No se pudo eliminar')
+
+      this._cart.updateProduct( this.product, 0 )
+      this.router.navigateByUrl( 'tienda', { skipLocationChange: true } )
+        .then(() => this.router.navigate(['tienda/cuenta/cart']))
+    } catch (error: any) {
+      this._alert.notify('No se pudo eliminar')
+      return console.error(error)
+    }
   }
 
 }

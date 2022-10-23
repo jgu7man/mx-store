@@ -22,8 +22,8 @@ import { EditProductComponent } from './products/edit-product/edit-product.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StoreDesignComponent } from './store-design/store-design.component';
 import { StoreSliderComponent } from './store-design/store-slider/store-slider.component';
-import { AddSlideComponent } from './store-design/store-slider/add-slide/add-slide.component';
-import { SlideComponent } from './store-design/store-slider/slide/slide.component';
+// import { AddSlideComponent } from './store-design/store-slider/add-slide/add-slide.component';
+// import { SlideComponent } from './store-design/store-slider/slide/slide.component';
 import { ProdVarianteComponent } from './products/prod-variante/prod-variante.component';
 import { ProdAddonsComponent } from './products/prod-addons/prod-addons.component';
 import { ProdDescComponent } from './products/prod-desc/prod-desc.component';
@@ -50,6 +50,7 @@ import { SliderConfigComponent } from './store-design/store-slider/slider-config
 import { MxIndexModule } from '@marxa/index';
 import { MxDateTimeModule, MxTextModule } from '@marxa/devkit';
 import { MxCrudPanelModule } from '@marxa/crud-panel';
+import { MxSliderModule } from '@marxa/slider';
 
 
 @NgModule( {
@@ -74,8 +75,8 @@ import { MxCrudPanelModule } from '@marxa/crud-panel';
 
     StoreDesignComponent,
     StoreSliderComponent,
-    AddSlideComponent,
-    SlideComponent,
+    // AddSlideComponent,
+    // SlideComponent,
 
     ProdVarianteComponent,
     ProdAddonsComponent,
@@ -116,6 +117,7 @@ import { MxCrudPanelModule } from '@marxa/crud-panel';
     MxTextModule,
     MxDateTimeModule,
     MxCrudPanelModule,
+    MxSliderModule
   ],
   entryComponents: [
 

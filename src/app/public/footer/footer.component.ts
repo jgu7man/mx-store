@@ -21,7 +21,7 @@ export class FooterComponent implements OnInit {
   ) {
     this.getStoreData()
     this._main.getBrandInfo().subscribe(info => {
-      if (info) this.logo = info.squareLogo.url
+      if (info) this.logo = info.squareLogo?.url
     })
    }
 

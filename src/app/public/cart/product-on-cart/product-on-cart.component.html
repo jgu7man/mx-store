@@ -1,8 +1,9 @@
-<div class="row" id="product_on_cart">
+<ng-container *ngIf="product">
+  <div class="row" id="product_on_cart" *ngIf="product.description">
     <div class="col s3 m2" id="imageCont" >
         <img
-        [src]="product.description?.mainImage?.url || ''"
-        [alt]="product.description?.mainImage?.alt || ''"
+        [src]="product.description.mainImage?.url || ''"
+        [alt]="product.description.mainImage?.alt || ''"
         >
     </div>
     <div class="col s9 m6 referencia"
@@ -29,4 +30,5 @@
         </button>
     </div>
     <!-- <div class="col s6"></div> -->
-</div>
+  </div>
+</ng-container>

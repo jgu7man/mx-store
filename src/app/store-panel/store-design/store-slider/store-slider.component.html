@@ -1,4 +1,17 @@
-<mat-drawer-container [hasBackdrop]="false">
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <mx-slider-config [collection]="'mx-store'"></mx-slider-config>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <mx-slider-crud [collection]="'mx-store'" [height_vh]="100"  ></mx-slider-crud>
+    </div>
+  </div>
+</div>
+
+<!-- <mat-drawer-container [hasBackdrop]="false">
     <mat-drawer #currentSlide [mode]="'over'" position="end">
         <mx-slide [slide]="slideSelected" (close)="onCloseSlide()"></mx-slide>
     </mat-drawer>
@@ -35,4 +48,4 @@
             </div>
         </div>
     </mat-drawer-content>
-</mat-drawer-container>
+</mat-drawer-container> -->

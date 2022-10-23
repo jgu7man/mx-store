@@ -168,15 +168,15 @@ export class AdminsService {
   }
 
   setErrorMsj(error: any) {
-    let errorObj = new MxErrorAlertModel('', error.code);
+    let errorObj = new MxErrorAlertModel('', '', error.code);
     if (error.code.includes('not-found')) {
-      errorObj.message = 'No se encontró el email';
+      errorObj.swal.message = 'No se encontró el email';
     }
     if (error.code.includes('invalid')) {
-      errorObj.message = 'Escribe una direccion de correo válida';
+      errorObj.swal.message = 'Escribe una direccion de correo válida';
     }
     if (error.code.includes('wrong-password')) {
-      errorObj.message = 'Contraseña incorrecta';
+      errorObj.swal.message = 'Contraseña incorrecta';
     }
 
     // this._alert.errorAlert$.next(errorObj);

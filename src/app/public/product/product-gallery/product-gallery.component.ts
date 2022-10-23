@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Inject, ViewChild, AfterViewInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { imageElement } from 'src/app/store-panel/store-design/store-slider/add-slide/add-slide.component';
 import { MxSlide } from '@marxa/slider';
+import { ImageRef } from 'src/app/store-panel/products/product.model';
 
 @Component( {
   selector: 'app-product-gallery',
@@ -33,6 +33,6 @@ export class ProductGalleryComponent implements AfterViewInit {
 
 
 export interface GalleryData {
-  gallery: imageElement[],
+  gallery: ImageRef[],
   index: number
 }

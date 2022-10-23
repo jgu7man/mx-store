@@ -17,7 +17,7 @@ declare var $: any;
 })
 export class TiendaNavbarComponent implements OnInit {
 
-  brandLogo: string
+  brandLogo: string = ''
   @Input() open: boolean = false
   queryTofind: string = ''
 
@@ -38,7 +38,8 @@ export class TiendaNavbarComponent implements OnInit {
       : 'assets/img/lasmotos-logotipo-trans-neg.png'
 
     this._main.getBrandInfo().subscribe(info => {
-      if (info) this.brandLogo = info.headLogo.url
+      if ( info && info.headLogo && info.headLogo.url )
+        this.brandLogo = info.headLogo.url
       else this.brandLogo
     })
   }
