@@ -11,15 +11,16 @@ export class InitComponent implements OnInit {
   secondFormGroup: FormGroup;
   constructor (
     private _formBuilder: FormBuilder
-  ) { }
-
-  ngOnInit(): void {
+  ) {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+  }
+
+  ngOnInit(): void {
   }
 
 }

@@ -1,14 +1,13 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PickupOrder, DeliveryAddress } from '../../order.model';
 import { ShipService } from '../ship.service';
-// import { FullCalendarService } from '../../../../gdev-tools/calendar/calendar.service';
 import { CartService } from '../../cart.service';
 import { MxAlert } from '@marxa/devkit';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupLoginComponent } from '../../../clientes/clientes-login/popup-login/popup-login.component';
 import { MatSelectChange } from '@angular/material/select';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { BranchModel, HorarioLaboral } from 'src/app/store-panel/store-config/branches/branch.model';
+import { BranchModel, HoraMin, HorarioLaboral } from 'src/app/store-panel/store-config/branches/branch.model';
 import { BranchesService } from 'src/app/store-panel/store-config/branches/branches.service';
 
 @Component({
@@ -125,6 +124,13 @@ export class PickupFormComponent implements OnInit {
       // this._ship.saveCita( this.pickupForm ).then( () => {})
     }
 
+  }
+
+  HoraMin( value: string | HoraMin ) {
+    if ( typeof value !== 'string' ) {
+      return `${value.hora}:${value.min}`
+    }
+    return value
   }
 
 

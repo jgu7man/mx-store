@@ -6,7 +6,7 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { MxAlert } from '@marxa/devkit/lib/alert-v2/alert.service';
+import { MxAlert } from '@marxa/devkit';
 import { Router } from '@angular/router';
 import { MainPanelService } from '../panel/main-panel.service';
 import { MobileNavbarService } from 'src/app/public/tienda-navbar/mobile-navbar.service';
@@ -15,15 +15,15 @@ import { StoreModel } from '../panel/models/store.model';
 import {
   MxAlertModel,
   SweetAlert,
-} from '@marxa/devkit/lib/alert-v2/alerts.model';
+} from '@marxa/devkit';
 
 @Component({
-  selector: 'gdev-store-public',
-  templateUrl: './gdev-store-public.component.html',
-  styleUrls: ['./gdev-store-public.component.css'],
+  selector: 'mx-store-public',
+  templateUrl: './mx-store-public.component.html',
+  styleUrls: ['./mx-store-public.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class GdevStorePublicComponent implements OnInit, AfterViewInit {
+export class MxStorePublicComponent implements OnInit, AfterViewInit {
   @ViewChild('menu_mobile') menuMobile!: MatDrawer;
   constructor(
     public _navbar: MobileNavbarService,

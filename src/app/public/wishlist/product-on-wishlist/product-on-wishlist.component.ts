@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { WishlistProduct } from '../wishlist-product.model';
 import { MxStoreProductModel } from 'src/app/store-panel/products/product.model';
 import { WishlistService } from '../wishlist.service';
+import { CartProductModel } from '../../cart/cart-product.model';
 
 @Component({
   selector: 'app-product-on-wishlist',
@@ -14,7 +15,7 @@ export class ProductOnWishlistComponent implements OnInit {
   private _product = new BehaviorSubject<WishlistProduct>( { productId: '', } )
   @Input() set product( product: WishlistProduct ) { this._product.next( product ) }
   get product() { return this._product.getValue() }
-  producto: MxStoreProductModel
+  producto?: CartProductModel
 
   @Output() precio_prod_total: EventEmitter<number> = new EventEmitter()
 
@@ -30,20 +31,22 @@ export class ProductOnWishlistComponent implements OnInit {
   }
 
   get productOnWishlist() {
-    var localWishlist: WishlistProduct[] = JSON.parse( localStorage.getItem( 'gdev-wishlist' ) )
-    if ( localWishlist ) {
-      var product = localWishlist.find( prod => prod.productId == this.product.productId )
-      if ( product ) {
-        console.log(product.agregado);
+    let wishlist = localStorage.getItem( 'mx-store-wishlist' )
+    if (!wishlist) return null
+    var localWishlist: WishlistProduct[] = JSON.parse( wishlist )
+    var product = localWishlist.find( prod => prod.productId == this.product.productId )
+
+    if ( product ) {
+      if (product.agregado)
         product.agregado = new Date( product.agregado ).toLocaleDateString()
-        console.log( product.agregado );
-        return product
-      }
+      return product
     }
+    return null
   }
 
   deleteFromList() {
-    this._wishlist.deleteOfWishlist(this.producto.id)
+    if ( !this.product ) throw new Error( 'No existe el producto' )
+    this._wishlist.deleteOfWishlist( this.producto!.id! )
   }
 
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProductsComponent } from './products/products.component';
-import { GdevCategoryAttributesComponent } from './categories/category-attributes/category-attributes.component';
+import { MxCategoryAttributesComponent } from './categories/category-attributes/category-attributes.component';
 import { AddProductComponent } from './products/add-product/add-product.component';
 import { EditProductComponent } from './products/edit-product/edit-product.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -22,7 +22,7 @@ const routes: Routes = [
     { path: 'config/:state', component: StoreConfigComponent},
     { path: 'categories', component: CategoriesComponent },
     { path: 'products', component: ProductsComponent },
-    { path: 'attributes/:id', component: GdevCategoryAttributesComponent },
+    { path: 'attributes/:id', component: MxCategoryAttributesComponent },
     { path: 'products/add', component: AddProductComponent },
     { path: 'products/edit/:id', component: EditProductComponent },
 

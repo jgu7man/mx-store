@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GdevStorePublicComponent } from './gdev-store-public.component';
+import { MxStorePublicComponent } from './mx-store-public.component';
 
-describe('GdevStorePublicComponent', () => {
-  let component: GdevStorePublicComponent;
-  let fixture: ComponentFixture<GdevStorePublicComponent>;
+describe('MxStorePublicComponent', () => {
+  let component: MxStorePublicComponent;
+  let fixture: ComponentFixture<MxStorePublicComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GdevStorePublicComponent ]
+      declarations: [ MxStorePublicComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GdevStorePublicComponent);
+    fixture = TestBed.createComponent(MxStorePublicComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

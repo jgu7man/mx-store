@@ -1,6 +1,6 @@
 <mat-drawer-container [hasBackdrop]="false">
     <mat-drawer #currentSlide [mode]="'over'" position="end">
-        <gdev-slide [slide]="slideSelected" (close)="onCloseSlide()"></gdev-slide>
+        <mx-slide [slide]="slideSelected" (close)="onCloseSlide()"></mx-slide>
     </mat-drawer>
 
     <mat-drawer-content>
@@ -24,7 +24,7 @@
                     <mat-selection-list #listPanel
                     [multiple]="false"
                     (selectionChange)="onSlideSelected($event)">
-                        <mat-list-option 
+                        <mat-list-option
                         *ngFor="let slide of slidesS.slides$ | async"
                         [value]="slide"
                         >
@@ -32,7 +32,7 @@
                         </mat-list-option>
                     </mat-selection-list>
                 </div>
-            </div>   
+            </div>
         </div>
     </mat-drawer-content>
 </mat-drawer-container>

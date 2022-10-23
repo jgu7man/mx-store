@@ -5,24 +5,24 @@
         <tr class="attr"
         *ngFor="let attr of attrs"
         >
-          <ng-container *ngIf="validateAttr(product[attr.field])">
-            <th>{{attr.field}}</th>
+          <ng-container *ngIf="validateAttr(attr)">
+            <th>{{attr}}</th>
             <td>
 
-              <span [ngSwitch]="attrType(product[attr.field])">
+              <span [ngSwitch]="attrType(attr)">
               <span *ngSwitchCase="'true'">
                 <i class="fas fa-check blue-text darken-4"></i>
               </span>
               <span *ngSwitchCase="'array'">
-                <span *ngFor="let item of product[attr.field]; index as i">
-                  {{item}}<span *ngIf="i < product[attr.field].length">, </span>
+                <span *ngFor="let item of attr; index as i">
+                  {{item}}<span *ngIf="i < attr.length">, </span>
                 </span>
               </span>
               <span *ngSwitchDefault>
-                {{product[attr.field]}}
+                {{attr}}
               </span>
               </span>
-              
+
             </td>
           </ng-container>
         </tr>

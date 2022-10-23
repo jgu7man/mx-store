@@ -5,23 +5,23 @@
     <div class="row" id="articulo" *ngIf="product">
         <div class="col s12 m6">
             <div id="article-image">
-                <div class="imgContainer" [ngStyle]="{background: 'url('+product.imagenUrl.url+')'}">
+                <div class="imgContainer" [ngStyle]="{background: 'url('+(product.mainImage?.url || '')+')'}">
                     <!-- <img id="productImg" [src]="product.imagenUrl['url']" [alt]="product.referencia"> -->
                 </div>
             </div>
             <div class="gallery-scroll">
-                <gdev-gallery-scroll-thumbnail
-                [images]="product.galeria"
-                ></gdev-gallery-scroll-thumbnail>
+                <mx-gallery-scroll-thumbnail
+                [images]="product.galeria || []"
+                ></mx-gallery-scroll-thumbnail>
             </div>
         </div>
-        
+
         <div class="col s12 m6" id="desc">
             <div class="row" id="article-descripcion">
                 <h1>{{product['referencia']}}</h1>
-                
+
                 <p class="precio">
-                    <b style="font-size: 1.5em;">${{ product['precio'] | mask: 'separator':',' }}</b>     
+                    <b style="font-size: 1.5em;">${{ product['precio'] | mask: 'separator':',' }}</b>
                     <span *ngIf="product.descuento"
                         class="red-text">
                         <span *ngIf="product.descuento.type == '$'">$</span>
@@ -30,26 +30,26 @@
                         de descuento
                     </span>
                 </p>
-                
+
                 <p class="descripcion" *ngIf="product['descripcion']">
                     {{product['descripcion']}}
                     <!-- <span *ngIf="product['descripcion'].length > 250">
                         ... <a (click)="scroll()">Leer más</a>
                     </span> -->
                 </p>
-                
+
             </div>
 
 
             <div class="row" id="variantes" *ngIf="product['variantes']">
-                
+
                 <div class="variante_container" *ngFor="let variante of product['variantes']; let i=index">
                     <div class="variante_header">
                         {{variante.name}}
                     </div>
                     <div class="variante_options">
-                        <mat-radio-group 
-                        [(ngModel)]="price.prodPrice" 
+                        <mat-radio-group
+                        [(ngModel)]="price.prodPrice"
                         (change)="price.setVariety(variante.name, $event)">
                             <mat-radio-button [value]="option" *ngFor="let option of variante.variantes">
                                 {{option.ref}}: <b>${{option.precio}}</b>
@@ -61,7 +61,7 @@
             </div>
 
             <div class="row" id="addons" *ngIf="product['addons']">
-                
+
                 <div class="addons_container" *ngFor="let addon of product['addons']; let i=index">
                     <div class="addons_header">
                         Adicionales
@@ -81,10 +81,10 @@
 
             <div id="product_actions">
                 <p class="right" *ngIf="product.stockCant">
-                    Existencia: 
-                    <span 
+                    Existencia:
+                    <span
                     [ngClass]="{
-                        'deep-orange-text': product.stockCant < 5, 
+                        'deep-orange-text': product.stockCant < 5,
                         'red-text': product.stockCant < 1
                     }">
                         {{product.stockCant}}
@@ -92,8 +92,8 @@
                 </p>
                 <mat-card>
                     <mat-card-content>
-                        <gdev-dinamic-price
-                        ></gdev-dinamic-price>
+                        <mx-dinamic-price
+                        ></mx-dinamic-price>
                     </mat-card-content>
                 </mat-card>
             </div>
@@ -119,6 +119,6 @@
             </div>
         </div>
     </div>
-    
+
 
 </div>

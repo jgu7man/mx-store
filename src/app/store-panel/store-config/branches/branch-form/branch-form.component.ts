@@ -4,28 +4,28 @@ import { DeliveryAddress } from '../../../../public/cart/order.model';
 import { BranchesService } from '../branches.service';
 import { BehaviorSubject } from 'rxjs';
 
-@Component({
+@Component( {
   selector: 'mx-branch-form',
   templateUrl: './branch-form.component.html',
-  styleUrls: ['./branch-form.component.scss']
-})
+  styleUrls: [ './branch-form.component.scss' ]
+} )
 export class BranchFormComponent implements OnInit {
 
   sucursal: BranchModel
 
-  private _Sucursal : BehaviorSubject<any> = new BehaviorSubject({});
-  @Input() set Sucursal(suc: any) { this._Sucursal.next(suc); }
+  private _Sucursal: BehaviorSubject<any> = new BehaviorSubject( {} );
+  @Input() set Sucursal( suc: any ) { this._Sucursal.next( suc ); }
   get Sucursal() { return this._Sucursal.getValue() }
 
   @Output() updated: EventEmitter<any> = new EventEmitter()
   horarioLaboral: HorarioLaboral
   ubicacion: DeliveryAddress
 
-  constructor ( public branchS: BranchesService) {
+  constructor ( public branchS: BranchesService ) {
     this.horarioLaboral = { startTime: '', endTime: '', daysOfWeek: [] }
     this.ubicacion = { address: '', depto: '', city: '', state: '', country: '', }
-    this.sucursal = new BranchModel('',this.horarioLaboral,this.ubicacion  )
-   }
+    this.sucursal = new BranchModel( '', this.horarioLaboral, this.ubicacion )
+  }
 
   ngOnInit(): void {
     this._Sucursal.subscribe( suc => {
@@ -33,24 +33,36 @@ export class BranchFormComponent implements OnInit {
         this.sucursal = suc
         this.horarioLaboral = suc.horario
         this.ubicacion = suc.ubicacion
-        console.log(this.ubicacion);
+        console.log( this.ubicacion );
       }
     } )
     this.branchS.onSave$.subscribe( save => {
-      console.log(save);
+      console.log( save );
       this.onSave()
-    })
+    } )
   }
 
-  catchStartTime( value ) {
+  get startTime() {
+    return typeof this.horarioLaboral.startTime === 'string'
+      ? this.horarioLaboral.startTime
+      : `${ this.horarioLaboral.startTime.hora }:${ this.horarioLaboral.startTime.min }`
+  }
+
+  get endTime() {
+    return typeof this.horarioLaboral.endTime === 'string'
+      ? this.horarioLaboral.endTime
+      : `${ this.horarioLaboral.endTime.hora }:${ this.horarioLaboral.endTime.min }`
+  }
+
+  catchStartTime( value: string ) {
     this.horarioLaboral.startTime = value
   }
 
-  catchEndTime( value ) {
+  catchEndTime( value: string ) {
     this.horarioLaboral.endTime = value
   }
 
-  catchFormChanges( changes ) {
+  catchFormChanges( changes: any  ) {
     this.ubicacion = changes.branch
   }
 

@@ -34,11 +34,11 @@
     (change)="onPrivacityChange($event)"
     >Acepto que he leído la <a href="{{linkPDP}}" target="blank">política de privacidad</a></mat-checkbox>
 </mat-dialog-content>
-<mat-dialog-actions
+<div mat-dialog-actions
 style="display: flex; justify-content: center;">
     <button mat-raised-button
     [disabled]="!contacto.privacity"
     (click)="submit.emit(contacto)"
     >Enviar</button>
-</mat-dialog-actions>
+</div>
 

@@ -53,7 +53,7 @@ export class TiendaNavbarComponent implements OnInit {
 
   ngOnInit() {
     this.login.cliente$.subscribe( cliente => {
-      if (cliente) localStorage.setItem( 'gdev-cliente', JSON.stringify( cliente ) );
+      if (cliente) localStorage.setItem( 'mx-store-cliente', JSON.stringify( cliente ) );
     })
 
     $( '#page_menu' ).hover(
@@ -79,9 +79,9 @@ export class TiendaNavbarComponent implements OnInit {
   onSearch() {
     this._search.onSearchByString( this.queryTofind, 'tienda/productos/referencias', 'referencia' )
       .then( ( res: any ) => {
-      var resultados = JSON.parse( sessionStorage.getItem( 'gdev-search' )! )
-      if ( resultados ) sessionStorage.removeItem( 'gdev-search' )
-      sessionStorage.setItem( 'gdev-search', JSON.stringify( res ) )
+      var resultados = JSON.parse( sessionStorage.getItem( 'mx-store-search' )! )
+      if ( resultados ) sessionStorage.removeItem( 'mx-store-search' )
+      sessionStorage.setItem( 'mx-store-search', JSON.stringify( res ) )
       this._router.navigateByUrl( '/tienda', { skipLocationChange: true } ).then( () => {
         this._router.navigate( [ '/tienda/resultados' ] )
       })

@@ -11,7 +11,7 @@
                 <!-- * OPCIONES DEL PANEL * -->
 
                 <div class="col s2">
-                    <button 
+                    <button
                     mat-raised-button
                     [color]="'primary'"
                     class="btn addBtn" (click)="onAdd()">
@@ -25,10 +25,10 @@
             </div>
             <div class="row">
                 <div class="col s12">
-                    <gdev-category-table
-                        [categories]="categories"
+                    <mx-category-table
+                        [categories]="categories || []"
                     >
-                    </gdev-category-table>
+                    </mx-category-table>
                 </div>
             </div>
         </div>

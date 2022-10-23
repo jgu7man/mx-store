@@ -3,7 +3,7 @@ import { ClienteModel } from '../cliente.model';
 import { ClientesService } from '../clientes.service';
 
 @Component({
-  selector: 'gdev-cliente',
+  selector: 'mx-cliente',
   templateUrl: './cliente.component.html',
   styleUrls: ['./cliente.component.scss']
 })

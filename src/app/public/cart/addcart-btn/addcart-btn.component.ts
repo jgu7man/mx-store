@@ -21,10 +21,10 @@ export class AddcartBtnComponent implements OnInit {
   }
 
   get productOnCart() {
-    var localCart: CartProductModel[] = JSON.parse( localStorage.getItem( 'gdev-cart' )! )
+    var localCart: CartProductModel[] = JSON.parse( localStorage.getItem( 'mx-store-cart' )! )
     if ( localCart ) {
       if (!this.product) throw new Error( 'No existe producto')
-      var product = localCart.find( prod => prod.productId == this.product!.productId )
+      var product = localCart.find( prod => prod.id == this.product!.id )
 
       if ( product ) {
         this.cantUpdated.emit(product.cant)

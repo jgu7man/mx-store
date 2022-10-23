@@ -11,7 +11,7 @@
         >
         <mat-error *ngIf="displayName.invalid || (displayName.dirty && displayName.touched)">Este campo es necesario</mat-error>
     </mat-form-field>
-    
+
     <mat-form-field>
         <mat-select placeholder="Rol" [(ngModel)]="admin.rol" name="rol" required #rol="ngModel">
             <mat-option *ngFor="let rol of adminS.roles" [value]="rol.value">
@@ -24,7 +24,7 @@
     </mat-form-field>
 </form>
 
-<mat-dialog-actions
+<div mat-dialog-actions
 style="display: flex; justify-content: space-around;">
     <button mat-raised-button
     (click)="dialog.close()">Cancelar</button>
@@ -32,5 +32,5 @@ style="display: flex; justify-content: space-around;">
     [disabled]="!adminForm.valid"
     (click)="onSubmit()"
     >Guardar</button>
-</mat-dialog-actions>
+</div>
 

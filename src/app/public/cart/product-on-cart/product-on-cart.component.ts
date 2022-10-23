@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ProductOnCartComponent implements OnInit {
 
-  private _product = new BehaviorSubject<CartProductModel>( {productId:'', cant:0, unit_precio:0} )
+  private _product = new BehaviorSubject<CartProductModel>( {id:'', cant:0, unit_precio:0} )
   @Input() set product( product: CartProductModel ) { this._product.next( product) }
   get product() { return this._product.getValue() }
   producto?: CartProductModel
@@ -30,9 +30,9 @@ export class ProductOnCartComponent implements OnInit {
 
 
   get productOnCart() {
-    var localCart: CartProductModel[] = JSON.parse( localStorage.getItem( 'gdev-cart' )! )
+    var localCart: CartProductModel[] = JSON.parse( localStorage.getItem( 'mx-store-cart' )! )
     if ( localCart ) {
-      var product = localCart.find( prod => prod.productId == this.product.productId )
+      var product = localCart.find( prod => prod.id == this.product.id )
       if ( product ) return product
     }
     return

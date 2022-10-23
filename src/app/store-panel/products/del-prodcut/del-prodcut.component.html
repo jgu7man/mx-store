@@ -2,7 +2,7 @@
 <mat-dialog-content>
   ¿Segur@ que quieres eliminar este producto?
 </mat-dialog-content>
-<mat-dialog-actions style="justify-content: space-around;">
+<div mat-dialog-actions style="justify-content: space-around;">
   <button mat-button mat-dialog-close>Cancelar</button>
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="onDelete()">Eliminar</button>
-</mat-dialog-actions>
+</div>

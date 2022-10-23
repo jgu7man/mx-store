@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ClienteLoginService } from '../cliente-login.service';
 import { ClienteModel } from '../../../../panel/clientes/cliente.model';
-import { GdevLoginFields } from '../../../../../gdev-tools/gdev-login/components/login-card/login-card.component';
+import { MxLoginFields } from '@marxa/auth';
 
 @Component({
   selector: 'app-login-form',
@@ -21,7 +21,7 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(fields: GdevLoginFields) {
+  onSubmit(fields: MxLoginFields) {
     this._authCliente.emailSingIn(fields.email, fields.password ).then( () => {
       this.getLogged.emit(true)
     })

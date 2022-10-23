@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GdevStorePublicRoutinModule } from './gdev-store-public-routing.module';
+import { MxStorePublicRoutinModule } from './mx-store-public-routing.module';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask'
@@ -31,7 +31,7 @@ import { ProductActionsComponent } from './product/product-actions/product-actio
 import { ShipFormComponent, PickupAdverticeComponent } from './cart/ship-form/ship-form.component';
 import { PickupFormComponent } from './cart/ship-form/pickup-form/pickup-form.component';
 import { DeliveryFormComponent } from './cart/ship-form/delivery-form/delivery-form.component';
-import { GdevStorePublicComponent } from './gdev-store-public.component';
+import { MxStorePublicComponent } from './mx-store-public.component';
 import { PopupLoginComponent } from './clientes/clientes-login/popup-login/popup-login.component';
 import { AparadorComponent } from './aparador/aparador.component';
 import { DestacadosComponent } from './aparador/destacados/destacados.component';
@@ -58,10 +58,14 @@ import { AddWishlistComponent } from './wishlist/add-wishlist/add-wishlist.compo
 import { ProductOnWishlistComponent } from './wishlist/product-on-wishlist/product-on-wishlist.component';
 import { ResultadosBusquedaComponent } from './resultados-busqueda/resultados-busqueda.component';
 import { UserAreaComponent } from './tienda-navbar/user-area/user-area.component';
+import { MxSliderModule } from '@marxa/slider';
+import { MxColorsModule, MxTextModule } from '@marxa/devkit';
+import { MxAuthModule } from '@marxa/auth';
+import { GdevComponentsModule } from '../gdev-components/gdev-components.module';
 
 @NgModule({
   declarations: [
-    GdevStorePublicComponent,
+    MxStorePublicComponent,
 
     SliderComponent,
     TiendaNavbarComponent,
@@ -116,13 +120,19 @@ import { UserAreaComponent } from './tienda-navbar/user-area/user-area.component
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    GdevStorePublicRoutinModule,
+    MxStorePublicRoutinModule,
     MaterialModule,
     NgxMaskModule.forRoot(),
     NgxMaterialTimepickerModule,
+    MxSliderModule,
+    MxTextModule,
+    MxAuthModule,
+    MxColorsModule,
+    GdevComponentsModule,
+    MxColorsModule
   ],
   exports: [
-    GdevStorePublicComponent,
+    MxStorePublicComponent,
   ],
   entryComponents: [
     ProductReviewComponent,
@@ -134,4 +144,4 @@ import { UserAreaComponent } from './tienda-navbar/user-area/user-area.component
     { provide: MAT_DIALOG_DATA, useValue: [] },
   ]
 })
-export class GdevStorePublicModule { }
+export class MxStorePublicModule { }

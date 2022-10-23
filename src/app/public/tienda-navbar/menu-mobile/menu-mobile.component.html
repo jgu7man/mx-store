@@ -29,7 +29,7 @@
                 Categorias
             </mat-expansion-panel-header>
             <div class="collection">
-                <a *ngFor="let catego of categorias" class="collection-item" [routerLink]="[ '/tienda/categoria', catego.name ]" routerLinkActive="active" disabled (click)="_navbar.toggleMenu.next(false)"> {{catego.name | capitalize}} </a>
+                <a *ngFor="let catego of categorias" class="collection-item" [routerLink]="[ '/tienda/categoria', catego.name ]" routerLinkActive="active" disabled (click)="_navbar.toggleMenu.next(false)"> {{catego.name | mxCapitalize}} </a>
             </div>
         </mat-expansion-panel>
 
@@ -63,7 +63,7 @@
                 Direcciones
             </mat-expansion-panel-header>
         </mat-expansion-panel> -->
-       
+
 
 
     </mat-accordion>

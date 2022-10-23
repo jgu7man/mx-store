@@ -43,7 +43,7 @@ export class AddSlideComponent implements OnInit {
     this.enlace.newTab = event.checked
   }
 
-  catchImageURL(image: imageElement) {
+  catchImageURL(image: any) {
     this.slide.imageURL = image.url
   }
 

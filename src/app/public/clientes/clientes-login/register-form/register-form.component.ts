@@ -13,7 +13,7 @@ import { ClienteModel } from '../../../../panel/clientes/cliente.model';
 export class RegisterFormComponent implements OnInit {
 
   cliente: ClienteModel
-  confirmaContra
+  // confirmaContra
   matcher = new MyErrorStateMatcher();
   builder: FormBuilder = new FormBuilder()
   registerForm = this.builder.group( {
@@ -36,8 +36,8 @@ export class RegisterFormComponent implements OnInit {
   }
 
   checkPasswords( group: FormGroup ) {
-    let contra = group.get( 'contra' ).value;
-    let confirmaContra = group.get( 'confirmaContra' ).value;
+    let contra = group.get( 'contra' )?.value;
+    let confirmaContra = group.get( 'confirmaContra' )?.value;
     return contra === confirmaContra ? null : { notSame: true }
   }
 
@@ -65,7 +65,7 @@ export class RegisterFormComponent implements OnInit {
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState( control: FormControl | null, form: FormGroupDirective | NgForm | null ): boolean {
-    const invalidCtrl = !!( control && control.invalid && control.parent.dirty );
+    const invalidCtrl = !!( control && control.invalid && control.parent?.dirty );
     const invalidParent = !!( control && control.parent && control.parent.invalid && control.parent.dirty );
 
     return ( invalidCtrl || invalidParent );

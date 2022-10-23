@@ -4,12 +4,11 @@ import { Router } from '@angular/router';
 import { distinctUntilChanged, distinct, distinctUntilKeyChanged } from 'rxjs/operators';
 import { MainPanelService } from './main-panel.service';
 import { AdminsService } from './admin/admins.service';
-import { MxColor, MxResponsive } from '@marxa/devkit';
-import { MxAlert } from '@marxa/devkit/lib/alert-v2/alert.service';
+import { MxAlert, MxColor, MxResponsive } from '@marxa/devkit';
 
 
 @Component({
-  selector: 'gdev-panel',
+  selector: 'mx-storage-panel',
   templateUrl: './panel.component.html',
   styleUrls: ['./panel.component.scss']
 })

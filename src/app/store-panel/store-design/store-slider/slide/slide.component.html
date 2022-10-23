@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row">
-        
+
         <div class="col s1">
             <button mat-icon-button
             (click)="close.emit()">
                 <i class="fas fa-times fa-lg"></i>
             </button>
         </div>
-        
+
         <div class="col s9">
             <h5><b>{{slide.nombre}}</b></h5>
         </div>
@@ -18,19 +18,19 @@
                 Eliminar
             </button>
         </div>
-        
+
     </div>
 
     <div class="row" id="data-table">
-        
+
         <div class="col s12">
             <mat-slide-toggle
             (change)="onActivadoChange($event)"
             [checked]="slide.activado"
             >Activado</mat-slide-toggle>
-            
+
             <div class="slide-area">
-                <img [src]="slide.image" alt="">
+                <img [src]="slide.imageURL" alt="">
             </div>
 
             <div class="row">
@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    
+
 
 
 </div>

@@ -3,11 +3,11 @@ import { FormControl, Validators } from '@angular/forms';
 import { ClienteModel } from '../../../panel/clientes/cliente.model';
 import { DeliveryAddress, ProductOrdered, OrderModel, Buyer, OrderTotales } from '../order.model';
 import { OrdersService } from '../orders.service';
-import { MxAlert } from '@marxa/devkit/lib/alert-v2/alert.service';
+import { MxAlert } from '@marxa/devkit';
 import { Router } from '@angular/router';
 import { DeliveryConfig } from 'src/app/store-panel/store-config/delivery-config/delivery-config.model';
 import { DeliveryService } from 'src/app/store-panel/store-config/delivery-config/delivery.service';
-import { MxAlertModel } from '@marxa/devkit/lib/alert-v2/alerts.model';
+import { MxAlertModel } from '@marxa/devkit';
 
 @Component({
   selector: 'app-pay-form',
@@ -35,7 +35,7 @@ export class PayFormComponent implements OnInit {
     private router: Router
   ) {
 
-    this.order = JSON.parse( localStorage.getItem( 'gdev-order' )! )
+    this.order = JSON.parse( localStorage.getItem( 'mx-store-order' )! )
     this.delivery = {
       address: '',
       depto: '',
@@ -46,7 +46,7 @@ export class PayFormComponent implements OnInit {
     this.buyer = { name: '', email: '', celular: '',id:'' }
     this.totales = { grand_total: 0, tax: 0, subtotal: 0, }
     this.order = new OrderModel([], this.totales,'',false)
-    let areCart = JSON.parse( localStorage.getItem( 'gdev-order' )! );
+    let areCart = JSON.parse( localStorage.getItem( 'mx-store-order' )! );
     if(!areCart) this.router.navigate(['/'])
    }
 
@@ -56,7 +56,7 @@ export class PayFormComponent implements OnInit {
   }
 
   async setBuyer() {
-    this.cliente = JSON.parse( localStorage.getItem( 'gdev-cliente' )! )
+    this.cliente = JSON.parse( localStorage.getItem( 'mx-store-cliente' )! )
     if ( this.cliente ) {
       this.buyer.name = this.cliente.nombre ? this.cliente.nombre : '';
       this.buyer.celular = this.cliente.celular ? this.cliente.celular : '';
@@ -88,6 +88,7 @@ export class PayFormComponent implements OnInit {
     if ( this.payForm.hasError( 'required' ) ) {
       return 'Este campo es requerido';
     }
+    return
   }
 
   validatePay(){
@@ -110,7 +111,7 @@ export class PayFormComponent implements OnInit {
     this.order.buyer = this.buyer
     this.order.delivery = this.delivery
     this.order.ship_method = 'delivery'
-    localStorage.setItem( 'gdev-ship', JSON.stringify( this.delivery ) )
+    localStorage.setItem( 'mx-store-ship', JSON.stringify( this.delivery ) )
 
     var alertBody: MxAlertModel = new MxAlertModel(
       {

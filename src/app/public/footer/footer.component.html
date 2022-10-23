@@ -1,4 +1,4 @@
-<div id="footer" class="continer" gdev-color [background]="'dark'" *ngIf="getIn">
+<div id="footer" class="continer"  [mxBackground]="'dark'" *ngIf="getIn">
     <div class="row align-cols">
         <div class="col s12 m4 center" id="logo">
             <img [src]="logo" alt="Logo oficial">
@@ -7,15 +7,15 @@
         <div class="col s12 m4">
             <h2 class="white-text">Redes sociales</h2>
             <div class="collection" *ngIf="storeDatos">
-                <a *ngIf="storeDatos.facebook" href="https://facebook.com/{{storeDatos.facebook}}" class="collection-item facebook" gdev-color [color]="'complement1'">
+                <a *ngIf="storeDatos.facebook" href="https://facebook.com/{{storeDatos.facebook}}" class="collection-item facebook"  [mxColor]="'complement1'">
                     <i class="fab fa-facebook fa-2x  "></i>
                     <p>Facebook</p>
                 </a>
-                <a *ngIf="storeDatos.instagram" href="https://instagram.com/{{storeDatos.instagram}}" class="collection-item instagram" gdev-color [color]="'complement1'" >
+                <a *ngIf="storeDatos.instagram" href="https://instagram.com/{{storeDatos.instagram}}" class="collection-item instagram"  [mxColor]="'complement1'" >
                     <i class="fab fa-instagram fa-2x  "></i>
                     <p>Instagram</p>
                 </a>
-                <a *ngIf="storeDatos.youtube" href="https://youtube.com/{{storeDatos.youtube}}" class="collection-item youtube" gdev-color [color]="'complement1'" >
+                <a *ngIf="storeDatos.youtube" href="https://youtube.com/{{storeDatos.youtube}}" class="collection-item youtube"  [mxColor]="'complement1'" >
                     <i class="fab fa-youtube fa-2x  "></i>
                     <p>Youtube</p>
                 </a>

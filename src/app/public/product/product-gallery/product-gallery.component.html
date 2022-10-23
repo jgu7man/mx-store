@@ -4,13 +4,16 @@
     <i class="fas fa-times"></i>
   </button>
 
-  <mat-carousel 
+  <mx-slider
+  [slides]="gallery"
+  ></mx-slider>
+  <!-- <mat-carousel
   #productSlider
   [timings]="'0ms'"
   [autoplay]="false"
   [color]="'primary'"
   [maxWidth]="'auto'"
-  [maintainAspectRatio]="false" 
+  [maintainAspectRatio]="false"
   [slideHeight]="'100%'"
   [slides]="dataGallery.gallery.length"
   [loop]="true"
@@ -27,5 +30,5 @@
     overlayColor="#00000040"
     [hideOverlay]="true"
   ></mat-carousel-slide>
-</mat-carousel>
+</mat-carousel> -->
 </mat-dialog-content>

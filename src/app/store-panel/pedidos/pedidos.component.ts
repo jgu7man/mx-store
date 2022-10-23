@@ -17,7 +17,7 @@ export class PedidosComponent implements OnInit {
 
   state: string
   pedidos: OrderModel[] = []
-  itemSelected: OrderModel
+  itemSelected?: OrderModel
 
 
   @ViewChild( 'currentItem' ) public itemPanel?: MatDrawer
@@ -49,9 +49,9 @@ export class PedidosComponent implements OnInit {
     this.pedidos = data.sort( ( a, b ) => {
       const isAsc = sort.direction === 'asc';
       switch ( sort.active ) {
-        case 'pay_date': return compare( a.pay_date.toString(), b.pay_date.toString(), isAsc );
-        case 'buyer_name': return compare( a.buyer.name, b.buyer.name, isAsc );
-        case 'state': return compare( a.state, b.state, isAsc );
+        case 'pay_date': return compare( a.pay_date!.toString(), b.pay_date!.toString(), isAsc );
+        case 'buyer_name': return compare( a.buyer!.name, b.buyer!.name, isAsc );
+        case 'state': return compare( a.state!, b.state!, isAsc );
         default: return 0;
       }
     } );
@@ -61,7 +61,7 @@ export class PedidosComponent implements OnInit {
 
   onClosePanel() {
     this.itemPanel!.close()
-    this.itemSelected = undefined
+    delete this.itemSelected
   }
 
 

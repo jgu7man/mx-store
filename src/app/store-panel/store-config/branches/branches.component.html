@@ -1,4 +1,4 @@
-<gdev-list-crud 
+<mx-list-crud
 listName="Sucursales"
 [selectTemplate]="select"
 [addTemplate]="add"
@@ -8,11 +8,11 @@ listName="Sucursales"
 itemSelector="displayName"
 >
     <ng-template #select let-branch="item" >
-        <gdev-branch-form (updated)="onUpdate()" [Sucursal]="branch"></gdev-branch-form>
+        <mx-branch-form (updated)="onUpdate()" [Sucursal]="branch"></mx-branch-form>
     </ng-template>
 
     <ng-template #add>
-        <gdev-branch-form (updated)="onUpdate()"></gdev-branch-form>
+        <mx-branch-form (updated)="onUpdate()"></mx-branch-form>
     </ng-template>
 
-</gdev-list-crud>
+</mx-list-crud>

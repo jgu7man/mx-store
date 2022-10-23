@@ -3,13 +3,13 @@ import { AdminsService } from '../../admin/admins.service';
 import { AdminInterface } from '../../admin/admin.model';
 
 @Component({
-  selector: 'gdev-bienvenida',
+  selector: 'mx-bienvenida',
   templateUrl: './bienvenida.component.html',
   styleUrls: ['./bienvenida.component.scss']
 })
 export class BienvenidaComponent implements OnInit {
 
-  admin: AdminInterface
+  admin?: AdminInterface
   constructor (
     public auth: AdminsService
   ) { }

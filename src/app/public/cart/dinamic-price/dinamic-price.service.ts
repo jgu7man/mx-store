@@ -5,7 +5,7 @@ import { CartProductModel } from '../cart-product.model';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { BehaviorSubject, AsyncSubject, Subscription, Subject } from 'rxjs';
 import { MatRadioChange } from '@angular/material/radio';
-import { MxLoading } from '@marxa/devkit';
+import { MxAlert, MxLoading } from '@marxa/devkit';
 import { distinctUntilKeyChanged } from 'rxjs/operators';
 
 @Injectable({
@@ -13,7 +13,7 @@ import { distinctUntilKeyChanged } from 'rxjs/operators';
 })
 export class DinamicPriceService {
 
-  cartProduct: CartProductModel
+  cartProduct?: CartProductModel
   _product = new Subject<MxStoreProductModel >()
   product?: MxStoreProductModel
   prodSubs?: Subscription
@@ -26,16 +26,16 @@ export class DinamicPriceService {
 
   constructor (
     private _cart: CartService,
-    private _loading: MxLoading
+    private _loading: MxLoading,
+    private _alert: MxAlert
    ) {
-    this.cartProduct = {
-      cant: 0,
-      productId: '',
-      unit_precio: 0,
-      variante: {},
-      adiciones: [],
-      description:{}
-    }
+    // this.cartProduct = {
+    //   id: '',
+    //   cant: 0,
+    //   unit_precio: 0,
+    //   variante: {},
+    //   adiciones: [],
+    // }
     // this.prodDescuento = { exp: '', type: '%', cant: 0 }
     this.initDATA()
   }
@@ -46,6 +46,7 @@ export class DinamicPriceService {
 
   addProdCart() {
     console.log( this.cartProduct );
+    if (!this.cartProduct) throw new Error( 'No existe producto que agregar')
     this._cart.updateProduct( this.cartProduct, 1 )
   }
 
@@ -58,6 +59,7 @@ export class DinamicPriceService {
     ).subscribe( prod => {
       // console.log(prod);
       this.product = prod
+      if (!prod.id) throw new Error( 'No existe el ID del producto')
       this._cart.checkOnCart( prod.id ).then( cProd => {
         // console.log(cProd);
         if ( cProd ) {
@@ -67,8 +69,13 @@ export class DinamicPriceService {
       })
 
       this.cartProduct = {
-        productId: prod.id,
-        description: prod
+        id: prod.id,
+        description: prod,
+        cant: 0,
+        unit_precio: 0,
+        variante: {},
+        adiciones: [],
+        added: new Date()
       }
 
       this.prodPrice = prod.variantes
@@ -85,18 +92,24 @@ export class DinamicPriceService {
 
   unsubscribe() {
     // this.prodSubs.unsubscribe()
-    this.cartProduct = {}
+    delete this.cartProduct
   }
 
   get productOnCart() {
     var localCart: CartProductModel[] = JSON.parse(
-      localStorage.getItem( 'gdev-cart' )!
+      localStorage.getItem( 'mx-store-cart' )!
     )
-    if ( localCart ) {
-      var product = localCart.find( prod => prod.productId == this.cartProduct.productId )
-      if ( product ) { return product }
+
+    if ( this.cartProduct ) {
+      if ( localCart ) {
+        var product = localCart.find(
+          prod => prod.id == this.cartProduct!.id
+        )
+
+        if ( product ) { return product }
+      }
     }
-    return
+    return null
   }
 
 
@@ -105,18 +118,24 @@ export class DinamicPriceService {
   // UPDATE
 
   async onAddonsChanges( change: MatCheckboxChange, value: Addon ) {
-    if ( change.checked ) {
-      this.addonsSelected.push( value )
-      this.addonsRef.push(value.ref!)
-    } else {
-      let addon = this.addonsSelected.findIndex( a => a.ref == value.ref )
-      this.addonsSelected.splice( addon, 1 )
-      this.addonsRef.splice(addon, 1)
-    }
-    this.cartProduct.adiciones = this.addonsSelected
-    if ( this.cartProduct.cant && this.cartProduct.cant > 0 ) {
-      await this._loading.waitFor(1000)
-      this._cart.updateProduct( this.cartProduct, this.cartProduct.cant )
+    try {
+      if (!this.cartProduct) throw new Error( 'No se pudo agregar')
+      if ( change.checked ) {
+        this.addonsSelected.push( value )
+        this.addonsRef.push(value.ref!)
+      } else {
+        let addon = this.addonsSelected.findIndex( a => a.ref == value.ref )
+        this.addonsSelected.splice( addon, 1 )
+        this.addonsRef.splice(addon, 1)
+      }
+      this.cartProduct.adiciones = this.addonsSelected
+      if ( this.cartProduct.cant && this.cartProduct.cant > 0 ) {
+        await this._loading.waitFor(1000)
+        this._cart.updateProduct( this.cartProduct, this.cartProduct.cant )
+      }
+    } catch ( error: any ) {
+      this._alert.notify( error.message )
+      return console.error( error )
     }
   }
 
@@ -124,37 +143,58 @@ export class DinamicPriceService {
 
 
   async setVariety( variante: string, change: MatRadioChange ) {
-    this.prodPrice = change.value
-    this.cartProduct.variante = {
-      name: variante, option: change.value
-    }
-    if ( this.cartProduct.cant && this.cartProduct.cant > 0 ) {
-      await this._loading.waitFor(1000)
-      this._cart.updateProduct( this.cartProduct, this.cartProduct.cant )
+    try {
+      if ( !this.cartProduct ) throw new Error( 'No se pudo agregar' )
+
+      this.prodPrice = change.value
+      this.cartProduct.variante = {
+        name: variante, option: change.value
+      }
+      if ( this.cartProduct.cant && this.cartProduct.cant > 0 ) {
+        await this._loading.waitFor(1000)
+        this._cart.updateProduct( this.cartProduct, this.cartProduct.cant )
+      }
+    } catch (error: any) {
+      this._alert.notify( error.message )
+      return console.error(error)
     }
   }
 
 
 
   async addCant() {
-    if ( this.productOnCart ) {
+    try {
+      if ( !this.cartProduct ) throw new Error( 'No se pudo agregar' )
+      if ( this.productOnCart ) {
       this.cartProduct.cant = (this.productOnCart.cant || 0) + 1
       this._cart.updateProduct( this.cartProduct, this.cartProduct.cant )
+    }
+    } catch (error: any) {
+      this._alert.notify( error.message )
+      return console.error(error)
     }
   }
 
 
   // DELETE
   async removeCant() {
-    if ( this.productOnCart ) {
+    try {
+      if ( !this.cartProduct ) throw new Error( 'No se pudo eliminar' )
+      if ( this.productOnCart ) {
       this.cartProduct.cant = (this.productOnCart.cant || 0) - 1
       this._cart.updateProduct( this.cartProduct, this.cartProduct.cant )
+    }
+    } catch (error: any) {
+      this._alert.notify( error.message )
+      return console.error(error)
     }
   }
 
 
 
-  total_price() {
+  get total_price() {
+
+    if ( !this.cartProduct ) return 0
 
     const hoy = new Date()
     var addons = 0, descuento = 0,

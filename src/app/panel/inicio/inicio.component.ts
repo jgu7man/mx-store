@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { MainPanelService } from '../main-panel.service';
 
 @Component({
-  selector: 'gdev-inicio',
+  selector: 'mx-inicio',
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.scss']
 })

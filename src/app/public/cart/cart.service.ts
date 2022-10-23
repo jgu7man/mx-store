@@ -33,18 +33,18 @@ export class CartService {
 
 
   get LocalClient() {
-    var cliente: ClienteModel = JSON.parse( localStorage.getItem( 'gdev-cliente' )! )
+    var cliente: ClienteModel = JSON.parse( localStorage.getItem( 'mx-store-cliente' )! )
     return cliente ? cliente : false
   }
 
   get LocalCart() {
-    var localCart = JSON.parse( localStorage.getItem( 'gdev-cart' )! )
+    var localCart = JSON.parse( localStorage.getItem( 'mx-store-cart' )! )
     return localCart ? localCart : false
   }
 
   setLocalCart( cart: CartProductModel[] ) {
     // console.log(cart);
-    localStorage.setItem( 'gdev-cart', JSON.stringify( cart ) )
+    localStorage.setItem( 'mx-store-cart', JSON.stringify( cart ) )
   }
 
   async getCart(): Promise<CartProductModel[]> {
@@ -85,7 +85,7 @@ export class CartService {
   async updateProduct( product: CartProductModel, cant: number,  ) {
     // await this.getCart()
     // console.log(this.cart, {product, cant});
-    var productIndex = this.cart.findIndex( Prod => Prod.productId == product.productId )
+    var productIndex = this.cart.findIndex( Prod => Prod.id == product.id )
 
       if ( cant == 0 ) {
         // Si cantidad es 0 - elimina del cart
@@ -93,7 +93,7 @@ export class CartService {
         this.cart.splice( productIndex, 1 )
         this.setLocalCart( this.cart )
         if ( this.LocalClient ) {
-          await this.delProductOn( this.LocalClient.idCliente!, product.productId! )
+          await this.delProductOn( this.LocalClient.idCliente!, product.id! )
         }
 
       } else {
@@ -124,7 +124,7 @@ export class CartService {
       const clienteRef = this.fs.collection( 'clientes' ).ref.doc( idCliente )
       const cartRef = clienteRef.collection( 'cart' )
       product.added = new Date()
-      await cartRef.doc( product.productId ).set(product)
+      await cartRef.doc( product.id ).set(product)
       return true
     } catch ( error ) { console.error( 'No se agregó: ', error );
       return false
@@ -145,14 +145,14 @@ export class CartService {
 
   async checkOnCart( productId: string ) {
     this.getCart()
-    var product = this.cart.find( prod => prod.productId == productId )
+    var product = this.cart.find( prod => prod.id == productId )
     return product ? product : false
   }
 
   async updateOnlogin( idCliente: string ) {
     await this.getCart()
     const cartRef = this.fs
-      .collection<CartProductModel(
+      .collection<CartProductModel>(
         `clientes/${ idCliente }/cart'`
       ).ref
     var cloudCart = await cartRef.get()
@@ -168,14 +168,14 @@ export class CartService {
       if ( this.cart.length > 0 ) {
         await this.loading.asyncForEach( this.cart,
           async ( prod: CartProductModel ) => {
-            let Prod = Cart.find( cartProd => cartProd.productId == prod.productId )
+            let Prod = Cart.find( cartProd => cartProd.id == prod.id )
             if ( Prod ) this.setProductOn( idCliente, prod )
           } )
 
 
         await this.loading.asyncForEach( Cart,
           async ( prod: CartProductModel ) => {
-            let Prod = this.cart.find(cartProd => cartProd.productId == prod.productId )
+            let Prod = this.cart.find(cartProd => cartProd.id == prod.id )
             if ( Prod ) this.cart.push( prod )
         } )
 
@@ -204,7 +204,7 @@ export class CartService {
     var products: CartProductModel[] = []
     await this.loading.asyncForEach( this.cart, async ( product: CartProductModel ) => {
       const productCol = this.fs.collection( 'tienda/productos/referencias' ).ref
-      const productDoc = await productCol.doc( product.productId ).get()
+      const productDoc = await productCol.doc( product.id ).get()
       product.description = productDoc.data() as MxStoreProductModel
       products.push( product )
     } )

@@ -40,7 +40,7 @@ export class CartComponent implements OnInit {
   }
 
   get precio_total() {
-    var localCart: CartProductModel[] = JSON.parse( localStorage.getItem( 'gdev-cart' )! )
+    var localCart: CartProductModel[] = JSON.parse( localStorage.getItem( 'mx-store-cart' )! )
     var totales: any[] = []
     if(this.products) {
       this.products.forEach( cartProd => {
@@ -57,11 +57,11 @@ export class CartComponent implements OnInit {
 
   async confirmOrder() {
     // var productsOrder: ProductOrdered[] = []
-    var localCart: CartProductModel[] = JSON.parse( localStorage.getItem( 'gdev-cart' )! )
+    var localCart: CartProductModel[] = JSON.parse( localStorage.getItem( 'mx-store-cart' )! )
 
     this.order.products = this.products
     this.order.totales.subtotal = this.precio_total
-    localStorage.setItem( 'gdev-order', JSON.stringify( this.order ) )
+    localStorage.setItem( 'mx-store-order', JSON.stringify( this.order ) )
 
     this.router.navigate(['tienda/cuenta/pay'])
 

@@ -18,8 +18,10 @@
 <div class="row">
     <div class="col s6">
         <h3>Horario de inicio</h3>
-        <input [ngxTimepicker]="start"[format]="24"  
-        [value]="horarioLaboral.startTime">
+        <input
+        [ngxTimepicker]="start"
+        [format]="24"
+        [value]="startTime">
         <ngx-material-timepicker #start
         (timeSet)="catchStartTime($event)"
         [minutesGap]="30"
@@ -27,8 +29,8 @@
     </div>
     <div class="col s6">
         <h3>Horario de término</h3>
-        <input [ngxTimepicker]="end" [format]="24" 
-        [value]="horarioLaboral.endTime">
+        <input [ngxTimepicker]="end" [format]="24"
+        [value]="endTime">
         <ngx-material-timepicker #end
         [minutesGap]="30"
         (timeSet)="catchEndTime($event)"
@@ -49,4 +51,4 @@
 </div>
 
 <h4><b>Ubicación</b></h4>
-<gdev-branch-location [Ubicacion]="ubicacion" (formChanges)="catchFormChanges($event)"></gdev-branch-location>
+<mx-branch-location [Ubicacion]="ubicacion" (formChanges)="catchFormChanges($event)"></mx-branch-location>

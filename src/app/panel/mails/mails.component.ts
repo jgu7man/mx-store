@@ -5,7 +5,7 @@ import { AdminInterface } from '../admin/admin.model';
 import { AdminsService } from '../admin/admins.service';
 
 @Component({
-  selector: 'gdev-mails',
+  selector: 'mx-mails',
   templateUrl: './mails.component.html',
   styleUrls: ['./mails.component.scss']
 })
@@ -15,11 +15,11 @@ export class MailsComponent implements OnInit {
   successOrder: MailTemplate
   sendingOrder: MailTemplate
   cancelRequest: MailTemplate
-    
+
 
   constructor (
     public mailS: MailService,
-    public adminS: AdminsService 
+    public adminS: AdminsService
   ) {
     this.newOrder = new MailTemplate('', '', '', '' )
     this.successOrder = new MailTemplate('', '', '','' )
@@ -38,7 +38,7 @@ export class MailsComponent implements OnInit {
       .then( res => { if ( res ) this.cancelRequest = res } );
   }
 
-  
+
 
 
 }

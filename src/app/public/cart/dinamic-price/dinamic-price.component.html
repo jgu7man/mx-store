@@ -1,39 +1,26 @@
 <div id="actions" class="align-cols">
-
-    <p class="precio">
-        <b style="font-size: 1.5em;">
-            ${{ priceS.total_price() | mask: 'separator':',' }}
-        </b>
-    </p>
-    
-    <div class="addCartBtn" > 
-        <ng-container *ngIf="!priceS.productOnCart; else onCart">
-            <button mat-raised-button
-            color="primary"
-            (click)="priceS.addProdCart()"
-            [disabled]="!inStock()"
-            >Agregar al carrito
-            </button>
-        </ng-container>
-        <ng-template #onCart>
-            <div class="chageCantContent">
-                <button mat-icon-button
-                (click)="priceS.removeCant()">
-                    <i class="fas fa-minus"></i>
-                </button>
-                {{priceS.productOnCart.cant}}
-                <button mat-icon-button
-                [disabled]="priceS.product.stockCant == priceS.productOnCart.cant"
+  <p class="precio">
+    <b style="font-size: 1.5em;"> ${{ priceS.total_price | mask: 'separator':',' }} </b>
+  </p>
+  <div class="addCartBtn">
+    <ng-container *ngIf="!priceS.productOnCart; else onCart">
+      <button mat-raised-button color="primary" (click)="priceS.addProdCart()"
+              [disabled]="!inStock()">Agregar al carrito </button>
+    </ng-container>
+    <ng-template #onCart>
+      <div class="chageCantContent">
+        <button mat-icon-button (click)="priceS.removeCant()">
+          <i class="fas fa-minus"></i>
+        </button>
+        {{priceS.productOnCart?.cant || 0}}
+        <button mat-icon-button
+                [disabled]="(priceS.product?.stockCant || 0) == (priceS.productOnCart?.cant || 0)"
                 (click)="priceS.addCant()">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
-        </ng-template>
-        
-    </div>
-    
-
-    <app-add-wishlist 
-    [product]="priceS.product.id">
-    </app-add-wishlist>
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+    </ng-template>
+  </div>
+  <app-add-wishlist [product]="priceS.product?.id">
+  </app-add-wishlist>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'gdev-identidad',
+  selector: 'mx-identidad',
   templateUrl: './identidad.component.html',
   styleUrls: ['./identidad.component.scss']
 })

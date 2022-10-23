@@ -11,7 +11,7 @@ import { MxAlert } from '@marxa/devkit';
 })
 export class ContactoComponent implements OnInit {
 
-  storeDatos: DatosContactoModel
+  storeDatos?: DatosContactoModel
 
   constructor (
     private fs: AngularFirestore,
@@ -22,22 +22,23 @@ export class ContactoComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
-
   }
 
   async getStoreData() {
-    this.storeDatos = await (await this.fs.collection( 'gdev-store' ).ref.doc( 'datos_contacto' ).get()).data() as DatosContactoModel
+    this.storeDatos = await (
+      await this.fs.collection( 'mx-store' ).ref
+      .doc( 'datos_contacto' )
+      .get()
+    ).data() as DatosContactoModel
   }
 
 
-  async saveContact(datos: ContactoForm, medio) {
+  async saveContact(datos: ContactoForm, medio: any) {
     const clienteFinded = await this.searchCliente( datos, medio );
     if ( !clienteFinded ) { this.createSuscriptor( datos, medio ) }
   }
 
-  async searchCliente(datos: ContactoForm, medio) {
+  async searchCliente(datos: ContactoForm, medio: any) {
     const clientesRef = this.fs.collection('clientes').ref
     const clientesFinded = await clientesRef.where( 'email', '==', datos.email ).get()
     const clienteFinded = clientesFinded.size >= 1
@@ -54,7 +55,7 @@ export class ContactoComponent implements OnInit {
   }
 
 
-  async createSuscriptor(datos: ContactoForm, medio) {
+  async createSuscriptor(datos: ContactoForm, medio: any) {
     const suscriptoresRef = this.fs.collection( 'suscriptores' ).ref
 
     const suscriptoresByEmail = await suscriptoresRef
@@ -72,18 +73,17 @@ export class ContactoComponent implements OnInit {
         : undefined;
 
 
-    if ( !suscriptorFinded ) {
-      var nSuscriptor = await suscriptoresRef.add( {
+    const susId = suscriptorFinded
+    ? suscriptorFinded.id
+    : (await suscriptoresRef.add( {
       nombre: datos.nombre ? datos.nombre : '',
       email: datos.email ? datos.email : '',
       celular: datos.telefono ? datos.telefono : '',
-      } )
-    }
+      } )).id
 
 
-    const susId = suscriptorFinded
-      ? suscriptorFinded.id
-      : nSuscriptor.id
+
+
 
     suscriptoresRef.doc( susId ).collection( 'mensajes' )
       .add( { medio: medio, fecha: new Date() } )
@@ -95,20 +95,10 @@ export class ContactoComponent implements OnInit {
   async sendMessage( datos:ContactoForm, kind: 'whatsapp'|'email'|'messenger'|'instagram'|'skype' ) {
 
     this.saveContact( datos, kind )
+
+    if (!this.storeDatos) throw new Error( 'No existe correo')
     if ( kind == 'email' ) {
-      var emailBody =
-      {
-        to: [this.storeDatos.email],
-        message: {
-          subject: `Recibiste un mensaje en tu tienda`,
-          text: `
-          Mensaje de ${ datos.nombre } - ${ datos.email}\n
-          ${datos.telefono ? datos.telefono : ''}\n
-          \n
-          Mensaje: ${datos.mensaje}
-          `,
-        }
-      }
+
 
     }
 
@@ -121,6 +111,18 @@ export class ContactoComponent implements OnInit {
         window.open( `http://m.me/${this.storeDatos.facebook}?`, 'blank' )
         break;
       case 'email':
+        var emailBody = {
+          to: [this.storeDatos.email],
+          message: {
+            subject: `Recibiste un mensaje en tu tienda`,
+            text: `
+            Mensaje de ${ datos.nombre } - ${ datos.email}\n
+            ${datos.telefono ? datos.telefono : ''}\n
+            \n
+            Mensaje: ${datos.mensaje}
+            `,
+          }
+        }
         this.fs.collection( 'mails' ).ref.add( emailBody ).then( () => {
           this._alerts.notify('Tu correo se ha envíado')
         })

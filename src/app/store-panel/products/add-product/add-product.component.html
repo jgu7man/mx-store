@@ -34,7 +34,7 @@
                     </div>
                 </div>
 
-                
+
 
                 <!-- MANEJO DEL STOCK -->
                 <div class="row align-cols">
@@ -47,7 +47,7 @@
                             >¿En stock?
                         </mat-slide-toggle>
                     </div>
-    
+
                     <div class="col s6">
                         <mat-form-field>
                             <mat-label>Cantidad</mat-label>
@@ -133,27 +133,27 @@
                             <p>
                                 Agrega variantes del producto como características, después especifica el valor de cada característica. El precio del producto cambiará con cada variante que hayas definido.
                             </p>
-                            <gdev-prod-variante [Variantes]="product.variantes"  (onChange)="catchVariantes($event)" ></gdev-prod-variante>
+                            <mx-prod-variante [Variantes]="product.variantes || []"  (onChange)="catchVariantes($event)" ></mx-prod-variante>
                         </mat-tab>
                         <mat-tab label="Adicionales">
                             <p>
                                 Agregar caraterísticas adicionales y su precio. Cada característica adicional agregará un más valor al precio y el al final con cada adición el precio tendrá la suma. Ejemplo $10 + $5 = $15.
                             </p>
-                            <gdev-prod-addons [Addons]="product.addons" (onChange)="catchAddons($event)"></gdev-prod-addons>
+                            <mx-prod-addons [Addons]="product.addons || []" (onChange)="catchAddons($event)"></mx-prod-addons>
                         </mat-tab>
                         <mat-tab label="Descuento">
                             <p>
                                 Agrega un descuento para este producto que puede ser en dinero o porcentaje sobre el precio total.
                             </p>
-                            <gdev-prod-desc  [Desc]="defaultDesc" (OnChange)="catchDesc($event)"></gdev-prod-desc>
+                            <mx-prod-desc  [Desc]="defaultDesc" (OnChange)="catchDesc($event)"></mx-prod-desc>
                         </mat-tab>
                     </mat-tab-group>
                 </div>
                 <div class="col s12">
-                    <gdev-prod-details 
-                    [details]="product.detalles ? product.detalles : []" 
-                    (detailsChanged)="product.detalles = $event" 
-                    ></gdev-prod-details>
+                    <mx-prod-details
+                    [details]="product.detalles ? product.detalles : []"
+                    (detailsChanged)="product.detalles = $event"
+                    ></mx-prod-details>
                 </div>
             </div>
 
@@ -163,7 +163,7 @@
                     Sube una imagen de producto, es necesaria
                     <gdev-image-uploader [folder]="'productos'"
                     (result)="getImageURL($event)"
-                    [srcPreview]="product.imagenUrl"
+                    [srcPreview]="product.mainImage"
                     (itemDeleted)="deleteProductImage($event)"
                     ></gdev-image-uploader>
                 </div>
@@ -181,9 +181,9 @@
         </div>
 
         <div class="row">
-            
+
         </div>
-            
+
 
         <!-- * BOTÓN DE GUARDADO -->
 
@@ -193,7 +193,7 @@
                     mat-raised-button
                     color="primary"
                     (click)="onSubmit()"
-                    [disabled]="!addProduct.form.valid && product.imagenUrl == undefined"
+                    [disabled]="!addProduct.form.valid && product.mainImage == undefined"
                 >
                     Guardar
                 </button>

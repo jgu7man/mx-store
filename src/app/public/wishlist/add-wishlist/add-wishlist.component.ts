@@ -8,7 +8,7 @@ import { WishlistService } from '../wishlist.service';
 })
 export class AddWishlistComponent implements OnInit {
 
-  @Input() product: string
+  @Input() product?: string
   constructor (
     public wishlist: WishlistService
   ) { }

@@ -5,7 +5,7 @@ import { MxAlert, MxSEO } from '@marxa/devkit';
 import { DatosContactoModel } from 'src/app/panel/contacto/contacto.model';
 
 @Component({
-  selector: 'gdev-aparador',
+  selector: 'mx-aparador',
   templateUrl: './aparador.component.html',
   styleUrls: [ './aparador.component.scss' ],
   encapsulation: ViewEncapsulation.None
@@ -26,7 +26,7 @@ export class AparadorComponent implements OnInit {
       this._seo.setTags( {
         title: this.store.store_name,
         description: 'Demo de E-commerce | Un producto de Marxa Digital',
-        image: 'https://gdev-store.web.app/assets/icons/ms-icon-310x310.png'
+        image: 'https://mx-store.web.app/assets/icons/ms-icon-310x310.png'
       })
     }
   }

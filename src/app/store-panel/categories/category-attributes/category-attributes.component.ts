@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
   templateUrl: './category-attributes.component.html',
   styleUrls: ['./category-attributes.component.css']
 })
-export class GdevCategoryAttributesComponent implements OnInit {
+export class MxCategoryAttributesComponent implements OnInit {
 
 
   categoryId: string

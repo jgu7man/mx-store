@@ -1,14 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { MatSelectionList } from '@angular/material/list';
-//import { TextService } from 'src/app/gdev-tools/text/gdev-text.service';
 import { Sort } from '@angular/material/sort';
 import { MxText } from '@marxa/devkit';
 import { ClienteModel } from './cliente.model';
 import { ClientesService } from './clientes.service';
 
 @Component({
-  selector: 'gdev-clientes',
+  selector: 'mx-clientes',
   templateUrl: './clientes.component.html',
   styleUrls: ['./clientes.component.scss']
 })

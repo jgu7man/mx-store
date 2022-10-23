@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GdevStorePublicService } from '../../gdev-store-public.service';
+import { MxStorePublicService } from '../../mx-store-public.service';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../cart/cart.service';
 import { MobileNavbarService } from 'src/app/public/tienda-navbar/mobile-navbar.service';
@@ -8,7 +8,7 @@ import { MxStoreProductModel } from 'src/app/store-panel/products/product.model'
 import { WishlistService } from 'src/app/public/wishlist/wishlist.service';
 
 @Component({
-  selector: 'gdev-destacados',
+  selector: 'mx-destacados',
   templateUrl: './destacados.component.html',
   styleUrls: ['./destacados.component.scss']
 })
@@ -17,7 +17,7 @@ export class DestacadosComponent implements OnInit {
   products: MxStoreProductModel[] = []
   queryLimit: number = 8
   constructor (
-    private _tienda: GdevStorePublicService,
+    private _tienda: MxStorePublicService,
     private _ruta: ActivatedRoute,
     public wishlist: WishlistService,
     public cart: CartService,

@@ -5,7 +5,7 @@ import { IntegrationsService } from './integrations.service';
 
 
 @Component({
-  selector: 'gdev-integrations-config',
+  selector: 'mx-integrations-config',
   templateUrl: './integrations-config.component.html',
   styleUrls: ['./integrations-config.component.scss']
 })

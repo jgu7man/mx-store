@@ -12,32 +12,32 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ListCrudComponent implements OnInit, AfterViewInit {
 
-  itemSelected
-  @Input() list: any[]
+  itemSelected: any
+  @Input() list: any[] = []
   private _List : BehaviorSubject<any> = new BehaviorSubject([]);
   @Input() set List(variable: any) { this._List.next(variable); }
   get List() { return this._List.getValue()}
 
-  @Input() listName: string
-  @Input() itemSelector: string
-  @Input() selectTemplate: TemplateRef<any>
-  @Input() addTemplate: TemplateRef<any>
+  @Input() listName?: string
+  @Input() itemSelector?: string
+  @Input() selectTemplate?: TemplateRef<any>
+  @Input() addTemplate?: TemplateRef<any>
   @Input() height_vh: any
 
-  injectData: Injector
-  itemCtx
+  injectData?: Injector
+  itemCtx: any
   // @ContentChild()
 
-  @ViewChild( 'currentItem' ) public itemPanel: MatDrawer
-  @ViewChild( 'listPanel' ) listPanel: MatSelectionList
-  @ViewChild( 'addItem' ) addPanel: MatDrawer
+  @ViewChild( 'currentItem' ) public itemPanel!: MatDrawer
+  @ViewChild( 'listPanel' ) listPanel!: MatSelectionList
+  @ViewChild( 'addItem' ) addPanel!: MatDrawer
 
 
   @Output() onSave: EventEmitter<any> = new EventEmitter()
 
 
-  constructor ( 
-    
+  constructor (
+
   ) { }
 
   ngOnInit(): void {

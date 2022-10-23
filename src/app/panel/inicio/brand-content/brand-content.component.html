@@ -29,7 +29,7 @@
             </div>
             <div class="col s12 m4">
               <div class="logo-preview" *ngIf="brandInfo">
-                <img [src]="brandInfo.headLogo.url">
+                <img [src]="brandInfo.headLogo?.url || ''">
               </div>
             </div>
           </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="col s12 m4">
               <div class="logo-preview" *ngIf="brandInfo">
-                <img [src]="brandInfo.squareLogo.url">
+                <img [src]="brandInfo.squareLogo?.url || ''">
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@
             </div>
             <div class="col s12 m4">
               <div class="logo-preview" *ngIf="brandInfo">
-                <img [src]="brandInfo.iconLogo.url">
+                <img [src]="brandInfo.iconLogo?.url || ''">
               </div>
             </div>
           </div>
@@ -107,7 +107,7 @@
             </div>
             <div class="col s12 m4">
               <div class="logo-preview" *ngIf="brandInfo">
-                <img [src]="brandInfo.negLogo.url">
+                <img [src]="brandInfo.negLogo?.url || ''">
               </div>
             </div>
           </div>

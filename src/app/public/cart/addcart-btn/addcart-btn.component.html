@@ -1,4 +1,4 @@
-<div class="addCartBtn" > 
+<div class="addCartBtn" >
     <ng-container *ngIf="!productOnCart; else onCart">
         <button mat-raised-button
         color="primary"
@@ -12,12 +12,12 @@
             (click)="removeCant()">
                 <i class="fas fa-minus"></i>
             </button>
-            {{productOnCart.cant}}
+            {{productOnCart?.cant || 0}}
             <button mat-icon-button
             (click)="addCant()">
                 <i class="fas fa-plus"></i>
             </button>
         </div>
     </ng-template>
-    
+
 </div>

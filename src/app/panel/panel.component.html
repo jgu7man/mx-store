@@ -1,5 +1,5 @@
 <!-- TOPBARNAV -->
-<gdev-topbar></gdev-topbar>
+<mx-store-topbar></mx-store-topbar>
 
 
 <mat-drawer-container
@@ -15,11 +15,11 @@ hasBackdrop="false">
     mode="side"
     [opened]="!responsive.small"
     position="start"
-    gdev-color
-    [background]="'bg2'"
+
+    [mxBackground]="'bg2'"
     >
         <!-- SIDENAV -->
-        <gdev-sidenav [structure]="sidenavStructure"></gdev-sidenav>
+        <mx-sidenav [structure]="sidenavStructure"></mx-sidenav>
     </mat-drawer>
 
 

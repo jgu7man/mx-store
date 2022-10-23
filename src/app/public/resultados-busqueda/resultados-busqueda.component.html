@@ -10,23 +10,28 @@
     <div class="row" *ngIf="products.length > 0;else sinResultados">
         <div class="col s12 m4" *ngFor="let product of products">
             <mat-card class="mat-elevation-z8">
-                <mat-card-content 
+                <mat-card-content
                 [routerLink]="['/tienda/categoria',categoria, product.id]"
                 class="card-image">
-                    <ng-container *ngIf="!product.imagenUrl['url']; else alt">
-                        <img [src]="product.imagenUrl" mat-card-image >
+                  <ng-container *ngIf="product.mainImage; else noImage">
+                    <ng-container *ngIf="!product.mainImage.url; else alt">
+                        <img [src]="product.mainImage" mat-card-image >
                     </ng-container>
                     <ng-template #alt>
-                        <img [src]="product.imagenUrl['url']"
-                    [alt]="product.imagenUrl['alt']"
-                        mat-card-image
-                    >
+                        <img mat-card-image
+                          [src]="product.mainImage['url']"
+                          [alt]="product.mainImage['alt']"
+                        >
                     </ng-template>
-                    
+                  </ng-container>
+                  <ng-template #noImage >
+
+                  </ng-template>
+
                     <div class="bg-box"></div>
                 </mat-card-content>
                 <mat-card-title [routerLink]="['/tienda/categoria',categoria, product.id]">
-                    <strong>{{product.referencia}}</strong> 
+                    <strong>{{product.referencia}}</strong>
                 </mat-card-title>
                 <mat-card-subtitle>
                     <p> ${{product.precio | mask: 'separator': ','}} </p>
@@ -37,7 +42,7 @@
             </mat-card>
         </div>
     </div>
-    
+
     <ng-template #sinResultados>
         <div class="row" >
             <div class="col s12 center" id="no-resultados">

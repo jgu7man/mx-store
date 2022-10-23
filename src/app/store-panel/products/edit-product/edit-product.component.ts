@@ -37,20 +37,20 @@ export class EditProductComponent implements OnInit {
     private router: Router
   ) {
     // this.product = undefined
-    this.product = new MxStoreProductModel( '', 0, false, '', {}, '', [], [],[],[], this.defaultDesc )
+    this.product = new MxStoreProductModel( '', 0, false, 0, {url: '', alt: ''}, '', [], [],[],[], this.defaultDesc )
   }
 
   async ngOnInit() {
     this.categories = await this._categorias.loadCategories()
 
-    this._products.imageUrl.subscribe( imageUrl => {
+    this._products.mainImage$.subscribe( imageUrl => {
       if ( !this.product ) throw { message: 'No existe el producto'}
-      this.product.imagenUrl = imageUrl
+      this.product.mainImage = imageUrl
     } )
-    this._products.galleyImageUrl.subscribe( imageUrl => {
+    this._products.galleyImage$.subscribe( image => {
       if ( !this.product ) throw { message: 'No existe el producto'}
 
-      this.product.galeria!.push( imageUrl )
+      this.product.galeria!.push( image )
     } )
 
 
@@ -91,7 +91,8 @@ export class EditProductComponent implements OnInit {
   setGallery( images: any ) {
     let files: any[] = images.value
     files.forEach( async image => {
-      let currentFile = this.product.galeria!.find( img => img.alt == image.name )
+      if (!this.product.galeria) this.product.galeria = []
+      let currentFile = this.product.galeria.find( img => img.alt == image.name )
       if ( !currentFile ) {
         this._products.loadGalleryImage( image )
       }
@@ -99,11 +100,12 @@ export class EditProductComponent implements OnInit {
   }
 
   getImageURL( imageURL: string ) {
-    this.product.imagenUrl = imageURL
+    this.product.mainImage = imageURL
   }
 
   deleteProductImage() {
-    this.product.imagenUrl  = {}
+    if ( this.product.mainImage )
+      delete this.product.mainImage
   }
 
   getImageGallery( gallery: any[] ) {

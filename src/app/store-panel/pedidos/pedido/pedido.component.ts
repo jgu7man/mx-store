@@ -24,7 +24,7 @@ export class PedidoComponent implements OnInit {
   ship_date: Date | null =null
   ship_time: string | null = null
 
-  @Input() pedido: OrderModel
+  @Input() pedido?: OrderModel
   @Output() close = new EventEmitter<boolean>();
 
   constructor (
@@ -45,23 +45,26 @@ export class PedidoComponent implements OnInit {
   }
 
   changeState() {
+    if (!this.pedido) throw new Error( 'No existe pedido')
     this._pedidos.updatePedido( this.pedido )
     if ( this.pedido.state == 'enviado' ) {
-      this._mails.sendClientMail(this.pedido.buyer.email, 'sendingOrder')
+      this._mails.sendClientMail(this.pedido.buyer!.email, 'sendingOrder')
     }
   }
 
-  catchDeliveryDate( event: MatDatepickerInputEvent<Date>) {
+  catchDeliveryDate( event: MatDatepickerInputEvent<Date> ) {
+    if (!this.pedido) throw new Error( 'No existe pedido')
     this._pedidos.updatePedido( this.pedido )
   }
 
-  catchDeliveryTime(event: any) {
+  catchDeliveryTime( event: any ) {
+    if (!this.pedido) throw new Error( 'No existe pedido')
     var hours = +event.split( ':' )[ 0 ], mins = +event.split( ':' )[ 1 ];
-    console.log( this.pedido.delivery.delivery_date);
+    console.log( this.pedido.delivery?.delivery_date);
 
-    if ( this.pedido.delivery.delivery_date ) {
+    if ( this.pedido.delivery?.delivery_date ) {
       this.pedido.delivery.delivery_date
-        .setHours( hours, mins )
+        // .setHours( hours, mins )
     }
 
     this._pedidos.updatePedido(this.pedido)

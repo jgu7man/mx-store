@@ -4,7 +4,7 @@ import { DeliveryAddress } from '../../../public/cart/order.model';
 import { BranchesService } from './branches.service';
 
 @Component({
-  selector: 'gdev-branches',
+  selector: 'mx-branches',
   templateUrl: './branches.component.html',
   styleUrls: ['./branches.component.scss']
 })
@@ -14,7 +14,7 @@ export class BranchesComponent implements OnInit {
   nSucursal: BranchModel
   nHorarioLaboral: HorarioLaboral
   nUbicacion: DeliveryAddress
-  
+
 
   constructor (public branchS: BranchesService) {
     this.nHorarioLaboral = { startTime: '', endTime: '', daysOfWeek: [] }

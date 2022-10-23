@@ -1,0 +1,26 @@
+.imgContent {
+    flex-grow: 1;
+    width: 100%;
+    position: relative;
+    img {
+        position: relative;
+        transform: translate(-50%, 0%);
+        width: 100%;
+        left: 50%;
+        top: 50%;
+    }
+    span.delItem {
+        position: absolute;
+        left: 0;
+        color: darkred;
+        cursor: pointer;
+    }
+}
+
+.loading-content{
+    position: relative;
+    .loading-legend{
+        position: absolute;
+        bottom: 0;
+    }
+}

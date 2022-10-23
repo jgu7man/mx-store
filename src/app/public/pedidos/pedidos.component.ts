@@ -5,9 +5,10 @@ import { OrderModel } from '../cart/order.model';
 import { MatDrawer } from '@angular/material/sidenav';
 import { MatSelectionList, MatSelectionListChange } from '@angular/material/list';
 import { MxText } from '@marxa/devkit';
+import firebase from 'firebase/app'
 
 @Component({
-  selector: 'gdev-pedidos',
+  selector: 'mx-pedidos',
   templateUrl: './pedidos.component.html',
   styleUrls: ['./pedidos.component.scss']
 })
@@ -53,12 +54,22 @@ export class PedidosComponent implements OnInit {
     this.itemPanel.open()
   }
 
-  fecha(date: Date) {
-    return this._text.stringifyDate(date)
+  fecha(date?: Date | firebase.firestore.Timestamp ) {
+    if (!date) return 'No data'
+    else if ( date instanceof Date ) {
+      return this._text.stringifyDate( date )
+    } else {
+      return this._text.stringifyDate( date.toDate() )
+    }
   }
 
-  hora(date: Date) {
-    return this._text.stringifyTime(date)
+  hora(date?: Date | firebase.firestore.Timestamp ) {
+    if (!date) return 'No data'
+    else if ( date instanceof Date ) {
+      return this._text.stringifyDate( date )
+    } else {
+      return this._text.stringifyDate( date.toDate() )
+    }
   }
 
 }

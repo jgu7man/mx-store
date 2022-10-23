@@ -10,7 +10,7 @@ import { MxStoreProductModel } from 'src/app/store-panel/products/product.model'
 })
 export class ProductActionsComponent implements OnInit {
 
-  @Input() product: MxStoreProductModel
+  @Input() product?: MxStoreProductModel
   constructor (
     public wishlist: WishlistService
   ) { }
@@ -19,10 +19,17 @@ export class ProductActionsComponent implements OnInit {
   }
 
   get productOnCart() {
-    var localCart: CartProductModel[] = JSON.parse( localStorage.getItem( 'gdev-cart' ) )
-    if ( localCart ) {
-      var product = localCart.find( prod => prod.productId == this.product.id )
-      if ( product ) return product
+    try {
+      let mxStoreCart = localStorage.getItem( 'mx-store-cart' )
+      if (!mxStoreCart) throw new Error('No existe cart en el caché')
+      var localCart: CartProductModel[] = JSON.parse( mxStoreCart )
+
+      if (!this.product) throw new Error('No se encontró producto')
+      var product = localCart.find( prod => prod.id == this.product!.id )
+      if ( !product ) throw new Error('No existe producto')
+      return product
+    } catch ( error: any ) {
+      return console.error( error )
     }
   }
 

@@ -5,15 +5,15 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { MainPanelService } from 'src/app/panel/main-panel.service';
 
 @Component({
-  selector: 'gdev-footer',
+  selector: 'mx-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
 
-  getIn: boolean
-  storeDatos: DatosContactoModel
-  logo: string
+  getIn: boolean = false
+  storeDatos!: DatosContactoModel
+  logo?: string
 
   constructor (
     private fs: AngularFirestore,

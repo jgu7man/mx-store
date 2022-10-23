@@ -1,0 +1,17 @@
+.input-field {
+    display: flex;
+}
+
+#fileInput {
+    opacity: 0;
+}
+
+#imgArea {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1em;
+    gdev-image-preview {
+        min-width: 33%;
+    }
+}
+

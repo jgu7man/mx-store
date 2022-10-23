@@ -1,0 +1,48 @@
+<div class="row">
+    <ng-container *ngIf="multiple; else single">
+        <div class="col s4">
+            
+            <button mat-raised-button
+            color="primary"
+            (click)="files.click()">
+                {{displayAction}}
+            </button>
+        
+            <input id="fileInput" multiple type="file" name="files" #files
+            (change)="onFilesSelected($event)">
+        </div>
+        <div class="col s4" id="imgArea">
+            <gdev-image-preview
+            *ngFor="let preview of srcGroup"
+            [srcPreview]="preview"
+            (imageURL)="setResult($event)"
+            (onDeleted)="itemDeleted.emit($event)"
+            ></gdev-image-preview>
+            
+        </div>
+    </ng-container>
+
+    <ng-template #single>
+        <div class="col s12">
+            <button mat-raised-button
+            color="primary"
+            (click)="file.click()">
+                {{displayAction}}
+            </button>
+        
+            <input id="fileInput" type="file" name="file" #file
+            (change)="onFileSelected($event)">
+            
+            
+        </div>
+        <div class="col s12" id="imgArea">
+            <gdev-image-preview
+            [srcPreview]="srcPreview"
+            [folder]="folder"
+            [image]="image"
+            [prefix]="prefix"
+            (imageURL)="setResult($event)"
+            ></gdev-image-preview>
+        </div>
+    </ng-template>
+</div>

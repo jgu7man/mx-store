@@ -13,21 +13,21 @@
     <div class="row">
         <div class="col s12 m4 l3" *ngFor="let product of products">
             <mat-card class="mat-elevation-z8">
-                <img [src]="product.imagenUrl['url']"
+                <img [src]="product.mainImage?.url || ''"
                 [alt]="product.referencia"
                 mat-card-image
                 [routerLink]="['/tienda/producto', product.id]"
                 class="card-image">
                 <mat-card-title [routerLink]="['/tienda/producto', product.id]">
-                    <strong>{{product.referencia}}</strong> 
+                    <strong>{{product.referencia}}</strong>
                 </mat-card-title>
                 <mat-card-subtitle>
-                    <p> ${{product.precio | mask: 'separator': ','}} </p>
+                    <p> ${{(product.precio || 0) | mask: 'separator': ','}} </p>
                 </mat-card-subtitle>
                 <mat-card-content>
                     <p>
-                        {{product.descripcion.substring(0, 100)}}
-                        <span *ngIf="product.descripcion.length > 100">...</span>
+                        {{(product.descripcion || '').substring(0, 100)}}
+                        <span *ngIf="(product.descripcion?.length || 100) > 100">...</span>
                     </p>
                 </mat-card-content>
                 <mat-card-actions>
@@ -38,9 +38,9 @@
     </div>
     <div class="row" *ngIf="products">
         <div class="col s12 center">
-            <button 
-            mat-raised-button 
-            (click)="loadMore()" 
+            <button
+            mat-raised-button
+            (click)="loadMore()"
             [disabled]="lastItem"
             >Cargar más...</button>
         </div>

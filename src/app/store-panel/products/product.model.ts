@@ -1,13 +1,13 @@
 export class MxStoreProductModel {
     constructor (
-        public referencia?: string,
-        public precio?: number,
-        public onStock?: boolean,
-        public stockCant?: any,
-        public imagenUrl?: any,
-        public descripcion?: string,
-        public categorias?: string[],
-        public galeria?: any[],
+        public referencia: string,
+        public precio: number,
+        public onStock: boolean = false,
+        public stockCant: number,
+        public mainImage?: ImageRef,
+        public descripcion: string = '',
+        public categorias: string[] = [],
+        public galeria: ImageRef[] = [],
         public variantes?: ProdVariante[],
         public addons?: Addon[],
         public descuento?: ProdDesc,
@@ -18,7 +18,7 @@ export class MxStoreProductModel {
 
 
 export interface ProdVariante {
-    name?: string,
+    name: string,
     variantes?: Addon[]
 }
 
@@ -36,4 +36,9 @@ export interface ProdDesc {
 export interface ProdDetalle {
     detailName: string,
     detailValue: any
+}
+
+export interface ImageRef {
+  url: string,
+  alt: string
 }

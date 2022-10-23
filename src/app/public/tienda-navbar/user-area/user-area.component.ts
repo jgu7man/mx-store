@@ -3,7 +3,7 @@ import { CartService } from '../../cart/cart.service';
 import { WishlistService } from 'src/app/public/wishlist/wishlist.service';
 
 @Component({
-  selector: 'gdev-user-area',
+  selector: 'mx-user-area',
   templateUrl: './user-area.component.html',
   styleUrls: ['./user-area.component.scss']
 })

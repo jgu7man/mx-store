@@ -4,7 +4,7 @@ import { DeliveryService } from './delivery.service';
 import { DeliveryConfig } from './delivery-config.model';
 
 @Component({
-  selector: 'gdev-delivery-config',
+  selector: 'mx-delivery-config',
   templateUrl: './delivery-config.component.html',
   styleUrls: ['./delivery-config.component.scss']
 })
@@ -35,7 +35,7 @@ export class DeliveryConfigComponent implements OnInit {
     }
   }
 
-  
+
 
 }
 

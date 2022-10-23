@@ -1,8 +1,8 @@
 <mat-drawer-container [hasBackdrop]="false">
-    
-    
+
+
     <mat-drawer id="current_item" #currentItem [mode]="'over'" position="end" >
-        <gdev-cliente (close)="onClosePanel()" [cliente]="itemSelected"></gdev-cliente>
+        <mx-cliente (close)="onClosePanel()" [cliente]="itemSelected"></mx-cliente>
     </mat-drawer>
 
     <mat-drawer-content>
@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col s12">
                     <h4>Clientes</h4>
-                    
+
                 </div>
             </div>
             <div class="row">
@@ -29,13 +29,14 @@
                         <td>{{client.nombre}}</td>
                         <td>{{client.email}}</td>
                         <td>{{client.celular}}</td>
-                        <td>{{text.stringifyShortDate(client.registrado)}}</td>
+                        <td *ngIf="client.registrado"
+                        >{{text.stringifyShortDate(client.registrado)}}</td>
                         </tr>
                     </table>
 
-                    
+
                 </div>
-            </div>   
+            </div>
         </div>
     </mat-drawer-content>
 </mat-drawer-container>

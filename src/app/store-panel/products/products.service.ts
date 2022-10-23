@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { MxStoreProductModel } from './product.model';
+import { ImageRef, MxStoreProductModel } from './product.model';
 import { Subject } from 'rxjs';
 import firebase from 'firebase/app';
 import { finalize } from 'rxjs/operators';
@@ -10,8 +10,8 @@ import { MxAlert } from '@marxa/devkit';
 
 @Injectable({ providedIn: 'root' })
 export class MxStoreProductsService {
-  imageUrl: Subject<{}> = new Subject();
-  galleyImageUrl: Subject<{}> = new Subject();
+  mainImage$: Subject<ImageRef> = new Subject();
+  galleyImage$: Subject<ImageRef> = new Subject();
   imageLoadPercent: any;
 
   constructor(
@@ -66,7 +66,7 @@ export class MxStoreProductsService {
         .pipe(
           finalize(async () => {
             await ref.getDownloadURL().subscribe((res) => {
-              this.imageUrl.next({ url: res, alt: file.name });
+              this.mainImage$.next({ url: res, alt: file.name });
             });
             return;
           })
@@ -91,7 +91,7 @@ export class MxStoreProductsService {
         .pipe(
           finalize(async () => {
             await ref.getDownloadURL().subscribe((res) => {
-              this.imageUrl.next({ url: res, alt: image.name });
+              this.galleyImage$.next({ url: res, alt: image.name });
             });
             return;
           })

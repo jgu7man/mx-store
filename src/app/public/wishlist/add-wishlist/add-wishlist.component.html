@@ -1,7 +1,8 @@
-<button mat-icon-button 
+<button mat-icon-button
+*ngIf="product"
 (click)="wishlist.updateProduct(product)">
-    <i class="fas fa-heart" gdev-color [color]="'primary'"
+    <i class="fas fa-heart"  [mxColor]="'primary'"
     *ngIf="wishlist.checkOnWishlist(product)"></i>
-    <i class="far fa-heart" gdev-color [color]="'primary'"
+    <i class="far fa-heart"  [mxColor]="'primary'"
     *ngIf="!wishlist.checkOnWishlist(product)"></i>
 </button>

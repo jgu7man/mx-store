@@ -3,8 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dial
 import { ClienteLoginService } from '../cliente-login.service';
 import { Router } from '@angular/router';
 import { ClienteModel } from '../../../../panel/clientes/cliente.model';
-import { GdevLoginFields } from '../../../../../gdev-tools/gdev-login/components/login-card/login-card.component';
-import { RestorePasswordComponent } from '../../../../../gdev-tools/gdev-login/components/restore-password/restore-password.component';
+import { MxLoginFields } from '@marxa/auth';
+import { RestorePasswordDialog } from '@marxa/auth';
 
 @Component({
   templateUrl: './popup-login.component.html',
@@ -25,17 +25,17 @@ export class PopupLoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onPasswordLoggin( login: GdevLoginFields ) {
+  onPasswordLoggin( login: MxLoginFields ) {
     this.login.emailSingIn( login.email, login.password )
     .then(()=> this.dialogRef.close())
   }
 
-  onRegistered(event) {
+  onRegistered() {
     this.tabIndex = 0
     this.dialogRef.close()
   }
 
-  onLogged(event) {
+  onLogged() {
     this.dialogRef.close()
   }
 
@@ -52,7 +52,7 @@ export class PopupLoginComponent implements OnInit {
   }
 
   restorePwd() {
-    this.dialog.open( RestorePasswordComponent, {
+    this.dialog.open( RestorePasswordDialog, {
       minWidth: 320
     })
   }

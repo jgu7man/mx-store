@@ -38,10 +38,10 @@ export class AddProductComponent implements OnInit {
   async ngOnInit() {
     this.categories = await this._categorias.loadCategories()
 
-    this._products.imageUrl.subscribe( imageUrl => {
-      this.product.imagenUrl = imageUrl
+    this._products.mainImage$.subscribe( imageUrl => {
+      this.product.mainImage = imageUrl
     } )
-    this._products.galleyImageUrl.subscribe( imageUrl => {
+    this._products.galleyImage$.subscribe( imageUrl => {
       this.product.galeria!.push(imageUrl)
     } )
 
@@ -61,7 +61,7 @@ export class AddProductComponent implements OnInit {
   }
 
   getImageURL(imageURL: string) {
-    this.product.imagenUrl = imageURL
+    this.product.mainImage = imageURL
   }
 
 
@@ -86,7 +86,7 @@ export class AddProductComponent implements OnInit {
 
 
   deleteProductImage( image: string ) {
-    this.product.imagenUrl = {}
+    this.product.mainImage = {}
   }
 
   getImageGallery( gallery: any[] ) {

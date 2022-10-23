@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteLoginService } from './cliente-login.service';
 import { ClienteModel } from '../../../panel/clientes/cliente.model';
-import { GdevLoginFields } from '../../../../gdev-tools/gdev-login/components/login-card/login-card.component';
 import { Router } from '@angular/router';
+import { MxLoginFields } from '@marxa/auth';
 
 @Component({
   templateUrl: './clientes-login.component.html',
@@ -24,7 +24,7 @@ export class ClientesLoginComponent implements OnInit {
     })
   }
 
-  onSubmit(fields: GdevLoginFields) {
+  onSubmit(fields: MxLoginFields) {
     this.login.emailSingIn(fields.email, fields.password)
   }
 

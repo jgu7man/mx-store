@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'gdev-products-config',
+  selector: 'mx-products-config',
   templateUrl: './products-config.component.html',
   styleUrls: ['./products-config.component.scss']
 })

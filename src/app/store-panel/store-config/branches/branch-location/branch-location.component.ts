@@ -4,7 +4,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { DeliveryAddress } from '../../../../public/cart/order.model';
 
 @Component({
-  selector: 'gdev-branch-location',
+  selector: 'mx-branch-location',
   templateUrl: './branch-location.component.html',
   styleUrls: ['./branch-location.component.scss']
 })
@@ -27,6 +27,6 @@ export class BranchLocationComponent implements OnInit {
     })
   }
 
-  
- 
+
+
 }

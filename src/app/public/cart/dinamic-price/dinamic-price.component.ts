@@ -1,11 +1,10 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { MxStoreProductModel } from 'src/app/store-panel/products/product.model';
+import { ProdDesc } from 'src/app/store-panel/products/product.model';
 import { CartProductModel } from '../cart-product.model';
-import { CartService } from '../cart.service';
 import { DinamicPriceService } from './dinamic-price.service';
 
 @Component({
-  selector: 'gdev-dinamic-price',
+  selector: 'mx-dinamic-price',
   templateUrl: './dinamic-price.component.html',
   styleUrls: ['./dinamic-price.component.scss']
 })
@@ -14,10 +13,10 @@ export class DinamicPriceComponent implements OnInit {
   @Input() productPrice: number = 0
   @Input() descuento: ProdDesc = {cant:0, exp:'', type:'%'}
   @Input() cantidad: number = 0
-  @Input() productId:string
+  @Input() productId?:string
 
   // cartProduct: CartProductModel
-  cart: CartProductModel[]
+  cart: CartProductModel[] = []
 
   constructor (
     public priceS: DinamicPriceService

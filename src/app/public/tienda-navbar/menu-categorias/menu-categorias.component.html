@@ -6,7 +6,7 @@
     <a mat-menu-item
     [routerLink]="['/tienda/categoria',categoria.name]"
     *ngFor="let categoria of categorias"
-    >{{categoria.name | capitalize}}
+    >{{categoria.name | mxCapitalize}}
     </a>
 </mat-menu>
 
@@ -15,6 +15,6 @@
         <a class="menu-categorias-item collection-item"
         [routerLink]="['/tienda/categoria',categoria.name]"
         *ngFor="let categoria of categorias"
-        >{{categoria.name | capitalize}}</a>
+        >{{categoria.name | mxCapitalize}}</a>
     </div>
 </div> -->

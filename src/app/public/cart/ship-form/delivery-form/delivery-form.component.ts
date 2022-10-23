@@ -60,7 +60,7 @@ export class DeliveryFormComponent implements OnInit {
   }
 
   onSubmit() {
-    localStorage.setItem( 'gdev-ship', JSON.stringify( this.delivery ) )
+    localStorage.setItem( 'mx-store-ship', JSON.stringify( this.delivery ) )
 
   }
 

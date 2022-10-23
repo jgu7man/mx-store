@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { iUploadedFile } from '@marxa/storage-v9';
+import { iUploadedFile } from '@marxa/carrier';
 import { filter } from 'rxjs/operators';
 import { MainPanelService } from '../../main-panel.service';
 import { iBrand } from './brand.model';
@@ -11,7 +11,7 @@ import { iBrand } from './brand.model';
 })
 export class BrandContentComponent implements OnInit {
 
-  brandInfo: iBrand
+  brandInfo?: iBrand
   constructor(
     private _main: MainPanelService
   ) {
@@ -24,22 +24,22 @@ export class BrandContentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onHeadLogoUploaded(files: iUploadedFile) {
+  onHeadLogoUploaded(files: iUploadedFile[]) {
     console.log( files )
     this._main.addBrandInfo({'headLogo': files[0]})
   }
-  onSquareLogoUploaded(files: iUploadedFile) {
+  onSquareLogoUploaded(files: iUploadedFile[]) {
     console.log( files )
     this._main.addBrandInfo({'squareLogo': files[0]})
   }
-  onIconLogoUploaded(files: iUploadedFile) {
+  onIconLogoUploaded(files: iUploadedFile[]) {
     this._main.addBrandInfo({'iconLogo': files[0]})
   }
-  onNegativeLogoUploaded(files: iUploadedFile) {
+  onNegativeLogoUploaded(files: iUploadedFile[]) {
     this._main.addBrandInfo({'negLogo': files[0]})
   }
 
-  onFileUploaded(files: iUploadedFile, field: keyof iBrand): void{
+  onFileUploaded(files: iUploadedFile[], field: keyof iBrand): void{
     console.log( field, files )
     this._main.addBrandInfo({[field]: files[0]})
   }

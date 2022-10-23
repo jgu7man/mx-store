@@ -18,26 +18,26 @@ export class IntegrationsService {
   ) {
     this.renderer = this.rendererFactory.createRenderer(null, null);
    }
-  
+
 
   setScripts() {
     this.fs.collection( 'tienda' ).ref
       .doc( 'integrations' )
       .get().then( keys => {
         if ( keys.exists ) {
-          let  data = keys.data()
+          let  data: any = keys.data()
           const keyMap = new Map<string, { model: any; script: any }>(
             [
               [ "pixel", {
-                model: (key) => this.pixelKey = key,
+                model: (key: string) => this.pixelKey = key,
                 script: this.setPixelScript
               } ],
               [ "analytics", {
-                model: (key) => this.analyticsKey = key,
+                model: (key: string) => this.analyticsKey = key,
                 script: this.setAnalyticsScript
               } ],
               [ "tagmanager", {
-                model: (key) => this.tagManagerKey = key,
+                model: (key: string) => this.tagManagerKey = key,
                 script: this.setTagManagerScript
               } ],
 			]);

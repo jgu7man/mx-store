@@ -1,0 +1,20 @@
+<ng-container *ngIf="this.srcGroup.length != this.data.objects; else uploaded">
+    <gdev-image-preview
+    *ngFor="let img of data.files;"
+    [folder]="data.folder"
+    [image]="img"
+    (imageURL)="setResult($event)"
+    ></gdev-image-preview>
+</ng-container>
+<ng-template #uploaded>
+    <p mat-dialog-title>
+        ¡Listo!
+    </p>
+    Imágenes guardadas
+    <mat-dialog-actions
+    style="display: flex; justify-content: center;">
+        <button mat-raised-button
+        (click)="onClose()"
+        >Cerrar</button>
+    </mat-dialog-actions>
+</ng-template>

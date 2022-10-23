@@ -11,18 +11,18 @@ import { DatosCuentaComponent } from './clientes/cuenta/datos-cuenta/datos-cuent
 import { CartComponent } from './cart/cart.component';
 import { ShipFormComponent } from './cart/ship-form/ship-form.component';
 import { ResultadosBusquedaComponent } from './resultados-busqueda/resultados-busqueda.component';
-import { GdevStorePublicComponent } from './gdev-store-public.component';
+import { MxStorePublicComponent } from './mx-store-public.component';
 import { PayFormComponent } from './cart/pay-form/pay-form.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { DocsComponent } from './docs/docs.component';
 import { PrivacidadComponent } from './docs/privacidad/privacidad.component';
 
-const moduleTitle = 'Las motos'
+const moduleTitle = 'mxStore'
 
 const routes: Routes = [
   {
-    path: '', component: GdevStorePublicComponent, data: { title: `${ moduleTitle } - Tienda` }, children: [
+    path: '', component: MxStorePublicComponent, data: { title: `${ moduleTitle } - Tienda` }, children: [
       { path: '', redirectTo: 'aparador', pathMatch: 'full' },
       { path: 'aparador', component: AparadorComponent, data: { title: `${ moduleTitle } - Aparador`, aparador:true } },
       { path: 'aparador/:id', component: AparadorComponent },
@@ -53,4 +53,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GdevStorePublicRoutinModule { }
+export class MxStorePublicRoutinModule { }

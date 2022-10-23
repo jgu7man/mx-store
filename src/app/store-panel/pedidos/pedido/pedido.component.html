@@ -7,7 +7,7 @@
             </button>
         </div>
         <div class="col s10">
-            <mat-select placeholder="Estado del pedido" [(ngModel)]="pedido.state" name="estado" gdev-color color="primary" (selectionChange)="changeState()" >
+            <mat-select placeholder="Estado del pedido" [(ngModel)]="pedido.state" name="estado"  color="primary" (selectionChange)="changeState()" >
                 <mat-option *ngFor="let estado of estados" [value]="estado.value">
                     {{estado.viewValue}}
                 </mat-option>
@@ -18,7 +18,7 @@
         <!-- FIRST ROW -->
         <div class="row">
             {{pedido.orderId}}
-            
+
             <div class="col s12 m6">
                 <h3>Datos del cliente</h3>
                 <ul class="collection">
@@ -40,9 +40,9 @@
                     </li>
                 </ul>
             </div>
-            
-            
-            
+
+
+
             <!-- START SHIP DATA -->
             <div class="col s12 m6">
                 <h3>Datos de entrega</h3>
@@ -50,7 +50,7 @@
                     Tipo de entrega: <b>{{pedido.ship_method.toLocaleUpperCase()}}</b>
                 </p>
                 <div [ngSwitch]="pedido.ship_method">
-                    
+
                     <!-- START DELIVERY -->
                     <div *ngSwitchCase="'delivery'">
                         <ul class="collection">
@@ -72,16 +72,16 @@
                         </ul>
 
 
-                        <b>Fecha estimada de entrega:</b> 
+                        <b>Fecha estimada de entrega:</b>
                         <mat-form-field>
                             <mat-label>Fecha</mat-label>
                             <input matInput [matDatepicker]="pickupDate" disabled [(ngModel)]="pedido.delivery.delivery_date" (dateChange)="catchDeliveryDate($event)">
                             <mat-datepicker-toggle matSuffix [for]="pickupDate"></mat-datepicker-toggle>
                             <mat-datepicker #pickupDate disabled="false"></mat-datepicker>
                         </mat-form-field>
-                        
+
                         <mat-form-field>
-                            <input matInput [ngxTimepicker]="start"[format]="24"  
+                            <input matInput [ngxTimepicker]="start"[format]="24"
                             [value]="pedido.delivery.delivery_date ? hora(pedido.delivery.delivery_date) : '12:00'">
                             <ngx-material-timepicker #start
                             (timeSet)="catchDeliveryTime($event)"
@@ -115,7 +115,7 @@
                                 <b>País:</b> {{pedido.delivery.country}}
                             </li>
                             <li class="collection-item">
-                                <b>Fecha estimada de entrega:</b> 
+                                <b>Fecha estimada de entrega:</b>
                                 <span *ngIf="pedido.delivery.state;else noAsignada">
                                     {{fecha(pedido.pickup.pickup_date)}} - {{hora(pedido.pickup.pickup_date)}}
                                 </span>
@@ -132,7 +132,7 @@
         </div>
         <!-- END FIRST ROW -->
 
-        
+
         <!-- START SECOND ROW -->
         <div class="row second_row">
             <div class="col s12">
@@ -162,8 +162,8 @@
                 <div class="row">
                     <div class="col s12 m6">
                         <p>Método de pago: {{pedido.pay_method}}</p>
-                        <p>Requiere factura: 
-                            <span *ngIf="pedido.factura;else no">Si</span> 
+                        <p>Requiere factura:
+                            <span *ngIf="pedido.factura;else no">Si</span>
                             <ng-template #no>No</ng-template>
                         </p>
                     </div>

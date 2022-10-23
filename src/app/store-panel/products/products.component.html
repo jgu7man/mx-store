@@ -1,6 +1,6 @@
 <mat-drawer-container [hasBackdrop]="false">
 	<mat-drawer #currentProduct [mode]="'over'" [position]="'end'">
-		<gdev-edit-product *ngIf="prodSelected" [product]="prodSelected" (closeForm)="onClosePanel()" ></gdev-edit-product>
+		<mx-edit-product *ngIf="prodSelected" [product]="prodSelected" (closeForm)="onClosePanel()" ></mx-edit-product>
 	</mat-drawer>
 	<mat-drawer-content>
 
@@ -29,13 +29,11 @@
 
 					</div>
 					<div class="row" id="sort_menu">
-						<gdev-sort-options *ngIf="categories.length > 0"
-						[sortOptions]="false"
-						[compareOptions]="false"
+						<mx-sort-options *ngIf="categories.length > 0"
+						[sortOption]="false"
 						[filterByField]="'categorias'"
-						[fieldTypeValue]="'array'"
-						[fieldValues]="categories">
-						</gdev-sort-options>
+						[fields]="categories">
+						</mx-sort-options>
 
 					</div>
 					<!-- TERMINA CABECERA -->
@@ -55,9 +53,9 @@
                     <div class="col s3">Categorías</div>
                     <div class="col s1">Disp.</div>
                   </div>
-                  <gdev-index-caller
+                  <mx-index-caller
                   style="padding: 1em;"
-                  ></gdev-index-caller>
+                  ></mx-index-caller>
                   <div class="col s12">
                     <mat-selection-list #listPanel [multiple]="false"
                     (selectionChange)="onProdSelected($event)">
@@ -66,8 +64,8 @@
                       <mat-list-option *ngFor="let product of products" [value]="product">
                         <div class="row align-cols table-body" style="width: 100%;">
                           <div class="col s2 prodImg">
-                            <img *ngIf="product.imagenUrl"
-                                            [src]="product.imagenUrl['url'] ? product.imagenUrl['url'] : product.imagenUrl" [alt]="product.referencia">
+                            <img *ngIf="product.mainImage"
+                              [src]="product.mainImage['url'] ? product.mainImage['url'] : product.mainImage" [alt]="product.referencia">
                           </div>
                           <div class="col s4">
                             {{product.referencia}}
@@ -93,7 +91,6 @@
                         </div>
                       </mat-list-option>
                     </mat-selection-list>
-                  <!-- <gdev-loading-data *ngIf="!products || products.length <= 0"></gdev-loading-data> -->
                   </div>
                 </mat-card-content>
 
@@ -101,11 +98,11 @@
                 style="display: flex; justify-content: space-between;">
                     <button mat-raised-button
                     color="primary"
-                    (click)="index.getPrevPage()"
+                    (click)="index.changePage('prev')"
                     >Anterior</button>
                     <button mat-raised-button
                     color="primary"
-                    (click)="index.getNextPage()"
+                    (click)="index.changePage('next')"
                     >Siguiente</button>
                 </mat-card-actions>
 							</mat-card>

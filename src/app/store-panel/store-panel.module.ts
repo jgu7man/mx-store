@@ -15,13 +15,11 @@ import { DelCategoryComponent } from './categories/del-category/del-category.com
 import { CategoryTableComponent } from './categories/category-table/category-table.component';
 import { CategoryFieldsComponent } from './categories/category-fields/category-fields.component';
 import { ProductsComponent } from './products/products.component';
-import { GdevCategoryAttributesComponent } from './categories/category-attributes/category-attributes.component';
+import { MxCategoryAttributesComponent } from './categories/category-attributes/category-attributes.component';
 import { AddProductComponent } from './products/add-product/add-product.component';
 import { EditProductComponent } from './products/edit-product/edit-product.component';
 // import { DelProdcutComponent } from './products/del-prodcut/del-prodcut.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-// import { AddAdminComponent } from '../../gdev-panel/admin/add-admin/add-admin.component';
-// import { EditAdminComponent } from '../../gdev-panel/admin/edit-admin/edit-admin.component';
 import { StoreDesignComponent } from './store-design/store-design.component';
 import { StoreSliderComponent } from './store-design/store-slider/store-slider.component';
 import { AddSlideComponent } from './store-design/store-slider/add-slide/add-slide.component';
@@ -47,8 +45,11 @@ import { ImportExportComponent } from './import-export/import-export.component';
 import { ProductsConfigComponent } from './store-config/products-config/products-config.component';
 import { DelProdcutComponent } from './products/del-prodcut/del-prodcut.component';
 import { GdevComponentsModule } from '../gdev-components/gdev-components.module';
-import { MxStorageModule } from '@marxa/carrier';
+import { MxStorageModule, MxTableImporterModule } from '@marxa/carrier';
 import { SliderConfigComponent } from './store-design/store-slider/slider-config/slider-config.component';
+import { MxIndexModule } from '@marxa/index';
+import { MxDateTimeModule, MxTextModule } from '@marxa/devkit';
+import { MxCrudPanelModule } from '@marxa/crud-panel';
 
 
 @NgModule( {
@@ -61,7 +62,7 @@ import { SliderConfigComponent } from './store-design/store-slider/slider-config
     DelCategoryComponent,
     CategoryTableComponent,
     CategoryFieldsComponent,
-    GdevCategoryAttributesComponent,
+    MxCategoryAttributesComponent,
 
     ProductsComponent,
     AddProductComponent,
@@ -109,19 +110,18 @@ import { SliderConfigComponent } from './store-design/store-slider/slider-config
     GdevComponentsModule,
     NgxMaterialTimepickerModule,
     // ProdlistReadrModule,
-    MxStorageModule
+    MxStorageModule,
+    MxTableImporterModule,
+    MxIndexModule,
+    MxTextModule,
+    MxDateTimeModule,
+    MxCrudPanelModule,
   ],
   entryComponents: [
-    AddCategoryComponent,
-    EditCategoryComponent,
-    DelCategoryComponent,
-    // AddAdminComponent,
-    // EditAdminComponent,
-    AddSlideComponent,
-    PayStateComponent
+
   ],
   exports: [
     StorePanelComponent
   ]
 })
-export class GdevStorePanelModule { }
+export class MxStorePanelModule { }

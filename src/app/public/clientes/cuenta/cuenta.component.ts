@@ -10,7 +10,7 @@ import { ClienteLoginService } from '../clientes-login/cliente-login.service';
 })
 export class CuentaComponent implements OnInit {
 
-  cliente: ClienteModel
+  cliente?: ClienteModel
   constructor (
     private router: Router,
     private navbar: MobileNavbarService,

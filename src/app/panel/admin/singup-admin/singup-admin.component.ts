@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminsService } from '../admins.service';
 // instalar auth
-import { GdevLoginFields } from '../../../gdev-tools/gdev-login/components/login-card/login-card.component';
 import { Router } from '@angular/router';
+import { MxLoginFields } from '@marxa/auth';
 
 @Component({
-  selector: 'gdev-singup-admin',
+  selector: 'mx-singup-admin',
   templateUrl: './singup-admin.component.html',
   styleUrls: ['./singup-admin.component.scss']
 })
@@ -27,7 +27,7 @@ export class SingupAdminComponent implements OnInit {
 
   }
 
-  onSubmit( fields: GdevLoginFields ) {
+  onSubmit( fields: MxLoginFields ) {
     this._admins.createAdmin( fields.email, fields.password )
   }
 

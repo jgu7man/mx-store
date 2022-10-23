@@ -4,7 +4,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MxLink, MxSlide, MxSlider } from '@marxa/slider';
 
 @Component({
-  selector: 'gdev-slide',
+  selector: 'mx-slide',
   templateUrl: './slide.component.html',
   styleUrls: ['./slide.component.scss']
 })

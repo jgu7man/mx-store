@@ -10,7 +10,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Location } from '@angular/common';
 import { WishlistService } from 'src/app/public/wishlist/wishlist.service';
 import { MobileNavbarService } from 'src/app/public/tienda-navbar/mobile-navbar.service';
-import { GdevStorePublicService } from '../gdev-store-public.service';
+import { MxStorePublicService } from '../mx-store-public.service';
 import { MxLoading } from '@marxa/devkit';
 import { MxStoreProductModel } from 'src/app/store-panel/products/product.model';
 import { MatCheckboxChange } from '@angular/material/checkbox';
@@ -33,7 +33,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   public sended: boolean = false
   constructor (
-    private _tienda: GdevStorePublicService,
+    private _tienda: MxStorePublicService,
     private _commons: MxCommonsService,
     private _seo: MxSEO,
     private domSanitizer: DomSanitizer,
@@ -79,7 +79,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     this._seo.setTags( {
       title:( this.product?.referencia|| 'MxStore' ),
       description: this.product?.descripcion || 'Tiend en línea',
-      image: this.product?.imagenUrl.url,
+      image: this.product?.mainImage?.url,
       slug: `tienda/producto/${this.product?.id}`
     } )
   }

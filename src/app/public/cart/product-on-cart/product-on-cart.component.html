@@ -1,22 +1,26 @@
 <div class="row" id="product_on_cart">
     <div class="col s3 m2" id="imageCont" >
-        <img [src]="product.description.imagenUrl['url']" [alt]="product.description.imagenUrl['alt']">
+        <img
+        [src]="product.description?.mainImage?.url || ''"
+        [alt]="product.description?.mainImage?.alt || ''"
+        >
     </div>
-    <div class="col s9 m6 referencia">
+    <div class="col s9 m6 referencia"
+    *ngIf="product.description">
         <div class="row">
             <div class="col s12">
                 <p class="name" [routerLink]="['/tienda/producto',product.description.id]" > {{product.description.referencia}} </p>
             </div>
             <div class="col s12">
                 <p class="descripcion">
-                    {{product.description.descripcion.substring(0, 120)}}
-                    <span *ngIf="product.description.descripcion.length > 120">...</span>
+                    {{(product.description.descripcion || '').substring(0, 120)}}
+                    <span *ngIf="(product.description.descripcion?.length || 0) > 120">...</span>
                 </p>
             </div>
         </div>
     </div>
     <div class="col s4 cants_area right">
-        <p class="precio"> $<b>{{product.unit_precio * productOnCart.cant}}</b> </p>
+        <p class="precio"> $<b>{{(product.unit_precio || 0) * (productOnCart?.cant || 0)}}</b> </p>
         <app-addcart-btn [product]="product"></app-addcart-btn>
         <button mat-icon-button
         class="delProduct"

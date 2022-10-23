@@ -36,7 +36,7 @@ export class ShipFormComponent implements OnInit {
 
 
   async loadOrder() {
-    var order = JSON.parse( localStorage.getItem( 'gdev-order' )! )
+    var order = JSON.parse( localStorage.getItem( 'mx-store-order' )! )
     if ( !order ) {
       console.log('No hay orden');
     } else {

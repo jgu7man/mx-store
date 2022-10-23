@@ -5,8 +5,8 @@ import { MercadopagoData } from '../pay-config.model';
 import { PayMethodsService } from '../pay-methods.service';
 import { DOCUMENT } from '@angular/common';
 declare let mercadopago: any
-import postscribe from 'postscribe'
-// declare let postscribe: any
+// import postscribe from 'postscribe'
+declare let postscribe: any
 import { MxColor, MxLoading } from '@marxa/devkit';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,9 +19,8 @@ import { PayStateComponent } from './pay-state/pay-state.component';
 })
 export class MercadoConfigComponent implements OnInit {
 
-  private _data : BehaviorSubject<MercadopagoData> = new BehaviorSubject({testAccessToken: '',
-    prodAccessToken: ''})
-  @Input() set data( d: MercadopagoData ) { this._data.next( d ); }
+  private _data = new BehaviorSubject<MercadopagoData | null>(null)
+  @Input() set data( d: MercadopagoData | null ) { this._data.next( d ); }
   get data() { return this._data.getValue() }
 
   mercadopagoForm: FormGroup
@@ -75,7 +74,7 @@ export class MercadoConfigComponent implements OnInit {
         console.log( result )
         this.payId = result.data.response.id
         const script = `<script
-        src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" data-preference-id="${this.payId }" data-header-color="${this._color.ColorPalette.primary}" data-button-label="Ir a mercadopago" onmessage=${this.validatePaid()}"></script>`
+        src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" data-preference-id="${this.payId }" data-header-color="${this._color.ColorPalette.main}" data-button-label="Ir a mercadopago" onmessage=${this.validatePaid()}"></script>`
         postscribe("#mercadopago", script)
         console.log( 'show modal' )
         this._loading.toggleWaiting(false)

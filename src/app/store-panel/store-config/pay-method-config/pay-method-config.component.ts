@@ -26,6 +26,7 @@ export class PayMethodConfigComponent implements OnInit {
   }
 
   toggleMethod(element: string, change: MatSlideToggleChange) {
+    if (!this.payConfig.avalibleMethods) this.payConfig.avalibleMethods = []
 
     if ( change.checked ) {
       this.payConfig.avalibleMethods.push(element)

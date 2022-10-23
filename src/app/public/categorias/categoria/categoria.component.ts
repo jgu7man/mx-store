@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { WishlistService } from 'src/app/public/wishlist/wishlist.service';
 import { CartService } from '../../cart/cart.service';
 import { MobileNavbarService } from 'src/app/public/tienda-navbar/mobile-navbar.service';
-import { GdevStorePublicService } from '../../gdev-store-public.service';
+import { MxStorePublicService } from '../../mx-store-public.service';
 import { MxSEO } from '@marxa/devkit';
 import { MxStoreProductModel } from 'src/app/store-panel/products/product.model';
 import { Location } from '@angular/common';
@@ -14,11 +14,11 @@ import { Location } from '@angular/common';
 })
 export class CategoriaComponent implements OnInit {
 
-  products: MxStoreProductModel []
+  products: MxStoreProductModel[] = []
   categoria: string
   queryLimit: number = 12
   constructor (
-    private _tienda: GdevStorePublicService,
+    private _tienda: MxStorePublicService,
     private _ruta: ActivatedRoute,
     public wishlist: WishlistService,
     public cart: CartService,
@@ -28,7 +28,7 @@ export class CategoriaComponent implements OnInit {
   ) {
     this.categoria = this._ruta.snapshot.params['catego']
     this.navbar.title = this.categoria
-    this.seo.generarTags( {
+    this.seo.setTags( {
       title:this.categoria
     })
    }

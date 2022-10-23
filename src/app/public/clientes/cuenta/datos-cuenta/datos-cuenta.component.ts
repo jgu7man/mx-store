@@ -7,11 +7,13 @@ import { ClienteModel } from '../../../../panel/clientes/cliente.model';
 })
 export class DatosCuentaComponent implements OnInit {
 
-  cliente: ClienteModel
+  cliente?: ClienteModel
   constructor() { }
 
   ngOnInit(): void {
-    var cliente = JSON.parse(localStorage.getItem('gdev-cliente'))
+    let mxStoreCliente = localStorage.getItem( 'mx-store-cliente' )
+    if (!mxStoreCliente) throw new Error( 'No se tiene el cliente')
+    var cliente = JSON.parse(mxStoreCliente)
     if (cliente) this.cliente = cliente
   }
 

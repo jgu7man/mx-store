@@ -1,41 +1,41 @@
-<ul class="collapsible" data-collapsible="accordion" id="sidenav-menu" gdev-color [background]="'dark'">
+<ul class="collapsible" data-collapsible="accordion" id="sidenav-menu"  [mxBackground]="'dark'">
 
     <app-main-menu></app-main-menu>
 
-    <mat-accordion gdev-color background="dark">
+    <mat-accordion  background="dark">
 
-        <mat-expansion-panel gdev-color [background]="'dark'" [color]="'white'"  [expanded]="onActive('datos')" disabled>
-            <mat-expansion-panel-header gdev-color [color]="'white'" [routerLink]="[ '/tienda/datos' ]">
+        <mat-expansion-panel  [mxBackground]="'dark'" [mxColor]="'white'"  [expanded]="onActive('datos')" disabled>
+            <mat-expansion-panel-header  [mxColor]="'white'" [routerLink]="[ '/tienda/datos' ]">
                 Datos de cuenta
             </mat-expansion-panel-header>
             <!-- <div class="collection">
                 <a class="collection-item" [routerLink]="[ '/panel/admin/notificaciones' ]" routerLinkActive="active">Perfil</a>
                 <a class="collection-item" [routerLink]="[ '/panel/admin/administradores' ]" routerLinkActive="active">Facturación</a>
-                
+
             </div> -->
         </mat-expansion-panel>
 
 
-        <mat-expansion-panel gdev-color [background]="'dark'">
+        <mat-expansion-panel  [mxBackground]="'dark'">
             <mat-expansion-panel-header>
                 Tus productos
             </mat-expansion-panel-header>
 
             <div class="collection">
-                <a class="collection-item" gdev-color [background]="'primary'" [color]="'black'" [routerLink]="[ '/tienda/cuenta/cart' ]" routerLinkActive="active">Carrito</a>
-                <a class="collection-item" gdev-color [background]="'primary'" [color]="'black'" [routerLink]="[ '/tienda/cuenta/wishlist' ]" routerLinkActive="active">Lista de deseos</a>
+                <a class="collection-item"  [mxBackground]="'primary'" [mxColor]="'black'" [routerLink]="[ '/tienda/cuenta/cart' ]" routerLinkActive="active">Carrito</a>
+                <a class="collection-item"  [mxBackground]="'primary'" [mxColor]="'black'" [routerLink]="[ '/tienda/cuenta/wishlist' ]" routerLinkActive="active">Lista de deseos</a>
             </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel gdev-color [background]="'dark'">
+        <mat-expansion-panel  [mxBackground]="'dark'">
             <mat-expansion-panel-header>
                 Pedidos
             </mat-expansion-panel-header>
             <div class="collection">
-                <a class="collection-item" gdev-color [background]="'primary'" [color]="'black'" [routerLink]="[ '/tienda/cuenta/pedidos/pendientes' ]" routerLinkActive="active">Pedidos pendientes</a>
-                <a class="collection-item" gdev-color [background]="'primary'" [color]="'black'" [routerLink]="[ '/tienda/pedidos/entregados' ]" routerLinkActive="active">Pedidos entregados</a>
-                <a class="collection-item" gdev-color [background]="'primary'" [color]="'black'" [routerLink]="[ '/tienda/pedidos/enviados' ]" routerLinkActive="active">Pedidos enviados</a>
-                <a class="collection-item" gdev-color [background]="'primary'" [color]="'black'" [routerLink]="[ '/tienda/pedidos/cancelados' ]" routerLinkActive="active">Pedidos cancelados</a>
+                <a class="collection-item"  [mxBackground]="'primary'" [mxColor]="'black'" [routerLink]="[ '/tienda/cuenta/pedidos/pendientes' ]" routerLinkActive="active">Pedidos pendientes</a>
+                <a class="collection-item"  [mxBackground]="'primary'" [mxColor]="'black'" [routerLink]="[ '/tienda/pedidos/entregados' ]" routerLinkActive="active">Pedidos entregados</a>
+                <a class="collection-item"  [mxBackground]="'primary'" [mxColor]="'black'" [routerLink]="[ '/tienda/pedidos/enviados' ]" routerLinkActive="active">Pedidos enviados</a>
+                <a class="collection-item"  [mxBackground]="'primary'" [mxColor]="'black'" [routerLink]="[ '/tienda/pedidos/cancelados' ]" routerLinkActive="active">Pedidos cancelados</a>
             </div>
 
         </mat-expansion-panel>
@@ -46,7 +46,7 @@
                 Direcciones
             </mat-expansion-panel-header>
         </mat-expansion-panel> -->
-       
+
 
 
     </mat-accordion>

@@ -14,8 +14,8 @@ declare var paypal: any
 })
 export class PaypalConfigComponent implements OnInit, AfterViewInit {
 
-  private _data : BehaviorSubject<PaypalData> = new BehaviorSubject({sandboxClientID:'',liveClientID: '',});
-  @Input() set data( d: PaypalData ) { this._data.next( d ); }
+  private _data = new BehaviorSubject<PaypalData | null>({sandboxClientID:'',liveClientID: '',});
+  @Input() set data( d: PaypalData | null ) { this._data.next( d ); }
   get data() { return this._data.getValue() }
   @ViewChild('paypal', { static: true }) paypalElement?: ElementRef
 

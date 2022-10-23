@@ -1,8 +1,8 @@
 <mat-drawer-container [hasBackdrop]="false">
-    
-    
+
+
     <mat-drawer id="current_item" #currentItem [mode]="'over'" position="end" >
-        <gdev-pedido (close)="onClosePanel()" [pedido]="itemSelected"></gdev-pedido>
+        <mx-pedido (close)="onClosePanel()" [pedido]="itemSelected"></mx-pedido>
     </mat-drawer>
 
     <mat-drawer-content>
@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col s12">
                     <h4>Pedidos {{state}}</h4>
-                    
+
                 </div>
             </div>
             <div class="row">
@@ -25,15 +25,15 @@
                         (click)="onItemSelected(item)"
                         class="item_list"
                         >
-                            <td>{{text.stringifyShortDate(item.pay_date)}}</td>
-                            <td>{{item.buyer.name}}</td>
+                            <td *ngIf="item.pay_date">{{item.pay_date | mxTimestamp | date }}</td>
+                            <td>{{item.buyer?.name || ''}}</td>
                             <td>{{item.state}}</td>
                         </tr>
                     </table>
 
-                    
+
                 </div>
-            </div>   
+            </div>
         </div>
     </mat-drawer-content>
 </mat-drawer-container>

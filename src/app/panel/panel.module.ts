@@ -5,7 +5,6 @@ import { PanelRoutingModule } from './panel-routing.module';
 import { PanelComponent } from './panel.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material.module';
-//import { GdevToolsModule } from '../gdev-tools/gdev-tools.module';
 import { GdevComponentsModule } from '../gdev-components/gdev-components.module';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { LoginComponent } from './login/login.component';
@@ -24,7 +23,10 @@ import { BienvenidaComponent } from './inicio/bienvenida/bienvenida.component';
 import { CalladminBoxComponent } from './admin/calladmin-box/calladmin-box.component';
 import { InitComponent } from './init/init.component';
 import { BrandContentComponent } from './inicio/brand-content/brand-content.component';
-import { MxStorageModule } from '@marxa/storage-v9';
+import { MxStorageModule } from '@marxa/carrier';
+import { MxAuthModule } from '@marxa/auth';
+import { MxColorsModule } from '@marxa/devkit';
+import { MxSidenavModule } from '@marxa/sidenav';
 
 
 
@@ -58,7 +60,10 @@ import { MxStorageModule } from '@marxa/storage-v9';
     MaterialModule,
     GdevComponentsModule,
     NgxMaterialTimepickerModule,
-    MxStorageModule
+    MxStorageModule,
+    MxAuthModule,
+    MxColorsModule,
+    MxSidenavModule
   ],
   entryComponents: [CalladminBoxComponent]
 })

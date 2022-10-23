@@ -10,11 +10,11 @@
     <div class="order-sheet">
         <!-- FIRST ROW -->
         <div class="row">
-            
-            
+
+
             <div class="col s12 m6">
                 <h3>Datos del cliente</h3>
-                <ul class="collection">
+                <ul *ngIf="pedido.buyer" class="collection">
                     <li class="collection-item">
                         <b>Nombre:</b> {{pedido.buyer.name}}
                     </li>
@@ -33,19 +33,20 @@
                     </li>
                 </ul>
             </div>
-            
-            
-            
+
+
+
             <!-- START SHIP DATA -->
             <div class="col s12 m6">
                 <h3>Datos de entrega</h3>
                 <p>
-                    Tipo de entrega: {{pedido.ship_method.toLocaleUpperCase()}}
+                    Tipo de entrega: {{(pedido.ship_method || '').toUpperCase()}}
                 </p>
                 <div [ngSwitch]="pedido.ship_method">
-                    
+
                     <!-- START DELIVERY -->
                     <div *ngSwitchCase="'delivery'">
+                      <ng-container *ngIf="pedido.delivery; else noDelivery">
                         <ul class="collection">
                             <li class="collection-item">
                                 <b>Dirección:</b> {{pedido.delivery.address}}
@@ -63,7 +64,7 @@
                                 <b>País:</b> {{pedido.delivery.country}}
                             </li>
                             <li class="collection-item">
-                                <b>Fecha estimada de entrega:</b> 
+                                <b>Fecha estimada de entrega:</b>
                                 <ng-container *ngIf="pedido.delivery.delivery_date;else noAsignada">
                                     {{fecha(pedido.delivery.delivery_date)}} - {{hora(pedido.delivery.delivery_date)}}
                                 </ng-container>
@@ -72,34 +73,39 @@
                                 </ng-template>
                             </li>
                         </ul>
+                      </ng-container>
+                      <ng-template #noDelivery >
+                        No delivery data
+                      </ng-template>
                     </div>
                     <!-- END DELIVERY -->
 
 
                     <!-- START PICKUP -->
                     <div *ngSwitchCase="'pickup'">
+                      <ng-container *ngIf="pedido.pickup; else noPickup">
                         <ul class="collection">
                             <li class="collection-item">
-                                <b>Sucursal:</b> {{pedido.pickup.branch}}
+                              <b>Sucursal:</b> {{pedido.pickup.branch}}
                             </li>
                             <li class="collection-item">
-                                <b>Dirección:</b> {{pedido.delivery.address}}
+                                <b>Dirección:</b> {{pedido.delivery?.address || ''}}
                             </li>
                             <li class="collection-item">
-                                <b>Barrio:</b> {{pedido.delivery.depto}}
+                                <b>Barrio:</b> {{pedido.delivery?.depto || ''}}
                             </li>
                             <li class="collection-item">
-                                <b>Ciudad:</b> {{pedido.delivery.city}}
+                                <b>Ciudad:</b> {{pedido.delivery?.city || ''}}
                             </li>
                             <li class="collection-item">
-                                <b>Estado:</b> {{pedido.delivery.state}}
+                                <b>Estado:</b> {{pedido.delivery?.state || ''}}
                             </li>
                             <li class="collection-item">
-                                <b>País:</b> {{pedido.delivery.country}}
+                                <b>País:</b> {{pedido.delivery?.country || ''}}
                             </li>
                             <li class="collection-item">
-                                <b>Fecha estimada de entrega:</b> 
-                                <span *ngIf="pedido.delivery.state;else noAsignada">
+                                <b>Fecha estimada de entrega:</b>
+                                <span *ngIf="pedido.pickup.pickup_date">
                                     {{fecha(pedido.pickup.pickup_date)}} - {{hora(pedido.pickup.pickup_date)}}
                                 </span>
                                 <span #noAsignada>
@@ -107,6 +113,10 @@
                                 </span>
                             </li>
                         </ul>
+                      </ng-container>
+                      <ng-template #noPickup >
+                        No pickup data
+                      </ng-template>
                     </div>
                     <!-- END PICKUP -->
                 </div>
@@ -115,7 +125,7 @@
         </div>
         <!-- END FIRST ROW -->
 
-        
+
         <!-- START SECOND ROW -->
         <div class="row second_row">
             <div class="col s12">
@@ -131,10 +141,10 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of pedido.products">
-                            <td>{{item.description.referencia}}</td>
+                            <td>{{item.description?.referencia || ''}}</td>
                             <td>{{item.cant}}</td>
                             <td>{{item.unit_precio}}</td>
-                            <td>{{item.unit_precio * item.cant}}</td>
+                            <td>{{(item.unit_precio || 0) * (item.cant || 0)}}</td>
                         </tr>
                     </tbody>
                 </table>

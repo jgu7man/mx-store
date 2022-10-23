@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { PayMethodsService } from 'src/app/store-panel/store-config/pay-method-config/pay-methods.service';
 
 @Component({
-  selector: 'gdev-pay-methods',
+  selector: 'mx-pay-methods',
   templateUrl: './pay-methods.component.html',
   styleUrls: ['./pay-methods.component.scss']
 })

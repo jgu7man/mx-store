@@ -4,7 +4,7 @@
             <a class="menu-cuenta-item collection-item"
             *ngFor="let ruta of rutasLogged"
             [routerLink]="['/tienda',ruta.route]"
-            >{{ruta.name | capitalize}}</a>
+            >{{ruta.name | mxCapitalize}}</a>
             <a class="menu-cuenta-item collection-item"
             (click)="authClientes.logOut()"
             >Cerrar Sessión
@@ -16,8 +16,8 @@
             <a class="menu-cuenta-item collection-item"
             *ngFor="let ruta of rutasUnlogged"
             [routerLink]="['/tienda',ruta.route]"
-            >{{ruta.name | capitalize}}</a>
+            >{{ruta.name | mxCapitalize}}</a>
         </div>
     </ng-template>
-    
+
 </div>

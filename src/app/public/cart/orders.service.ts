@@ -22,7 +22,7 @@ export class OrdersService {
     private _mails: MailService,
     private _main: MainPanelService
   ) {
-    this.cliente = JSON.parse( localStorage.getItem( 'gdev-cliente' )! );
+    this.cliente = JSON.parse( localStorage.getItem( 'mx-store-cliente' )! );
 
   }
 
@@ -55,8 +55,8 @@ export class OrdersService {
       this._mails.sendAdminMail( 'newOrder' )
       this._mails.sendClientMail( order.buyer!.email, 'successOrder' )
 
-      localStorage.removeItem( 'gdev-order' )
-      localStorage.removeItem( 'gdev-cart' )
+      localStorage.removeItem( 'mx-store-order' )
+      localStorage.removeItem( 'mx-store-cart' )
       let cartDocs = await this.cartRef.get()
       cartDocs.forEach( doc => { this.cartRef.doc( doc.id ).delete() })
       return
@@ -68,7 +68,7 @@ export class OrdersService {
   dicountStock( products: CartProductModel[] ) {
     const productsRef = this.fs.collection('tienda/productos/referencias').ref
     products.forEach( async p => {
-      let prodDoc = await productsRef.doc( p.productId ).get()
+      let prodDoc = await productsRef.doc( p.id ).get()
       let product = prodDoc.data() as MxStoreProductModel
       if ( product.stockCant ) {
         productsRef.doc(prodDoc.id).update({stockCant: product.stockCant - (p.cant || 0)})

@@ -1,25 +1,26 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NavbarMenuNode } from 'src/app/gdev-tools/navbar/navbar.component';
-import { NavbarService } from 'src/app/gdev-tools/navbar/navbar.service';
 import { AdminsService } from '../admin/admins.service';
 import { debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { SidenavNode } from '../models/sidenav.interface';
+import { MxNavbarService } from '@marxa/navbar';
+import { MxNavbarMenuNode } from '@marxa/navbar/lib/navlink.interface';
 
 @Component({
-  selector: 'gdev-topbar',
+  selector: 'mx-store-topbar',
   templateUrl: './topbar.component.html',
   styleUrls: ['./topbar.component.scss']
 })
 export class TopbarComponent implements OnInit {
 
-  @Input() appTitle: string = 'Gdev Store'
-  @Input() menuStructure: NavbarMenuNode[]
+  @Input() appTitle: string = 'Mx Store'
+  @Input() menuStructure: MxNavbarMenuNode[] = []
 
   constructor (
     public login: AdminsService,
-    public navbarService: NavbarService,
+    public navbarService: MxNavbarService,
     public router: Router
-  ) { 
+  ) {
 
     this.login.admin$.subscribe( admin => {
       if ( !admin ) { this.router.navigate(['/panel/login']) }

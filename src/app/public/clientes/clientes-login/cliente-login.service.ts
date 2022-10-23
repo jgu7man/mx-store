@@ -16,8 +16,8 @@ import { MxAlert } from '@marxa/devkit';
 })
 export class ClienteLoginService {
 
-  cliente$: Observable<ClienteModel>
-  public cliente: ClienteModel
+  cliente$: Observable<ClienteModel | undefined>
+  public cliente?: ClienteModel
   public clientes: any;
   constructor (
     private fs: AngularFirestore,
@@ -34,15 +34,17 @@ export class ClienteLoginService {
         if ( client ) {
           return this.fs.doc<ClienteModel>( `clientes/${ client.uid }` ).valueChanges()
         } else {
-          return of( null );
+          return of( undefined );
         }
       } )
     )
   }
 
-  async emailSingIn( email, pwd ) {
+  async emailSingIn( email:string, pwd: string ) {
     try {
-      var resp = await this.auth.signInWithEmailAndPassword( email, pwd )
+      var resp: any = await this.auth.signInWithEmailAndPassword( email, pwd )
+      if (!resp && !resp.user) throw new Error( 'No se pudo iniciar sesión')
+
       var uid = resp.user.uid
       this.cliente = await this._clientes.getCliente( 'id', uid )
       console.log( this.cliente );
@@ -50,12 +52,13 @@ export class ClienteLoginService {
       if ( !this.cliente ) {
         this._alerts.message( 'Aún no eres cliente de esta tienda. Regístrate para acceder' )
       } else {
-        localStorage.setItem( 'gdev-cliente', JSON.stringify( this.cliente ) )
+        localStorage.setItem( 'mx-store-cliente', JSON.stringify( this.cliente ) )
+        if (!this.cliente.idCliente) throw new Error( 'No se pudo encontrar el cliernte')
         this._wishlist.updateOnlogin( this.cliente.idCliente )
         return true
       }
-    }
-    catch( error ) {
+      return
+    } catch( error: any ) {
       console.log( error )
       if ( error.code.includes( 'not-found' ) ) {
         this._snack.open( 'No se encontró el email' )
@@ -66,6 +69,7 @@ export class ClienteLoginService {
       if ( error.code.includes( 'wrong-password' ) ) {
         this._snack.open( 'Contraseña incorrecta' )
       }
+      return
     }
   }
 
@@ -74,10 +78,12 @@ export class ClienteLoginService {
     // Abre el popup de autenticación
 
     const provider = new firebase.auth.GoogleAuthProvider()
-    var credential = await this.auth.signInWithPopup( provider )
+    var credential: any = await this.auth.signInWithPopup( provider )
+    if (!credential && !credential.user) throw new Error( 'No se pudo iniciar sesión')
     var email = credential.user.email
     this.cliente = await this._clientes.getCliente( 'email', email )
-    if (this.cliente ) localStorage.setItem( 'gdev-cliente', JSON.stringify( this.cliente ) )
+    if ( this.cliente ) localStorage.setItem( 'mx-store-cliente', JSON.stringify( this.cliente ) )
+    if (!this.cliente?.idCliente) throw new Error( 'No se pudo encontrar el cliernte')
     this._wishlist.updateOnlogin( this.cliente.idCliente )
     return true
   }
@@ -85,10 +91,11 @@ export class ClienteLoginService {
   async facebookSingIn() {
     // Abre el popup de autenticación
     const provider = new firebase.auth.FacebookAuthProvider();
-    var credential = await this.auth.signInWithPopup( provider )
+    var credential: any = await this.auth.signInWithPopup( provider )
     var email = credential.user.email
     this.cliente = await this._clientes.getCliente( 'email', email )
-    if (this.cliente) localStorage.setItem( 'gdev-cliente', JSON.stringify( this.cliente ) )
+    if ( this.cliente ) localStorage.setItem( 'mx-store-cliente', JSON.stringify( this.cliente ) )
+    if (!this.cliente?.idCliente) throw new Error( 'No se pudo encontrar el cliernte')
     this._wishlist.updateOnlogin(this.cliente.idCliente)
     return true
   }
@@ -96,7 +103,7 @@ export class ClienteLoginService {
 
   async logOut() {
     this.auth.signOut()
-    localStorage.removeItem( 'gdev-cliente' )
+    localStorage.removeItem( 'mx-store-cliente' )
     this.router.navigate( [ '/' ] )
   }
 
@@ -104,6 +111,7 @@ export class ClienteLoginService {
 
   async saveCliente( cliente: ClienteModel ) {
 
+    if (!cliente.email) throw new Error( 'No se pudo encontrar el email' )
     var clienteGuardado = await this._clientes.getCliente('email', cliente.email)
 
     console.log(clienteGuardado);
@@ -118,10 +126,15 @@ export class ClienteLoginService {
       }
 
     }
+
+    return
   }
 
-  async resgistAuthCliente(cliente: ClienteModel, idCliente?) {
+  async resgistAuthCliente(cliente: ClienteModel, idCliente?: string) {
     try {
+      if ( !cliente.email ) throw new Error( 'No se pudo encontrar el emal' )
+      if ( !cliente.contra ) throw new Error( 'No se pudo encontrar el emal' )
+
       var clienteNew = await this.auth
         .createUserWithEmailAndPassword( cliente.email, cliente.contra )
 
@@ -132,6 +145,7 @@ export class ClienteLoginService {
 
         if ( !idCliente ) {
           cliente.registrado = new Date()
+          if (!clienteNew.user) throw new Error( 'No se pudo iniciar sesión')
           cliente.idCliente = clienteNew.user.uid
           clienteRef.doc(cliente.idCliente).set( cliente ).then( ref => {
             clienteRef.doc( cliente.idCliente ).update( { idCliente: cliente.idCliente } )
@@ -146,8 +160,10 @@ export class ClienteLoginService {
       } else {
         console.log('no se guardó');
       }
+
+      return
     }
-    catch ( error ) {
+    catch ( error: any ) {
       var errorCode = error.code;
       console.log( errorCode, error.message );
       if ( errorCode == 'auth/email-already-in-use' ) {
@@ -171,18 +187,19 @@ export class ClienteLoginService {
 
           if ( nuevoCliente ) {
             this.fs.collection( 'clientes' ).ref.doc( user.id ).set( nuevoCliente )
-            localStorage.setItem( 'gdev-cliente', JSON.stringify( nuevoCliente ) );
+            localStorage.setItem( 'mx-store-cliente', JSON.stringify( nuevoCliente ) );
            }
 
           this.router.navigate(['/'])
         }
 
       }
+      return
     }
   }
 
 
-  editPwd( email ) {
+  editPwd( email: string ) {
     this.auth.sendPasswordResetEmail( email )
       .then( res => {
         this._snack.open( 'Se ha enviado un email al admin para cambiar su contraseña' )

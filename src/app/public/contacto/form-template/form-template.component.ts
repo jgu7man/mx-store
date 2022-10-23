@@ -3,18 +3,18 @@ import { ContactoForm } from './contacto.interface';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
-  selector: 'gdev-form-template',
+  selector: 'mx-form-template',
   templateUrl: './form-template.component.html',
   styleUrls: ['./form-template.component.scss']
 })
 export class FormTemplateComponent implements OnInit {
 
   contacto: ContactoForm
-  @Input() disableNombre: boolean
-  @Input() disableEmail: boolean
-  @Input() disableCelular: boolean
-  @Input() disableMensaje: boolean
-  @Input() linkPDP: string
+  @Input() disableNombre: boolean = false
+  @Input() disableEmail: boolean = false
+  @Input() disableCelular: boolean = false
+  @Input() disableMensaje: boolean = false
+  @Input() linkPDP: string = ''
   @Output() submit = new EventEmitter<ContactoForm>();
 
   constructor () {
@@ -39,7 +39,7 @@ export class FormTemplateComponent implements OnInit {
     var uncomplete
     keys.forEach(key => {
       if ( key == undefined || key == '' ) {
-        
+
       }
     });
   }

@@ -1,4 +1,4 @@
-<div id="menu-navbar" gdev-color [background]="'dark'">
+<div id="menu-navbar"  [mxBackground]="'dark'">
     <div class="row">
         <div class="col s8 m3">
             <ng-container *ngIf="responsive.small; else logo">
@@ -28,7 +28,7 @@
         </div>
         <div class="col s2 m5">
             <ng-container *ngIf="login.cliente$ | async; else unlogged">
-                <gdev-user-area></gdev-user-area>
+                <mx-user-area></mx-user-area>
             </ng-container>
             <ng-template #unlogged>
                 <button style="float: right; top: .65em;"

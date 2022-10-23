@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { GdevLoginFields } from 'src/app/gdev-tools/gdev-login/components/login-card/login-card.component';
+import { MxLoginFields } from '@marxa/auth';
 import { AdminsService } from '../admin/admins.service';
 
 @Component({
-  selector: 'gdev-login',
+  selector: 'mx-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(fields: GdevLoginFields) {
+  onSubmit(fields: MxLoginFields) {
     this._admins.adminLogin(fields.email, fields.password)
   }
 

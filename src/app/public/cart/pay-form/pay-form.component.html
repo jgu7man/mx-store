@@ -5,7 +5,7 @@
     </mat-card-header>
     <form (ngSubmit)="onSubmit()" #form="ngForm">
         <mat-card-content>
-            
+
             <ng-container *ngIf="cliente; else unAuth">
                 <div class="row" *ngIf="buyer">
                     <div class="col s12 m6">
@@ -30,7 +30,7 @@
                             name="aviso" id="aviso" cols="10" rows="5"
                             ></textarea>
                         </mat-form-field>
-                        
+
                     </div>
 
 
@@ -46,7 +46,7 @@
                                 <app-pickup-form (setUbication)="setDelivery($event)" (pickupChanges)="setPickup($event)"></app-pickup-form>
                             </mat-tab>
                         </mat-tab-group>
-                        
+
                     </div>
                 </div>
             </ng-container>
@@ -66,30 +66,30 @@
                     </div>
                 </div>
             </ng-template>
-            
+
         </mat-card-content>
         <mat-card-actions >
             <div class="row">
 
                 <!-- * PAY METHOD -->
                 <div class="col s12 m6">
-                    <gdev-pay-methods
+                    <mx-pay-methods
                     (methodSelected)="catchMethodPay($event)"
-                    ></gdev-pay-methods>
+                    ></mx-pay-methods>
                 </div>
-                
-                
+
+
                 <!-- * PAY ACTIONS -->
                 <div class="col s12 m6">
                     <p class="subtotal">Subtotal: {{order.totales.subtotal}}</p>
                     <p class="taxes">Envío: {{order.totales.tax}}</p>
                     <mat-card-title>Total: ${{order.totales.grand_total}}</mat-card-title>
-                    
+
                     <mat-checkbox [(ngModel)]="order.factura"
                     [name]="'factura'" #factura="ngModel"
                     >Requiere Factura</mat-checkbox>
-                    
-                    <button mat-raised-button 
+
+                    <button mat-raised-button
                     [color]="'primary'"
                     [disabled]="!validatePay()"
                     >Pagar</button>

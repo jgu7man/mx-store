@@ -1,4 +1,4 @@
-import { iUploadedFile } from "@marxa/storage-v9";
+import { iUploadedFile } from "@marxa/carrier";
 
 export interface iBrand {
   headLogo?: iUploadedFile

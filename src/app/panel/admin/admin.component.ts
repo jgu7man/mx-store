@@ -9,7 +9,7 @@ import { AddAdminComponent } from './add-admin/add-admin.component';
 import { EditAdminComponent } from './edit-admin/edit-admin.component';
 
 @Component({
-  selector: 'gdev-admin',
+  selector: 'mx-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })

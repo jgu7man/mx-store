@@ -1,6 +1,7 @@
 <mat-drawer-container [hasBackdrop]="false"
 [ngStyle]="{'min-heigth': height_vh}">
     <mat-drawer id="add_item" #addItem mode="over" position="start">
+      <ng-container *ngIf="addTemplate">
         <mat-card-content>
             <ng-container [ngTemplateOutlet]="addTemplate"></ng-container>
         </mat-card-content>
@@ -14,10 +15,12 @@
            (click)="onSave.emit()"
            >Guardar</button>
        </mat-card-actions>
+      </ng-container>
     </mat-drawer>
-    
-    <mat-drawer id="current_item" #currentItem [mode]="'over'" position="end" >
-        <mat-card-content *ngIf="itemSelected">
+
+    <mat-drawer id="current_item" #currentItem [mode]="'over'" position="end" *ngIf="selectTemplate" >
+      <ng-container *ngIf="itemSelected">
+        <mat-card-content>
             <ng-container  *ngTemplateOutlet="selectTemplate;context:itemCtx"></ng-container>
         </mat-card-content>
         <mat-card-actions
@@ -30,6 +33,7 @@
            (click)="onSave.emit()"
            >Guardar</button>
        </mat-card-actions>
+      </ng-container>
     </mat-drawer>
 
     <mat-drawer-content>
@@ -41,24 +45,26 @@
                             <i class="fas fa-plus fa-lg"></i>
                         </button>
                     </span></h4>
-                    
+
                 </div>
             </div>
             <div class="row">
                 <div class="col s12">
+                  <ng-container *ngIf="itemSelector">
                     <mat-selection-list #listPanel
                     (selectionChange)="onItemSelected($event)"
                     [disableRipple]="true"
                     [multiple]="false">
-                        <mat-list-option 
+                        <mat-list-option
                         *ngFor="let item of list"
                         [value]="item"
                         >
                         {{item[itemSelector]}}
                         </mat-list-option>
                     </mat-selection-list>
+                  </ng-container>
                 </div>
-            </div>   
+            </div>
         </div>
     </mat-drawer-content>
 </mat-drawer-container>

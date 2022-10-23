@@ -1,0 +1,20 @@
+<div class="imgContent">
+
+    <img [id]="image ? image.name : ''" [src]="srcPreview ? srcPreview.url : ''">
+    
+    <span *ngIf="validateSrcPreview(srcPreview)" class="delItem" (click)="deleteFile()">
+        <i class="fas fa-times-circle"></i>
+    </span>
+    
+</div>
+<div *ngIf="imageLoadPercent" class="loading-content" >
+    <span class="loading-legend">
+        <ng-container *ngIf="imageLoadPercent < 100; else cargado">
+            {{imageLoadPercent}}%
+        </ng-container>
+        <ng-template #cargado>
+            <i class="fas fa-check-circle green-text"></i>
+        </ng-template>
+    </span>
+    
+</div>

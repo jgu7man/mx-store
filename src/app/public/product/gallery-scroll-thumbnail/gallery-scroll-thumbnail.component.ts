@@ -3,14 +3,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { GalleryData, ProductGalleryComponent } from '../product-gallery/product-gallery.component';
 
 @Component({
-  selector: 'gdev-gallery-scroll-thumbnail',
+  selector: 'mx-gallery-scroll-thumbnail',
   templateUrl: './gallery-scroll-thumbnail.component.html',
   styleUrls: ['./gallery-scroll-thumbnail.component.scss']
 })
 export class GalleryScrollThumbnailComponent implements OnInit {
 
-  @Input() images: any[]
-  @Input() imageIndex: number
+  @Input() images: any[] = []
+  @Input() imageIndex?: number
   @Output() updateImage: EventEmitter<any> = new EventEmitter()
   constructor (
     public dialog_: MatDialog
@@ -21,7 +21,7 @@ export class GalleryScrollThumbnailComponent implements OnInit {
 
   openGallery(index: number) {
     var galleryData: GalleryData = {
-      gallery: this.images, index 
+      gallery: this.images, index
     }
     this.dialog_.open( ProductGalleryComponent, {
       maxWidth: '90vw',
@@ -35,6 +35,7 @@ export class GalleryScrollThumbnailComponent implements OnInit {
     var minis = document.getElementById( 'miniaturas' )
     var scrollAmount = 0
     var slideTimer = setInterval( () => {
+      if (!minis) throw new Error( 'No existen miniaturas')
       minis.scrollLeft -= 15
       scrollAmount += 15
       if ( scrollAmount >= 150 ) {
@@ -45,6 +46,7 @@ export class GalleryScrollThumbnailComponent implements OnInit {
 
   checkScrollLeft() {
     var minis = document.getElementById( 'miniaturas' )
+    if (!minis) throw new Error( 'No existen miniaturas')
     var scrollLeft = minis.scrollLeft
     var valid = scrollLeft <= 0 ? false : true
     return valid
@@ -54,6 +56,7 @@ export class GalleryScrollThumbnailComponent implements OnInit {
     var minis = document.getElementById( 'miniaturas' )
     var scrollAmount = 0
     var slideTimer = setInterval( () => {
+      if (!minis) throw new Error( 'No existen miniaturas')
       minis.scrollLeft += 15
       scrollAmount += 15
       if ( scrollAmount >= 150 ) {
@@ -64,7 +67,9 @@ export class GalleryScrollThumbnailComponent implements OnInit {
 
   checkScrollRight() {
     var minis = document.getElementById( 'miniaturas' )
+    if (!minis) throw new Error( 'No existen miniaturas')
     var index = document.getElementById( 'index' )
+    if (!index) throw new Error( 'No existe index')
     var scrollMinis = minis.scrollWidth
     var scrollIndex = index.scrollWidth
     var diff = scrollMinis - scrollIndex

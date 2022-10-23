@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'gdev-docs',
+  selector: 'mx-docs',
   templateUrl: './docs.component.html',
   styleUrls: ['./docs.component.scss']
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ClienteLoginService } from '../../clientes-login/cliente-login.service';
+declare const $: any
 
 @Component({
   selector: 'app-sidenav',
@@ -20,7 +21,7 @@ export class SidenavComponent implements OnInit {
     $("#"+path[2]).attr('aria-expanded', 'true')
   }
 
-  onActive(path) {
+  onActive(path: string) {
     return this.location.path().includes(path)
   }
 

@@ -4,6 +4,7 @@ import { WishlistProduct } from './wishlist-product.model';
 import { MxStoreProductModel } from 'src/app/store-panel/products/product.model';
 import { MxLoading } from '@marxa/devkit';
 import { ClienteModel } from '../../panel/clientes/cliente.model';
+import { CartProductModel } from '../cart/cart-product.model';
 
 @Injectable( {
   providedIn: 'root'
@@ -28,17 +29,17 @@ export class WishlistService {
   }
 
   get LocalClient() {
-    var cliente: ClienteModel = JSON.parse( localStorage.getItem( 'gdev-cliente' )! )
+    var cliente: ClienteModel = JSON.parse( localStorage.getItem( 'mx-store-cliente' )! )
     return cliente ? cliente : false
   }
 
   get LocalWishlist() {
-    var localwish = JSON.parse( localStorage.getItem( 'gdev-wishlist' )! )
+    var localwish = JSON.parse( localStorage.getItem( 'mx-store-wishlist' )! )
     return localwish ? localwish : false
   }
 
   setLocalWishlist( wishlist: WishlistProduct[] ) {
-    localStorage.setItem( 'gdev-wishlist', JSON.stringify( wishlist ) )
+    localStorage.setItem( 'mx-store-wishlist', JSON.stringify( wishlist ) )
   }
 
   async getWishlist() {
@@ -185,7 +186,7 @@ export class WishlistService {
     var product =
     await this.fs.collection( `tienda/productos/referencias` ).ref
     .doc( productId ).get()
-    return product.data() as MxStoreProductModel
+    return product.data() as CartProductModel
   }
 
 
