@@ -115,7 +115,7 @@ export class PayFormComponent implements OnInit {
 
     var alertBody: MxAlertModel = new MxAlertModel(
       {
-        message: 'Transacción completada',
+        text: 'Transacción completada',
         confirmButtonText: 'Ir a tienda',
         cancelButtonText: 'Ir a Cuenta'
       }, 'request')

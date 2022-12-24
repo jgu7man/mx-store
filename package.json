@@ -28,7 +28,7 @@
     "@marxa/auth": "^12.1.0",
     "@marxa/carrier": "^0.0.2",
     "@marxa/crud-panel": "^12.22.9",
-    "@marxa/devkit": "^12.2209.1",
+    "@marxa/devkit": "^12.2209.3",
     "@marxa/index": "^12.22.9",
     "@marxa/navbar": "^12.22.10",
     "@marxa/search": "^12.1.0",

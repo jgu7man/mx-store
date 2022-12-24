@@ -4,9 +4,9 @@ import { BehaviorSubject } from 'rxjs';
 import { MercadopagoData } from '../pay-config.model';
 import { PayMethodsService } from '../pay-methods.service';
 import { DOCUMENT } from '@angular/common';
-declare let mercadopago: any
-// import postscribe from 'postscribe'
-declare let postscribe: any
+// declare let mercadopago: any
+import postscribe from 'postscribe'
+// declare let postscribe: any
 import { MxColor, MxLoading } from '@marxa/devkit';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';

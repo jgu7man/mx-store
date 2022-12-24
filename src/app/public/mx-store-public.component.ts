@@ -48,7 +48,7 @@ export class MxStorePublicComponent implements OnInit, AfterViewInit {
       .catch(async (error: any) => {
         let alertBody: MxAlertModel = new MxAlertModel(
           {
-            message:
+            text:
               'Errores adminsitrativos. Si eres administrador inicia sesión para resolverlos. Si no, disculpa las molestias',
             confirmButtonText: 'Ir al panel',
             cancelButtonText: 'OK',
